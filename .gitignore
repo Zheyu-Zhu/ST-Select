@@ -1,0 +1,39 @@
+# === Large data & caches (NEVER commit — regenerate via scripts/prepare_hest_cache.py) ===
+hest_data/
+feature_cache/
+
+# === Experiment outputs: keep only the final publishable results ===
+results/
+results_slide/
+results_v2/
+results_lite/
+results_backbone/
+# (results_final/ is intentionally NOT ignored — it holds the headline 3-seed numbers)
+
+# === Python ===
+__pycache__/
+*.py[cod]
+*.egg-info/
+.eggs/
+build/
+dist/
+.pytest_cache/
+.ipynb_checkpoints/
+*.so
+
+# === Env / secrets ===
+.env
+*.token
+.venv/
+venv/
+env/
+
+# === OS / editor ===
+.DS_Store
+.idea/
+.vscode/
+*.swp
+
+# === Logs / temp ===
+*.log
+/tmp/
