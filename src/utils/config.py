@@ -34,6 +34,10 @@ class ExperimentConfig:
 
     # Active learning
     al_methods: List[str] = field(default_factory=lambda: ["random", "badge", "coreset", "poisson_disk"])
+    # Append the full-supervision upper bound automatically. Set False to skip it
+    # when a ceiling has already been computed in a separate run (avoids retraining
+    # a full-data model just to re-measure the shared upper bound).
+    add_full_supervision: bool = True
     initial_budget: int = 100
     budget_per_round: int = 50
     num_rounds: int = 10
@@ -55,6 +59,16 @@ class ExperimentConfig:
     split_level: str = "patient"
     # Dispersion-ranked gene cutoffs for the top-N per-gene PCC sweep.
     pcc_top_n: List[int] = field(default_factory=lambda: [10, 50, 100, 200, 300])
+
+    # End-to-end image-input mode: train a backbone (e.g. st_net) over raw
+    # 224x224 patches instead of frozen cached features. Reads an index cache
+    # (<feature_cache_dir>/<dataset>.npz with patch_pos + sample_ids) and pulls
+    # patches from `patches_dir`. See scripts/prepare_hest_index.py.
+    image_mode: bool = False
+    patches_dir: str = "./hest_data/patches"
+    # When set, full-supervision fold models are checkpointed here as
+    # <dir>/<dataset>/full_supervision_fold{f}_seed{s}.pt (weights + provenance).
+    save_models_dir: Optional[str] = None
 
     # System
     device: str = "cuda"

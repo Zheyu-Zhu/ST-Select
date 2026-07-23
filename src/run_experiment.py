@@ -10,6 +10,7 @@ import torchvision.transforms as T
 
 from .al_methods import get_strategy, list_strategies
 from .datasets import STDataset, STFeatureDataset, HESTLoader, PatientKFold
+from .datasets.patch_dataset import PatchImageDataset
 from .datasets.splits import BudgetMasker
 from .evaluation import compute_metrics, compare_methods
 from .evaluation.visualization import plot_al_curves
@@ -164,6 +165,39 @@ def load_feature_cache(config: ExperimentConfig) -> Dict:
     }
 
 
+def load_image_cache(config: ExperimentConfig) -> Dict:
+    """Load an index cache for the end-to-end (image-input) fast path.
+
+    Expects <feature_cache_dir>/<dataset_name>.npz with arrays produced by
+    scripts/prepare_hest_index.py: expressions, positions, patient_ids,
+    sample_ids, gene_names, patch_pos. Actual pixels are read lazily from
+    config.patches_dir by PatchImageDataset. `features` is None (the backbone
+    consumes raw patches, not cached features).
+    """
+    cache_path = Path(config.feature_cache_dir) / f"{config.dataset_name}.npz"
+    if not cache_path.exists():
+        raise FileNotFoundError(
+            f"Image index cache not found at {cache_path}. Build it with "
+            f"scripts/prepare_hest_index.py (needs hest_data/patches + st)."
+        )
+    data = np.load(cache_path, allow_pickle=True)
+    if "patch_pos" not in data:
+        raise ValueError(
+            f"{cache_path} has no 'patch_pos' array — it looks like a frozen "
+            f"feature cache, not an image index. Run without --image-mode, or "
+            f"rebuild with scripts/prepare_hest_index.py."
+        )
+    return {
+        "features": None,
+        "expressions": data["expressions"].astype("float32"),
+        "positions": data["positions"].astype("float32") if "positions" in data else None,
+        "patient_ids": data["patient_ids"] if "patient_ids" in data else None,
+        "sample_ids": data["sample_ids"] if "sample_ids" in data else None,
+        "gene_names": data["gene_names"] if "gene_names" in data else None,
+        "patch_pos": data["patch_pos"].astype("int64"),
+    }
+
+
 def _records_from_ids(patient_ids, sample_ids, n: int) -> List[Dict]:
     """Build minimal records (patient_id/sample_id per spot) for PatientKFold."""
     records = []
@@ -193,8 +227,8 @@ def run_full_benchmark(config: ExperimentConfig) -> Dict:
     output_dir = Path(config.output_dir) / config.dataset_name
     output_dir.mkdir(parents=True, exist_ok=True)
 
-    cache = load_feature_cache(config)
-    n_total = len(cache["features"])
+    cache = load_image_cache(config) if config.image_mode else load_feature_cache(config)
+    n_total = len(cache["expressions"])
     records = _records_from_ids(cache["patient_ids"], cache["sample_ids"], n_total)
     # Grouping key for CV: patient-level (strict) or slide-level (leakier,
     # literature-comparable, tests whether AL helps once patient-shift is removed).
@@ -207,7 +241,7 @@ def run_full_benchmark(config: ExperimentConfig) -> Dict:
     # Methods to evaluate: the requested AL methods plus a full-supervision
     # upper bound (train on the entire training fold). See tutorial §5/§6.
     methods = list(config.al_methods)
-    if "full_supervision" not in methods:
+    if getattr(config, "add_full_supervision", True) and "full_supervision" not in methods:
         methods.append("full_supervision")
 
     # final_pcc[method] = list of per-(fold, seed) final-round pcc_per_gene.
@@ -220,7 +254,8 @@ def run_full_benchmark(config: ExperimentConfig) -> Dict:
             for seed_idx in range(config.n_seeds):
                 seed = config.seed + seed_idx
                 result = _run_one_run(
-                    config, method_name, cache, train_idx, test_idx, seed
+                    config, method_name, cache, train_idx, test_idx, seed,
+                    fold_idx=fold_idx,
                 )
                 final_pcc[method_name].append(result["pcc_per_gene"][-1])
                 detailed[method_name].append({
@@ -270,6 +305,7 @@ def _run_one_run(
     train_idx: List[int],
     test_idx: List[int],
     seed: int,
+    fold_idx: int = 0,
 ) -> Dict[str, List]:
     """Train+evaluate one (method, fold, seed) on the feature fast path."""
     set_seed(seed)
@@ -281,10 +317,23 @@ def _run_one_run(
     n_genes = expressions.shape[1]
 
     train_positions = positions[train_idx] if positions is not None else None
-    train_ds = STFeatureDataset(
-        features[train_idx], expressions[train_idx], train_positions,
-    )
-    test_ds = STFeatureDataset(features[test_idx], expressions[test_idx])
+    if config.image_mode:
+        # End-to-end: serve raw patches so the backbone trains over pixels.
+        sample_ids = cache["sample_ids"]
+        patch_pos = cache["patch_pos"]
+        train_ds = PatchImageDataset(
+            sample_ids[train_idx], patch_pos[train_idx], expressions[train_idx],
+            config.patches_dir, train_positions,
+        )
+        test_ds = PatchImageDataset(
+            sample_ids[test_idx], patch_pos[test_idx], expressions[test_idx],
+            config.patches_dir,
+        )
+    else:
+        train_ds = STFeatureDataset(
+            features[train_idx], expressions[train_idx], train_positions,
+        )
+        test_ds = STFeatureDataset(features[test_idx], expressions[test_idx])
     # Test-fold SLIDE ids: PCC is aggregated per-slide then averaged (the field
     # standard) so per-slide batch effects don't inflate a pooled correlation.
     # Fall back to patient ids if sample ids are unavailable.
@@ -309,8 +358,10 @@ def _run_one_run(
     )
 
     # Feature cache passed to AL strategies is the *training-fold* feature matrix,
-    # aligned to the training dataset's local indices.
-    train_feature_cache = features[train_idx]
+    # aligned to the training dataset's local indices. In image mode there is no
+    # cached feature matrix; feature-based strategies must project through the
+    # (training) backbone via the loop's _extract_features path instead.
+    train_feature_cache = features[train_idx] if features is not None else None
     train_position_cache = positions[train_idx] if positions is not None else None
 
     n_train = len(train_ds)
@@ -325,6 +376,8 @@ def _run_one_run(
         # Reported as a single checkpoint at frac = 1.0.
         trainer.train(train_ds, list(range(n_train)))
         metrics = _evaluate_model(trainer, test_ds, device, top_n_cutoffs, test_group_ids)
+        # Persist the trained ceiling model (the meaningful end-to-end weights).
+        _maybe_save_model(config, trainer, method_name, fold_idx, seed, n_genes)
         keys = ("pcc_per_gene", "pcc_per_spot", "pcc_per_gene_by_slide", "mse", "mae")
         out = {k: [metrics[k]] for k in keys if k in metrics}
         out["frac"] = [1.0]
@@ -348,6 +401,36 @@ def _run_one_run(
     )
     res = loop.run()
     return {k: res[k] for k in result_keys if k in res}
+
+
+def _maybe_save_model(config, trainer, method_name, fold_idx, seed, n_genes) -> None:
+    """Persist a trained model's weights + provenance when --save-models-dir is set.
+
+    Saves a self-describing checkpoint so a fold's end-to-end model can be
+    reloaded standalone (state_dict + the config needed to rebuild the module).
+    """
+    save_dir = getattr(config, "save_models_dir", None)
+    if not save_dir:
+        return
+    out_dir = Path(save_dir) / config.dataset_name
+    out_dir.mkdir(parents=True, exist_ok=True)
+    ckpt = out_dir / f"{method_name}_fold{fold_idx}_seed{seed}.pt"
+    torch.save(
+        {
+            "state_dict": trainer.model.state_dict(),
+            "model_name": config.model_name,
+            "n_genes": n_genes,
+            "dataset_name": config.dataset_name,
+            "method": method_name,
+            "fold": fold_idx,
+            "seed": seed,
+            "image_mode": config.image_mode,
+            "pretrained": config.pretrained,
+            "frozen_backbone": config.frozen_backbone,
+        },
+        ckpt,
+    )
+    print(f"    saved model -> {ckpt}")
 
 
 def _budget_targets(n_train: int, ratios: List[float]) -> List[int]:
@@ -485,6 +568,19 @@ def main():
     parser.add_argument("--output-dir", default="./results")
     parser.add_argument("--seed", type=int, default=42)
     parser.add_argument("--device", default="cuda")
+    parser.add_argument(
+        "--image-mode", action="store_true",
+        help="End-to-end: train the backbone over raw patches (use with --model st_net). "
+             "Loads an index cache from scripts/prepare_hest_index.py.",
+    )
+    parser.add_argument(
+        "--patches-dir", default="./hest_data/patches",
+        help="Directory of HEST patch h5 files (image mode).",
+    )
+    parser.add_argument(
+        "--save-models-dir", default=None,
+        help="If set, checkpoint each full-supervision fold model here.",
+    )
     parser.add_argument("--list-methods", action="store_true", help="List available AL methods")
 
     args = parser.parse_args()
@@ -513,6 +609,9 @@ def main():
         output_dir=args.output_dir,
         seed=args.seed,
         device=args.device,
+        image_mode=args.image_mode,
+        patches_dir=args.patches_dir,
+        save_models_dir=args.save_models_dir,
     )
     if args.budget_ratios is not None:
         cfg_kwargs["budget_ratios"] = args.budget_ratios

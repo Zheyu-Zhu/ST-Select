@@ -37,3 +37,4 @@ env/
 # === Logs / temp ===
 *.log
 /tmp/
+results_e2e/
