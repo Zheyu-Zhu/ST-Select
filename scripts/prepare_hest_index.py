@@ -50,6 +50,8 @@ def main():
     parser.add_argument("--top-n", type=int, default=300, help="Ranked HVG columns to keep")
     parser.add_argument("--patient-map", default=None,
                         help="slide->patient CSV (cols id,patient) or .json; default one-per-slide")
+    parser.add_argument("--target", choices=["norm", "raw"], default="norm",
+                        help="Regression target: log1p(CP10k) [norm, default] or log1p(raw counts) [raw]")
     args = parser.parse_args()
 
     sample_ids = args.sample_ids or discover_sample_ids()
@@ -76,8 +78,9 @@ def main():
         a.write_h5ad(up)
         selector_paths.append(str(up))
     selector.fit(selector_paths, slide_ids=sample_ids)
-    expr_map = selector.extract_expression_matrices(sample_ids, top_n=args.top_n)
+    expr_map = selector.extract_expression_matrices(sample_ids, top_n=args.top_n, target=args.target)
     gene_names = np.asarray(selector.get_hvg_names(args.top_n))
+    print(f"  target = {args.target} ({'log1p(raw)' if args.target=='raw' else 'log1p(CP10k)'})")
     print("  top HVGs:", list(gene_names[:5]), "...")
 
     all_expr, all_pos, all_patient, all_sample, all_patchpos = [], [], [], [], []

@@ -7,6 +7,7 @@ from .mclstexp import MclSTExp
 from .thitogene import THItoGene
 from .feature_predictor import FeaturePredictor
 from .trainable_feature_predictor import TrainableFeaturePredictor
+from .uni_regressor import UNIRegressor
 from .feature_extractors import FeatureExtractor, get_feature_extractor
 
 __all__ = [
@@ -19,6 +20,7 @@ __all__ = [
     "THItoGene",
     "FeaturePredictor",
     "TrainableFeaturePredictor",
+    "UNIRegressor",
     "FeatureExtractor",
     "get_feature_extractor",
 ]

@@ -1,11 +1,58 @@
 # End-to-End st_net Benchmark — Comprehensive Report
 
 **Run date:** 2026-07-21 → 2026-07-22 · **Machine:** Windows 11, NVIDIA RTX 3080 (10 GB), 16 GB RAM
-**Env:** conda `st-select`, Python 3.11, torch 2.6.0+cu124 · **Status:** stopped after Phase 2 (P3 not run — see §7)
+**Env:** conda `st-select`, Python 3.11, torch 2.6.0+cu124
+**Status:** Phases 1–2 done (cp10k); **UPDATED 2026-07-23** with raw-target + UNI findings — **see §0, which revises the §3 headline.**
 
 > **Tk** = value not yet computed (to come). Everything marked Tk is Phase 3 (strategy
 > comparison), which was intentionally **not run** — the run was stopped after He-breast
 > random per user request.
+
+---
+
+## 0. HEADLINE UPDATE (2026-07-23) — the regression *target* was the real story
+
+The original headline (§3: "end-to-end doesn't help, far from 0.2") was largely an
+**artifact of the target normalization**. Two controlled HER2 follow-ups (same
+features / genes / spots; only the noted variable changed) revise it.
+
+**(a) Target `log1p(CP10k)` vs `log1p(raw)` — ~2× on per-gene, for *both* backbones.**
+`log1p(raw)` keeps each spot's sequencing-depth / tissue-density signal (which images
+predict well); CP10k normalizes it away. HER2 per-gene PCC (all 300):
+
+| backbone / training | cp10k | raw | ratio |
+|---|---|---|---|
+| DenseNet, frozen | 0.0518 | 0.0962 | 1.86× |
+| DenseNet, end-to-end | 0.0487 | 0.1111 | 2.28× |
+| UNI, frozen | 0.0666 | 0.1186 | 1.78× |
+
+**(b) Backbone UNI > DenseNet (~1.25×), end-to-end adds more, and the levers stack to
+clear ~0.2.** HER2 ladder (top-50 = the literature-comparable "best-predicted genes"
+number). The last row is the **definitive result** (UNIRegressor, ViT-L fine-tuned
+end-to-end, bf16 AMP + gradient checkpointing, 4-fold × 15 epoch, batch 16, backbone LR ×0.1):
+
+| setting | per-gene (300) | per-slide | top-50 |
+|---|---|---|---|
+| DenseNet · cp10k · frozen | 0.0518 | 0.0303 | 0.079 |
+| DenseNet · raw · end-to-end | 0.1111 | 0.0758 | 0.181 |
+| UNI · cp10k · frozen | 0.0666 | 0.0354 | 0.093 |
+| UNI · raw · frozen | 0.1186 | 0.0805 | 0.185 |
+| **UNI · raw · END-TO-END** | **0.1280** | **0.0857** | **0.212** |
+
+**Revised conclusions (confirmed empirically):**
+1. **~0.2 is achieved.** End-to-end UNI + raw gives **top-50 = 0.212** — the PI's ~0.2
+   expectation is met. The levers stack exactly as predicted: raw (~2×) → UNI (~1.25×) →
+   end-to-end (+8%).
+2. **End-to-end *does* help — once the target is raw.** end-to-end UNI raw (0.128) >
+   frozen UNI raw (0.119); end-to-end DenseNet raw (0.111) > frozen DenseNet raw (0.096).
+   The original "end-to-end < frozen" reflected the cp10k regime *and* comparing a weak
+   DenseNet against a strong frozen UNI.
+3. The "low" absolute numbers in §3–§8 are the **CP10k regime** — still valid for that
+   target, but read them with this correction.
+
+Figure: `results_e2e/her2_comparison.png`. Model: `src/models/uni_regressor.py`
+(bf16 AMP + differential LR in `src/training/trainer.py`). Results:
+`results_e2e/ceiling_uni_raw/`. Next: extend raw-target + UNI to cSCC / He-breast.
 
 ---
 

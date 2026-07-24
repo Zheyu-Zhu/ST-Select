@@ -25,6 +25,7 @@ class ALTrainer:
         scheduler: str = "cosine",
         patience: int = 10,
         num_workers: int = 0,
+        backbone_lr_mult: float = 1.0,
     ):
         self.model = model
         self.lr = lr
@@ -36,6 +37,10 @@ class ALTrainer:
         self.scheduler_name = scheduler
         self.patience = patience
         self.num_workers = num_workers
+        # <1.0 fine-tunes a pretrained backbone at a lower LR than the (randomly
+        # initialized) head — standard for ViT-L fine-tuning so the backbone's
+        # pretrained features aren't washed out. 1.0 = single LR (default).
+        self.backbone_lr_mult = backbone_lr_mult
 
         self.model.to(self.device)
 
@@ -71,9 +76,23 @@ class ALTrainer:
                 num_workers=self.num_workers,
             )
 
-        optimizer = optim.AdamW(
-            self.model.parameters(), lr=self.lr, weight_decay=self.weight_decay
-        )
+        # Differential LR: lower LR on a pretrained backbone than the head, when
+        # requested and the model exposes (.backbone, .head) with trainable backbone.
+        bb = getattr(self.model, "backbone", None)
+        head = getattr(self.model, "head", None)
+        bb_trainable = bb is not None and any(p.requires_grad for p in bb.parameters())
+        if self.backbone_lr_mult != 1.0 and bb_trainable and head is not None:
+            optimizer = optim.AdamW(
+                [
+                    {"params": bb.parameters(), "lr": self.lr * self.backbone_lr_mult},
+                    {"params": head.parameters(), "lr": self.lr},
+                ],
+                weight_decay=self.weight_decay,
+            )
+        else:
+            optimizer = optim.AdamW(
+                self.model.parameters(), lr=self.lr, weight_decay=self.weight_decay
+            )
 
         if self.scheduler_name == "cosine":
             scheduler = optim.lr_scheduler.CosineAnnealingLR(optimizer, T_max=self.epochs)
@@ -88,6 +107,11 @@ class ALTrainer:
         patience_counter = 0
         best_state = None
 
+        # bf16 autocast on CUDA: ~2x faster + lighter for big backbones (ViT-L /
+        # DenseNet) on Ampere+, numerically safe (bf16 range ~ fp32, no GradScaler
+        # needed). No-op on CPU/MPS and negligible for the tiny MLP heads.
+        use_amp = str(self.device).startswith("cuda")
+
         for epoch in range(self.epochs):
             # Training
             self.model.train()
@@ -99,8 +123,9 @@ class ALTrainer:
                 expressions = batch["expression"].to(self.device)
 
                 optimizer.zero_grad()
-                predictions = self.model(images)
-                loss = loss_fn(predictions, expressions)
+                with torch.autocast(device_type="cuda", dtype=torch.bfloat16, enabled=use_amp):
+                    predictions = self.model(images)
+                    loss = loss_fn(predictions, expressions)
                 loss.backward()
                 optimizer.step()
 

@@ -132,6 +132,20 @@ class ActiveLearningLoop:
                     prev_model = copy.deepcopy(self.trainer.model)
                     prev_model.load_state_dict(prev_model_state)
 
+                # Image mode (no feature cache): model-PREDICTION strategies
+                # (entropy, ...) must run the model over candidate IMAGES, because
+                # the model consumes images, not cached feature vectors. Hand them
+                # a candidate-ordered image dataloader; feature-based strategies
+                # (requires_features) instead get backbone features above.
+                cand_loader = None
+                if (features is None and self.strategy.requires_model
+                        and not self.strategy.requires_features):
+                    from torch.utils.data import DataLoader, Subset
+                    cand_loader = DataLoader(
+                        Subset(self.dataset, candidates), batch_size=64,
+                        shuffle=False, num_workers=getattr(self.trainer, "num_workers", 0),
+                    )
+
                 k = min(self.budget_per_round, target - len(selected), len(candidates))
                 new_picks = select_next_batch(
                     strategy=self.strategy,
@@ -141,6 +155,7 @@ class ActiveLearningLoop:
                     features=features,
                     positions=self.position_cache,
                     model=self.trainer.model,
+                    dataloader=cand_loader,
                     extras={"prev_model": prev_model},
                 )
                 assert not (set(new_picks) & set(selected)), (

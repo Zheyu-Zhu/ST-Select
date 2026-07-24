@@ -31,6 +31,9 @@ class ExperimentConfig:
     full_epochs: int = 100
     batch_size: int = 64
     loss_fn: str = "mse"
+    # <1.0 fine-tunes a pretrained backbone (e.g. UNI ViT-L) at a lower LR than
+    # the head; 1.0 = single LR for the whole model (default).
+    backbone_lr_mult: float = 1.0
 
     # Active learning
     al_methods: List[str] = field(default_factory=lambda: ["random", "badge", "coreset", "poisson_disk"])

@@ -163,6 +163,18 @@ def main():
         f"gpu={torch.cuda.get_device_name(0) if torch.cuda.is_available() else 'NONE'}")
     log("=" * 70)
 
+    # ---- Phase 0 (raw-target check): HER2 end-to-end full-supervision with a
+    # log1p(RAW) target instead of log1p(CP10k). Same st_net/epochs/folds as the
+    # cp10k HER2 ceiling (results_e2e/ceiling/her2_breast_img, per-gene 0.0487),
+    # so the two are directly comparable and isolate the normalization effect
+    # end-to-end. Frozen fast-path already showed ~2x on per-gene. ~1.7h.
+    cfg = base_config(
+        dataset_name="her2_breast_raw_img", al_methods=["full_supervision"],
+        full_epochs=40, epochs_per_round=40, budget_ratios=[1.0],
+        output_dir=str(OUT / "ceiling_raw"), save_models_dir=str(MODELS_DIR),
+    )
+    run_job("P0-raw-ceiling", "her2_breast_raw_img", cfg)
+
     # ---- Phase 1: ceilings (full_supervision), all datasets, save models ----
     # 40 epochs x 4 folds x batch 32 ~ 4.4h total (measured ~15.5s/epoch + 15s/fold,
     # scaling with spot count). This is the PI's key "can end-to-end reach ~0.2?".

@@ -14,7 +14,7 @@ from .datasets.patch_dataset import PatchImageDataset
 from .datasets.splits import BudgetMasker
 from .evaluation import compute_metrics, compare_methods
 from .evaluation.visualization import plot_al_curves
-from .models import STNet, HisToGene, Hist2ST, FeaturePredictor, TrainableFeaturePredictor
+from .models import STNet, HisToGene, Hist2ST, FeaturePredictor, TrainableFeaturePredictor, UNIRegressor
 from .preprocessing import HVGSelector, PositionExtractor, PatchCropper
 from .training import ALTrainer, ActiveLearningLoop
 from .utils import ExperimentConfig, set_seed, get_device
@@ -29,7 +29,7 @@ from .utils import ExperimentConfig, set_seed, get_device
 #   - trainable_feature_predictor: learnable projection over frozen features —
 #     a controlled proxy for a trainable backbone; its representation moves each
 #     round, so feature-based AL sees a "live" signal (vs. frozen features).
-REGRESSION_MODELS = {"feature_predictor", "trainable_feature_predictor", "st_net", "histogene", "hist2st"}
+REGRESSION_MODELS = {"feature_predictor", "trainable_feature_predictor", "st_net", "histogene", "hist2st", "uni_regressor"}
 
 # Models that are implemented but need a non-standard input or training path
 # that ALTrainer does not provide:
@@ -61,6 +61,11 @@ def build_model(config: ExperimentConfig, n_genes: int) -> torch.nn.Module:
         return STNet(
             n_genes=n_genes,
             pretrained=config.pretrained,
+            frozen_backbone=config.frozen_backbone,
+        )
+    elif name == "uni_regressor":
+        return UNIRegressor(
+            n_genes=n_genes,
             frozen_backbone=config.frozen_backbone,
         )
     elif name == "histogene":
@@ -355,6 +360,7 @@ def _run_one_run(
         model=model, lr=config.lr, weight_decay=config.weight_decay,
         epochs=train_epochs, batch_size=config.batch_size,
         device=device, loss_fn=config.loss_fn, num_workers=config.num_workers,
+        backbone_lr_mult=getattr(config, "backbone_lr_mult", 1.0),
     )
 
     # Feature cache passed to AL strategies is the *training-fold* feature matrix,
@@ -564,6 +570,8 @@ def main():
         help="Epochs for the full-supervision upper bound (trained once on the whole fold)",
     )
     parser.add_argument("--lr", type=float, default=1e-4)
+    parser.add_argument("--backbone-lr-mult", type=float, default=1.0,
+                        help="LR multiplier for a pretrained backbone vs head (e.g. 0.1 for UNI fine-tune)")
     parser.add_argument("--batch-size", type=int, default=64)
     parser.add_argument("--output-dir", default="./results")
     parser.add_argument("--seed", type=int, default=42)
@@ -605,6 +613,7 @@ def main():
         epochs_per_round=args.epochs,
         full_epochs=args.full_epochs,
         lr=args.lr,
+        backbone_lr_mult=args.backbone_lr_mult,
         batch_size=args.batch_size,
         output_dir=args.output_dir,
         seed=args.seed,
