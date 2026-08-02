@@ -5,8 +5,8 @@
 > **RTX 3080 (10 GB)**; "est." = projected, not yet measured. For the exact training
 > recipe and the pipeline audit see [`RUN_DETAILS.md`](RUN_DETAILS.md).
 >
-> Last updated: 2026-08-02 — E18–E21 complete; `uni-budget-her2` and two UNI
-> ceilings still queued (`scripts/run_queue.py`, resumable).
+> Last updated: 2026-08-02 — E18–E22 complete; only the Kidney UNI ceiling still
+> running (`scripts/run_queue.py`, resumable).
 
 **Status legend:** ✅ done · ⏳ running · ⏸ planned · ❌ failed/superseded
 **Conventions:** patient-level 4-fold CV · **per-slide PCC is primary** (per gene
@@ -42,6 +42,7 @@ genes, **not** best-predicted genes · target
 | **E19** | UNI e2e AL, HER2 + Kidney | does the null survive on the strongest model? | ✅ | 15 h |
 | **E20** | **Breadth vs depth** (fixed spots, varying patients) | is the constraint patients or spots? | ✅ | 12 min |
 | **E21** | Budget curves for cell-type + spatial tasks | does the budget depend on the task? | ✅ | 54 min |
+| **E22** | UNI e2e budget curve + top-N gap closure | is early saturation a data property or a weak-model artifact? | ✅ | 12 h |
 
 **Headline 1 — the AL null (robust across everything run, now including the best model).**
 No strategy gives a consistent gain over random: **20 strategies × 2 datasets** on the
@@ -733,6 +734,43 @@ accuracy alone.
 **Consequence for the pitch.** "X% of labels is enough" needs two qualifiers, not one:
 enough *for which cohort* **and** *for which task*. Across three cohorts and three tasks
 the answer ranges from 5% to 75%, and the task can move it as much as the cohort does.
+
+---
+
+## 10i. E22 — The budget answer on the best model, and the top-N gaps closed ✅ (2026-08-02)
+
+`results_pg/uni_budget/`, `results_pg/uni_ceiling/`.
+
+**(a) Budget curve on UNI e2e** (HER2, 7 points, 551 min). The obvious objection to
+E18 is that its saturation points reflect a small MLP head that stops learning early,
+not the data. It does not survive:
+
+| budget | 5% | 10% | 20% | 30% | 50% | 75% | 100% |
+|---|---|---|---|---|---|---|---|
+| UNI e2e | 0.3246 | 0.3262 | 0.3352 | **0.3409** | 0.3349 | 0.3352 | 0.3303 |
+| frozen DN (n=12) | 0.3067 | 0.3118 | 0.3018 | 0.2946 | 0.2978 | 0.2850 | 0.2825 |
+
+Flat from 20% on, **peaks at 30%**, and 100% is not the best point — the 304 M model
+agrees HER2 saturates early. ⚠ Two caveats, both flattering the low end: **n=4** (one
+seed; three would have cost ~27 h) so the p=0.125 floor applies and nothing *can* be
+flagged worse; and **fixed 15 epochs** at every budget, matching the ceiling's recipe,
+which is precisely the confound E18 identified. Treat as corroboration of the curve
+*shape*, not an independent budget measurement.
+
+**(b) top-200 recovered** (186 min HER2; Kidney queued). The original UNI ceilings used
+cutoffs [10,50,100] and saved no weights, so the missing cell needed a retrain. The
+re-run also served as an **unplanned reproducibility check** — identical config, three
+days apart:
+
+| | top-10 | top-50 | top-100 | top-200 | top-300 | per-slide | per-gene |
+|---|---|---|---|---|---|---|---|
+| re-run | 0.2820 | 0.3365 | 0.3458 | **0.3356** | **0.3303** | 0.3303 | 0.4416 |
+| original | 0.2801 | 0.3366 | 0.3462 | n/c | n/c | 0.3313 | 0.4429 |
+
+Every overlapping number agrees to **~0.001** (CUDA nondeterminism). That independently
+corroborates the 0.0018 initialisation-noise floor quoted in E19, measured a completely
+different way — and confirms E19's ±0.003 strategy effects sit at the edge of what this
+setup can resolve. Checkpoints are now persisted, so further metrics are a re-eval.
 
 ---
 

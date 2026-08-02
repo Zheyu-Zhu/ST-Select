@@ -21,3 +21,9 @@
 2026-08-02 00:09:40  [4/7] SKIP uni-al-kidney — already produced results_pg/uni_al/pg_kidney_hvg300/results.json
 2026-08-02 00:09:40  [5/7] START uni-budget-her2 (t2, est 750 min)
 2026-08-02 00:09:40          The budget curve on the best model, 7 points. Budget fractions sum to 2.9 full-dataset passes x the 250 min measured ceiling.
+2026-08-02 09:20:41  [5/7] DONE  uni-budget-her2 in 551.0 min (est 750) rc=0
+2026-08-02 09:20:41  [6/7] START uni-ceiling-her2 (t2, est 250 min)
+2026-08-02 09:20:41          Recovers the missing top-200 cell and saves weights so no future metric needs a retrain. 250 min measured.
+2026-08-02 12:26:54  [6/7] DONE  uni-ceiling-her2 in 186.2 min (est 250) rc=0
+2026-08-02 12:26:54  [7/7] START uni-ceiling-kidney (t2, est 475 min)
+2026-08-02 12:26:54          Same for Kidney. 475 min measured.
