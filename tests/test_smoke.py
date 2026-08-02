@@ -194,6 +194,71 @@ def test_tod_discrepancy_nonzero_across_rounds():
     assert len(set(picks0)) == 10 and set(picks0) <= set(cand)
 
 
+def test_grouped_and_clustering_metrics():
+    """Slide-level top-N, spatial-domain recovery (ARI/NMI), and selection
+    diversity return finite, sane values on structured synthetic data."""
+    from src.evaluation.metrics import (
+        top_n_pcc_grouped, spatial_domain_recovery, selection_diversity,
+    )
+    rng = np.random.default_rng(3)
+    # Two slides, each with clustered structure so ARI/NMI are meaningful.
+    n_per = 60
+    group_ids = np.array(["S0"] * n_per + ["S1"] * n_per)
+    base = rng.standard_normal((2 * n_per, N_GENES))
+    targets = base
+    preds = base + 0.05 * rng.standard_normal(base.shape)  # near-perfect
+
+    topn = top_n_pcc_grouped(preds, targets, group_ids, cutoffs=(4, 8))
+    assert set(topn) == {4, 8} and all(np.isfinite(v) for v in topn.values())
+    assert topn[4] > 0.8, f"near-perfect preds should score high, got {topn}"
+
+    dom = spatial_domain_recovery(preds, targets, group_ids, n_clusters=4)
+    assert np.isfinite(dom["ari"]) and np.isfinite(dom["nmi"])
+    assert dom["ari"] > 0.3, f"clusters should mostly agree, got {dom}"
+
+    feats = rng.standard_normal((200, FEATURE_DIM))
+    pos = rng.uniform(0, 100, size=(200, 2))
+    div = selection_diversity(feats, list(range(0, 40)), pos)
+    assert np.isfinite(div["feature_spread"]) and np.isfinite(div["spatial_spread"])
+
+
+def test_image_mode_al_head_only():
+    """Regression for the image-mode double-backbone crash: with head_only=True
+    the AL strategies must score using only model.head over backbone features —
+    never re-invoking the (image-consuming) backbone or full forward."""
+    import torch
+    import torch.nn as nn
+    from src.al_methods import get_strategy
+    from src.al_methods.base import select_next_batch
+
+    class ImageLikeModel(nn.Module):
+        """backbone/forward expect IMAGES, so calling them on 1024-d features
+        must raise — exactly the condition head_only=True has to avoid."""
+        def __init__(self, feat_dim, n_genes):
+            super().__init__()
+            self.head = nn.Linear(feat_dim, n_genes)
+            self._backbone = nn.Identity()
+
+        @property
+        def backbone(self):
+            raise AssertionError("backbone called in head_only mode (double-backbone)")
+
+        def forward(self, x):
+            raise AssertionError("full forward called in head_only mode")
+
+    model = ImageLikeModel(FEATURE_DIM, N_GENES)
+    feats = np.random.randn(120, FEATURE_DIM).astype("float32")  # backbone features
+    cand = list(range(40, 120))
+    extras = {"head_only": True, "prev_model": None}
+
+    for name in ("entropy", "badge", "margin", "least_confidence"):
+        picks = select_next_batch(
+            get_strategy(name, seed=0), cand, list(range(40)), 15,
+            features=feats, model=model, extras=extras,
+        )
+        assert len(set(picks)) == 15 and set(picks) <= set(cand), name
+
+
 def test_full_supervision_uses_full_epochs():
     """The full-supervision branch must build its trainer with config.full_epochs."""
     with tempfile.TemporaryDirectory() as td:

@@ -8,7 +8,7 @@ from ...utils.reproducibility import resolve_device as _resolve_device
 
 from ..base import ActiveLearningStrategy
 from ..registry import register
-from ..base import model_device
+from ..base import model_device, predict_from
 
 
 @register
@@ -35,22 +35,23 @@ class MCDropout(ActiveLearningStrategy):
         dataloader: Optional[torch.utils.data.DataLoader] = None,
         extras: Optional[Dict] = None,
     ) -> List[int]:
-        scores = self._compute_variance(model, candidate_indices, features, dataloader)
+        head_only = bool(extras and extras.get("head_only"))
+        scores = self._compute_variance(model, candidate_indices, features, dataloader, head_only)
         top_k = np.argsort(scores)[-k:]
         return [candidate_indices[i] for i in top_k]
 
-    def _compute_variance(self, model, candidates, features, dataloader):
+    def _compute_variance(self, model, candidates, features, dataloader, head_only=False):
         model.train()  # keep dropout active
 
         if features is not None:
-            return self._variance_from_features(model, features, candidates)
+            return self._variance_from_features(model, features, candidates, head_only)
 
         if dataloader is not None:
             return self._variance_from_dataloader(model, dataloader)
 
         raise ValueError("Either features or dataloader must be provided.")
 
-    def _variance_from_features(self, model, features, candidates):
+    def _variance_from_features(self, model, features, candidates, head_only=False):
         all_preds = []
         x_all = torch.tensor(features[candidates], dtype=torch.float32)
 
@@ -59,7 +60,7 @@ class MCDropout(ActiveLearningStrategy):
             for i in range(0, len(x_all), self.batch_size):
                 batch = x_all[i : i + self.batch_size].to(self.device)
                 with torch.no_grad():
-                    pred = model(batch)
+                    pred = predict_from(model, batch, head_only)
                 preds_t.append(pred.cpu())
             all_preds.append(torch.cat(preds_t, dim=0))
 

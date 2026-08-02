@@ -63,6 +63,40 @@ def clear_slide_cache() -> None:
     _CACHE_BYTES = 0
 
 
+class PNGPatchDataset(Dataset):
+    """Serves ImageNet-normalized (3,224,224) patches read from individual PNGs.
+
+    The collaborator's `processed_gene/` package stores one PNG per spot rather
+    than HEST's per-slide h5, so this is the image-mode dataset for that layout.
+    PNGs are decoded lazily per __getitem__ (no whole-slide cache needed: each
+    file is ~100 KB and the OS page cache handles reuse across epochs).
+    """
+
+    def __init__(
+        self,
+        patch_paths: np.ndarray,
+        expressions: np.ndarray,
+        positions: Optional[np.ndarray] = None,
+    ):
+        self.patch_paths = np.asarray(patch_paths)
+        self.expressions = torch.tensor(np.asarray(expressions), dtype=torch.float32)
+        self.positions = positions
+
+    def __len__(self) -> int:
+        return len(self.patch_paths)
+
+    def __getitem__(self, idx: int) -> Dict[str, torch.Tensor]:
+        from PIL import Image
+        arr = np.asarray(Image.open(str(self.patch_paths[idx])).convert("RGB"))
+        img = torch.from_numpy(np.ascontiguousarray(arr)).float().permute(2, 0, 1) / 255.0
+        img = (img - _IMAGENET_MEAN) / _IMAGENET_STD
+
+        item = {"image": img, "expression": self.expressions[idx]}
+        if self.positions is not None:
+            item["position"] = torch.tensor(self.positions[idx], dtype=torch.float32)
+        return item
+
+
 class PatchImageDataset(Dataset):
     """Serves ImageNet-normalized (3,224,224) patches + HVG expression vectors.
 

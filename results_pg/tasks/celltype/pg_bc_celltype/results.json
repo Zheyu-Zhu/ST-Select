@@ -1,0 +1,362 @@
+{
+  "config": {
+    "dataset_name": "pg_bc_celltype",
+    "data_dir": "./hest_data",
+    "n_hvgs": 300,
+    "patch_size": 224,
+    "model_name": "feature_predictor",
+    "pretrained": true,
+    "frozen_backbone": false,
+    "feature_extractor": "densenet121",
+    "feature_dim": 1024,
+    "feature_cache_dir": "./feature_cache",
+    "lr": 0.0001,
+    "weight_decay": 1e-05,
+    "epochs_per_round": 60,
+    "full_epochs": 60,
+    "batch_size": 128,
+    "loss_fn": "mse",
+    "backbone_lr_mult": 1.0,
+    "al_methods": [
+      "full_supervision"
+    ],
+    "add_full_supervision": false,
+    "initial_budget": 100,
+    "budget_per_round": 50,
+    "num_rounds": 10,
+    "budget_ratios": [
+      1.0
+    ],
+    "n_folds": 4,
+    "n_seeds": 1,
+    "metric": "pcc_per_gene",
+    "split_level": "patient",
+    "pcc_top_n": [
+      10,
+      50,
+      100
+    ],
+    "image_mode": false,
+    "patches_dir": "./hest_data/patches",
+    "save_models_dir": null,
+    "device": "cuda",
+    "num_workers": 0,
+    "seed": 42,
+    "output_dir": "C:\\Users\\zheyu\\workspace\\ST-Select\\results_pg\\tasks\\celltype"
+  },
+  "final_pcc_per_gene": {
+    "full_supervision": [
+      0.18815564682150412,
+      0.2049749077500131,
+      0.2924562470395798,
+      0.2303612521203122
+    ]
+  },
+  "mean_pcc_per_gene": {
+    "full_supervision": 0.22898701343285233
+  },
+  "std_pcc_per_gene": {
+    "full_supervision": 0.03960433645849156
+  },
+  "mean_pcc_per_gene_by_slide": {
+    "full_supervision": 0.18517866611861758
+  },
+  "mean_ari": {
+    "full_supervision": 0.03393947567574883
+  },
+  "mean_nmi": {
+    "full_supervision": 0.12104550006609109
+  },
+  "spatial_autocorrelation": {
+    "full_supervision": {
+      "moran_true": 0.16974403732213372,
+      "moran_pred": 0.21300432513827072,
+      "moran_fidelity": 0.27916182359761327,
+      "moran_abs_err": 0.12171063274908434
+    }
+  },
+  "celltype_composition": {
+    "full_supervision": {
+      "cosine": 0.8985661417245865,
+      "jsd": 0.030001316219568253,
+      "pcc_per_type": 0.08978131599443796
+    }
+  },
+  "comparisons_vs_random": {},
+  "by_ratio": {
+    "full_supervision": {
+      "1.00": [
+        0.18815564682150412,
+        0.2049749077500131,
+        0.2924562470395798,
+        0.2303612521203122
+      ]
+    }
+  },
+  "pcc_topN": {
+    "full_supervision": {
+      "10": 0.23810169598425268,
+      "50": 0.22384432745573854,
+      "100": 0.22898701343285233
+    }
+  },
+  "pcc_topN_by_slide": {
+    "full_supervision": {
+      "10": 0.19286057354136033,
+      "50": 0.1815160902648382,
+      "100": 0.18517866611861758
+    }
+  },
+  "by_family": {
+    "FullSupervision": {
+      "mean": 0.22898701343285233,
+      "std": 0.03960433645849156,
+      "best_method_mean": 0.22898701343285233,
+      "n_runs": 4
+    }
+  },
+  "detailed": {
+    "full_supervision": [
+      {
+        "fold": 0,
+        "seed": 42,
+        "pcc_per_gene": [
+          0.18815564682150412
+        ],
+        "pcc_per_spot": [
+          0.748246279271444
+        ],
+        "pcc_per_gene_by_slide": [
+          0.13586279743855678
+        ],
+        "ari": [
+          0.02911614955522445
+        ],
+        "nmi": [
+          0.1150372756517482
+        ],
+        "mse": [
+          0.00011946133599849418
+        ],
+        "mae": [
+          0.004625129513442516
+        ],
+        "spatial": [
+          {
+            "moran_true": 0.16655336741172658,
+            "moran_pred": 0.16905553707465204,
+            "moran_fidelity": 0.43096061538431624,
+            "moran_abs_err": 0.09963803274734204
+          }
+        ],
+        "celltype": [
+          {
+            "cosine": 0.8847312331199646,
+            "jsd": 0.03402150049805641,
+            "pcc_per_type": 0.06927127060211248
+          }
+        ],
+        "frac": [
+          1.0
+        ],
+        "n_labeled": [
+          22320
+        ],
+        "pcc_topN": [
+          {
+            "10": 0.16477087169668764,
+            "50": 0.16649401478558865,
+            "100": 0.18815564682150412
+          }
+        ],
+        "pcc_topN_by_slide": [
+          {
+            "10": 0.12067583769166644,
+            "50": 0.13130315746073196,
+            "100": 0.13586279743855678
+          }
+        ]
+      },
+      {
+        "fold": 1,
+        "seed": 42,
+        "pcc_per_gene": [
+          0.2049749077500131
+        ],
+        "pcc_per_spot": [
+          0.7996155627870483
+        ],
+        "pcc_per_gene_by_slide": [
+          0.1540159916490808
+        ],
+        "ari": [
+          0.042919495713117636
+        ],
+        "nmi": [
+          0.13670640150539246
+        ],
+        "mse": [
+          8.742148202145472e-05
+        ],
+        "mae": [
+          0.004203953314572573
+        ],
+        "spatial": [
+          {
+            "moran_true": 0.16371337028797242,
+            "moran_pred": 0.2398989959537657,
+            "moran_fidelity": 0.16474840531236384,
+            "moran_abs_err": 0.1657513847303087
+          }
+        ],
+        "celltype": [
+          {
+            "cosine": 0.9099270701408386,
+            "jsd": 0.02587372623383999,
+            "pcc_per_type": 0.12833123243731437
+          }
+        ],
+        "frac": [
+          1.0
+        ],
+        "n_labeled": [
+          22765
+        ],
+        "pcc_topN": [
+          {
+            "10": 0.20801897123744523,
+            "50": 0.20655691758379008,
+            "100": 0.2049749077500131
+          }
+        ],
+        "pcc_topN_by_slide": [
+          {
+            "10": 0.15832269819824213,
+            "50": 0.15144011859602838,
+            "100": 0.1540159916490808
+          }
+        ]
+      },
+      {
+        "fold": 2,
+        "seed": 42,
+        "pcc_per_gene": [
+          0.2924562470395798
+        ],
+        "pcc_per_spot": [
+          0.8198339797711952
+        ],
+        "pcc_per_gene_by_slide": [
+          0.256194337650804
+        ],
+        "ari": [
+          0.023494058016792666
+        ],
+        "nmi": [
+          0.10656940037708244
+        ],
+        "mse": [
+          0.00010705588647397235
+        ],
+        "mae": [
+          0.004537373781204224
+        ],
+        "spatial": [
+          {
+            "moran_true": 0.16476377571347078,
+            "moran_pred": 0.21329030685212833,
+            "moran_fidelity": 0.2185559942384943,
+            "moran_abs_err": 0.10815543598081195
+          }
+        ],
+        "celltype": [
+          {
+            "cosine": 0.9023677706718445,
+            "jsd": 0.03061358630657196,
+            "pcc_per_type": 0.05735001152007207
+          }
+        ],
+        "frac": [
+          1.0
+        ],
+        "n_labeled": [
+          23894
+        ],
+        "pcc_topN": [
+          {
+            "10": 0.35130502195393953,
+            "50": 0.29411531260448387,
+            "100": 0.2924562470395798
+          }
+        ],
+        "pcc_topN_by_slide": [
+          {
+            "10": 0.28218831500556935,
+            "50": 0.25255528133579674,
+            "100": 0.256194337650804
+          }
+        ]
+      },
+      {
+        "fold": 3,
+        "seed": 42,
+        "pcc_per_gene": [
+          0.2303612521203122
+        ],
+        "pcc_per_spot": [
+          0.7497799340846061
+        ],
+        "pcc_per_gene_by_slide": [
+          0.19464153773602877
+        ],
+        "ari": [
+          0.04022819941786058
+        ],
+        "nmi": [
+          0.12586892273014127
+        ],
+        "mse": [
+          8.811456791590899e-05
+        ],
+        "mae": [
+          0.00451032305136323
+        ],
+        "spatial": [
+          {
+            "moran_true": 0.1839456358753651,
+            "moran_pred": 0.2297724606725368,
+            "moran_fidelity": 0.30238227945527857,
+            "moran_abs_err": 0.11329767753787462
+          }
+        ],
+        "celltype": [
+          {
+            "cosine": 0.8972384929656982,
+            "jsd": 0.02949645183980465,
+            "pcc_per_type": 0.10417274941825294
+          }
+        ],
+        "frac": [
+          1.0
+        ],
+        "n_labeled": [
+          22986
+        ],
+        "pcc_topN": [
+          {
+            "10": 0.22831191904893827,
+            "50": 0.22821106484909162,
+            "100": 0.2303612521203122
+          }
+        ],
+        "pcc_topN_by_slide": [
+          {
+            "10": 0.21025544326996334,
+            "50": 0.19076580366679574,
+            "100": 0.19464153773602877
+          }
+        ]
+      }
+    ]
+  }
+}

@@ -8,7 +8,7 @@ from ...utils.reproducibility import resolve_device as _resolve_device
 
 from ..base import ActiveLearningStrategy
 from ..registry import register
-from ..base import model_device
+from ..base import model_device, predict_from
 
 
 @register
@@ -48,13 +48,14 @@ class TemporalOutputDiscrepancy(ActiveLearningStrategy):
             chosen = self.rng.choice(len(candidate_indices), size=k, replace=False)
             return [candidate_indices[int(i)] for i in chosen]
 
+        head_only = bool(extras and extras.get("head_only"))
         scores = self._compute_discrepancy(
-            model, prev_model, candidate_indices, features
+            model, prev_model, candidate_indices, features, head_only
         )
         top_k = np.argsort(scores)[-k:]
         return [candidate_indices[i] for i in top_k]
 
-    def _compute_discrepancy(self, model_curr, model_prev, candidates, features):
+    def _compute_discrepancy(self, model_curr, model_prev, candidates, features, head_only=False):
         model_curr.eval()
         self.device = model_device(model_curr, self.device)
         model_prev.eval()
@@ -65,8 +66,8 @@ class TemporalOutputDiscrepancy(ActiveLearningStrategy):
         for i in range(0, len(x_all), self.batch_size):
             batch = x_all[i : i + self.batch_size].to(self.device)
             with torch.no_grad():
-                pred_curr = model_curr(batch)
-                pred_prev = model_prev(batch)
+                pred_curr = predict_from(model_curr, batch, head_only)
+                pred_prev = predict_from(model_prev, batch, head_only)
             discrepancy = (pred_curr - pred_prev).norm(dim=-1)
             all_scores.append(discrepancy.cpu().numpy())
 

@@ -8,7 +8,7 @@ from ...utils.reproducibility import resolve_device as _resolve_device
 
 from ..base import ActiveLearningStrategy
 from ..registry import register
-from ..base import model_device
+from ..base import model_device, predict_from
 
 
 @register
@@ -40,11 +40,12 @@ class BatchBALD(ActiveLearningStrategy):
         dataloader: Optional[torch.utils.data.DataLoader] = None,
         extras: Optional[Dict] = None,
     ) -> List[int]:
-        mc_preds = self._get_mc_predictions(model, candidate_indices, features)
+        head_only = bool(extras and extras.get("head_only"))
+        mc_preds = self._get_mc_predictions(model, candidate_indices, features, head_only)
         picks = self._greedy_batchbald(mc_preds, k)
         return [candidate_indices[i] for i in picks]
 
-    def _get_mc_predictions(self, model, candidates, features):
+    def _get_mc_predictions(self, model, candidates, features, head_only=False):
         model.train()
         all_preds = []
         x_all = torch.tensor(features[candidates], dtype=torch.float32)
@@ -54,7 +55,7 @@ class BatchBALD(ActiveLearningStrategy):
             for i in range(0, len(x_all), self.batch_size):
                 batch = x_all[i : i + self.batch_size].to(self.device)
                 with torch.no_grad():
-                    pred = model(batch)
+                    pred = predict_from(model, batch, head_only)
                 preds_t.append(pred.cpu())
             all_preds.append(torch.cat(preds_t, dim=0))
 

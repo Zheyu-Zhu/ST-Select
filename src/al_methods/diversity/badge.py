@@ -8,7 +8,7 @@ from ...utils.reproducibility import resolve_device as _resolve_device
 
 from ..base import ActiveLearningStrategy
 from ..registry import register
-from ..base import model_device
+from ..base import model_device, backbone_features
 
 
 @register
@@ -40,13 +40,14 @@ class BADGE(ActiveLearningStrategy):
         dataloader: Optional[torch.utils.data.DataLoader] = None,
         extras: Optional[Dict] = None,
     ) -> List[int]:
+        head_only = bool(extras and extras.get("head_only"))
         grad_embeddings = self._compute_gradient_embeddings(
-            model, candidate_indices, features
+            model, candidate_indices, features, head_only
         )
         picks = self._kmeans_pp(grad_embeddings, k)
         return [candidate_indices[i] for i in picks]
 
-    def _compute_gradient_embeddings(self, model, candidates, features):
+    def _compute_gradient_embeddings(self, model, candidates, features, head_only=False):
         model.eval()
         self.device = model_device(model, self.device)
         x_all = torch.tensor(features[candidates], dtype=torch.float32)
@@ -55,8 +56,11 @@ class BADGE(ActiveLearningStrategy):
         for i in range(0, len(x_all), self.batch_size):
             batch = x_all[i : i + self.batch_size].to(self.device)
             with torch.no_grad():
-                if hasattr(model, "backbone") and hasattr(model, "head"):
-                    feat = model.backbone(batch)
+                if hasattr(model, "head"):
+                    # In image mode `batch` is already the backbone output, so
+                    # backbone_features returns it as-is (no double-backbone);
+                    # in feature mode it applies the Identity/projection backbone.
+                    feat = backbone_features(model, batch, head_only)
                     pred = model.head(feat)
                 else:
                     pred = model(batch)

@@ -34,6 +34,13 @@ class ExperimentConfig:
     # <1.0 fine-tunes a pretrained backbone (e.g. UNI ViT-L) at a lower LR than
     # the head; 1.0 = single LR for the whole model (default).
     backbone_lr_mult: float = 1.0
+    # >0 holds back this fraction of the labeled pool for early stopping, so every
+    # budget checkpoint trains to its own optimum instead of a fixed epoch count.
+    # Required for an honest budget-vs-performance curve (see loop.val_frac);
+    # 0.0 keeps the legacy fixed-epoch behaviour.
+    val_frac: float = 0.0
+    # Early-stopping patience (epochs without val improvement) when val_frac > 0.
+    patience: int = 10
 
     # Active learning
     al_methods: List[str] = field(default_factory=lambda: ["random", "badge", "coreset", "poisson_disk"])
@@ -53,6 +60,11 @@ class ExperimentConfig:
 
     # Evaluation
     n_folds: int = 4
+    # >0 runs only the first N of the n_folds patient folds. For smoke/dry runs
+    # only: the split geometry stays identical to the full run (same n_folds), so
+    # a dry run exercises the real code path at a fraction of the cost. Note
+    # n_folds itself cannot be lowered to 1 - PatientKFold requires >= 2.
+    max_folds: int = 0
     n_seeds: int = 3
     metric: str = "pcc_per_gene"
     # Cross-validation grouping: "patient" (strict, no patient in both splits —

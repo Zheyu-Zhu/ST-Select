@@ -11,7 +11,7 @@ from ...utils.reproducibility import resolve_device as _resolve_device
 
 from ..base import ActiveLearningStrategy
 from ..registry import register
-from ..base import model_device
+from ..base import model_device, predict_from
 
 
 @register
@@ -43,10 +43,11 @@ class EntropySampling(ActiveLearningStrategy):
         return [candidate_indices[i] for i in top_k]
 
     def _compute_scores(self, model, candidates, features, dataloader, extras):
+        head_only = bool(extras and extras.get("head_only"))
         if features is not None:
             x = torch.tensor(features[candidates], dtype=torch.float32).to(self.device)
             with torch.no_grad():
-                preds = model(x)
+                preds = predict_from(model, x, head_only)
             return preds.abs().sum(dim=-1).cpu().numpy()
 
         scores = []
@@ -85,9 +86,10 @@ class MarginSampling(ActiveLearningStrategy):
     ) -> List[int]:
         model.eval()
         self.device = model_device(model, self.device)
+        head_only = bool(extras and extras.get("head_only"))
         x = torch.tensor(features[candidate_indices], dtype=torch.float32).to(self.device)
         with torch.no_grad():
-            preds = model(x)
+            preds = predict_from(model, x, head_only)
         scores = preds.var(dim=-1).cpu().numpy()
         top_k = np.argsort(scores)[-k:]
         return [candidate_indices[i] for i in top_k]
@@ -117,9 +119,10 @@ class LeastConfidence(ActiveLearningStrategy):
     ) -> List[int]:
         model.eval()
         self.device = model_device(model, self.device)
+        head_only = bool(extras and extras.get("head_only"))
         x = torch.tensor(features[candidate_indices], dtype=torch.float32).to(self.device)
         with torch.no_grad():
-            preds = model(x)
+            preds = predict_from(model, x, head_only)
         scores = preds.norm(dim=-1).cpu().numpy()
         top_k = np.argsort(scores)[-k:]
         return [candidate_indices[i] for i in top_k]

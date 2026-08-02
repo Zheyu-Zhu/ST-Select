@@ -16,7 +16,7 @@ from .evaluation import compute_metrics, compare_methods
 from .evaluation.visualization import plot_al_curves
 from .models import STNet, HisToGene, Hist2ST, FeaturePredictor, TrainableFeaturePredictor, UNIRegressor
 from .preprocessing import HVGSelector, PositionExtractor, PatchCropper
-from .training import ALTrainer, ActiveLearningLoop
+from .training import ALTrainer, ActiveLearningLoop, group_aware_val_split
 from .utils import ExperimentConfig, set_seed, get_device
 
 
@@ -167,6 +167,10 @@ def load_feature_cache(config: ExperimentConfig) -> Dict:
         # Dispersion-ranked gene names (top-N sweep relies on this column order);
         # older caches without it still work — top-N just uses positional order.
         "gene_names": data["gene_names"] if "gene_names" in data else None,
+        # Present only on cell-type-composition caches: marks spots that actually
+        # contain cells (composition is undefined for empty spots).
+        "valid_mask": data["valid_mask"] if "valid_mask" in data else None,
+        "patch_paths": data["patch_paths"] if "patch_paths" in data else None,
     }
 
 
@@ -186,11 +190,14 @@ def load_image_cache(config: ExperimentConfig) -> Dict:
             f"scripts/prepare_hest_index.py (needs hest_data/patches + st)."
         )
     data = np.load(cache_path, allow_pickle=True)
-    if "patch_pos" not in data:
+    # Two image layouts are supported: HEST's per-slide h5 (`patch_pos` indexes
+    # into it) and the processed_gene package's one-PNG-per-spot (`patch_paths`).
+    if "patch_pos" not in data and "patch_paths" not in data:
         raise ValueError(
-            f"{cache_path} has no 'patch_pos' array — it looks like a frozen "
-            f"feature cache, not an image index. Run without --image-mode, or "
-            f"rebuild with scripts/prepare_hest_index.py."
+            f"{cache_path} has neither 'patch_pos' nor 'patch_paths' — it looks "
+            f"like a frozen feature cache, not an image cache. Run without "
+            f"--image-mode, or rebuild with scripts/prepare_hest_index.py "
+            f"(HEST) / scripts/prepare_processed_gene.py (processed_gene)."
         )
     return {
         "features": None,
@@ -199,7 +206,8 @@ def load_image_cache(config: ExperimentConfig) -> Dict:
         "patient_ids": data["patient_ids"] if "patient_ids" in data else None,
         "sample_ids": data["sample_ids"] if "sample_ids" in data else None,
         "gene_names": data["gene_names"] if "gene_names" in data else None,
-        "patch_pos": data["patch_pos"].astype("int64"),
+        "patch_pos": data["patch_pos"].astype("int64") if "patch_pos" in data else None,
+        "patch_paths": data["patch_paths"] if "patch_paths" in data else None,
     }
 
 
@@ -253,9 +261,30 @@ def run_full_benchmark(config: ExperimentConfig) -> Dict:
     final_pcc: Dict[str, List[float]] = {m: [] for m in methods}
     detailed: Dict[str, List[Dict]] = {m: [] for m in methods}
 
-    for method_name in methods:
-        print(f"\n--- {method_name} ---")
+    def _save_partial(done_methods):
+        """Checkpoint after every method so a long sweep is never a total loss.
+
+        run_full_benchmark can run for hours (20 strategies x folds x budgets);
+        writing only at the end means a kill or crash discards everything. This
+        dumps the same structure to results_partial.json as methods complete.
+        Left in place on success too — harmless, and it records progress order.
+        """
+        try:
+            with open(output_dir / "results_partial.json", "w") as fh:
+                json.dump({
+                    "config": config.to_dict(),
+                    "completed_methods": done_methods,
+                    "final_pcc_per_gene": {m: final_pcc[m] for m in done_methods},
+                    "detailed": {m: detailed[m] for m in done_methods},
+                }, fh, indent=2)
+        except Exception as exc:                      # never let checkpointing kill a run
+            print(f"  [warn] partial save failed: {exc}", flush=True)
+
+    for mi, method_name in enumerate(methods):
+        print(f"\n--- {method_name} ({mi + 1}/{len(methods)}) ---", flush=True)
         for fold_idx, (train_idx, test_idx) in enumerate(folds):
+            if getattr(config, "max_folds", 0) and fold_idx >= config.max_folds:
+                break
             for seed_idx in range(config.n_seeds):
                 seed = config.seed + seed_idx
                 result = _run_one_run(
@@ -268,8 +297,10 @@ def run_full_benchmark(config: ExperimentConfig) -> Dict:
                 })
                 print(
                     f"  fold {fold_idx} seed {seed}: "
-                    f"final pcc_per_gene={result['pcc_per_gene'][-1]:.4f}"
+                    f"final pcc_per_gene={result['pcc_per_gene'][-1]:.4f}",
+                    flush=True,
                 )
+        _save_partial(methods[: mi + 1])
 
     # Significance vs. random baseline (if present and enough paired samples).
     comparisons = {}
@@ -278,8 +309,17 @@ def run_full_benchmark(config: ExperimentConfig) -> Dict:
 
     # Budget-ratio sweep: pcc_per_gene at each configured ratio, per (fold,seed).
     by_ratio = _aggregate_by_ratio(detailed, config.budget_ratios)
-    # Top-N per-gene PCC sweep at the final (largest-budget) checkpoint.
+    by_ratio_by_slide = _aggregate_by_ratio(
+        detailed, config.budget_ratios, key="pcc_per_gene_by_slide"
+    )
+    # Top-N per-gene PCC sweep at the final (largest-budget) checkpoint, both the
+    # pooled convention and the PI-preferred per-slide convention.
     pcc_topn = _aggregate_top_n(detailed, config.pcc_top_n)
+    pcc_topn_by_slide = _aggregate_top_n(detailed, config.pcc_top_n, key="pcc_topN_by_slide")
+    # Slide-level PCC + spatial-domain-recovery (ARI/NMI) means per method.
+    mean_by_slide = _aggregate_scalar(detailed, "pcc_per_gene_by_slide")
+    mean_ari = _aggregate_scalar(detailed, "ari")
+    mean_nmi = _aggregate_scalar(detailed, "nmi")
     # Family-level rollup (Random / Uncertainty / Coverage / Hybrid / Spatial / RL).
     by_family = _aggregate_by_family(final_pcc)
 
@@ -288,9 +328,18 @@ def run_full_benchmark(config: ExperimentConfig) -> Dict:
         "final_pcc_per_gene": {m: final_pcc[m] for m in methods},
         "mean_pcc_per_gene": {m: float(np.mean(final_pcc[m])) for m in methods},
         "std_pcc_per_gene": {m: float(np.std(final_pcc[m])) for m in methods},
+        # Per-slide convention (the PI's primary metric).
+        "mean_pcc_per_gene_by_slide": mean_by_slide,
+        "mean_ari": mean_ari,
+        "mean_nmi": mean_nmi,
+        # Downstream-task metrics (pitch Evaluation Tasks #4 and #5).
+        "spatial_autocorrelation": _aggregate_dict(detailed, "spatial"),
+        "celltype_composition": _aggregate_dict(detailed, "celltype"),
         "comparisons_vs_random": comparisons,
         "by_ratio": by_ratio,
+        "by_ratio_by_slide": by_ratio_by_slide,
         "pcc_topN": pcc_topn,
+        "pcc_topN_by_slide": pcc_topn_by_slide,
         "by_family": by_family,
         "detailed": detailed,
     }
@@ -324,16 +373,25 @@ def _run_one_run(
     train_positions = positions[train_idx] if positions is not None else None
     if config.image_mode:
         # End-to-end: serve raw patches so the backbone trains over pixels.
-        sample_ids = cache["sample_ids"]
-        patch_pos = cache["patch_pos"]
-        train_ds = PatchImageDataset(
-            sample_ids[train_idx], patch_pos[train_idx], expressions[train_idx],
-            config.patches_dir, train_positions,
-        )
-        test_ds = PatchImageDataset(
-            sample_ids[test_idx], patch_pos[test_idx], expressions[test_idx],
-            config.patches_dir,
-        )
+        if cache.get("patch_paths") is not None:
+            # processed_gene layout: one PNG per spot.
+            from .datasets.patch_dataset import PNGPatchDataset
+            paths = cache["patch_paths"]
+            train_ds = PNGPatchDataset(
+                paths[train_idx], expressions[train_idx], train_positions)
+            test_ds = PNGPatchDataset(paths[test_idx], expressions[test_idx])
+        else:
+            # HEST layout: per-slide h5 indexed by patch_pos.
+            sample_ids = cache["sample_ids"]
+            patch_pos = cache["patch_pos"]
+            train_ds = PatchImageDataset(
+                sample_ids[train_idx], patch_pos[train_idx], expressions[train_idx],
+                config.patches_dir, train_positions,
+            )
+            test_ds = PatchImageDataset(
+                sample_ids[test_idx], patch_pos[test_idx], expressions[test_idx],
+                config.patches_dir,
+            )
     else:
         train_ds = STFeatureDataset(
             features[train_idx], expressions[train_idx], train_positions,
@@ -346,6 +404,21 @@ def _run_one_run(
     if _sids is None:
         _sids = cache.get("patient_ids")
     test_group_ids = _sids[test_idx] if _sids is not None else None
+    # Train-pool PATIENT ids: used only to make the early-stopping holdout
+    # group-aware when val_frac > 0 (see ActiveLearningLoop._val_split). Patient
+    # rather than slide, since patient is the unit the test split respects.
+    _pids = cache.get("patient_ids")
+    if _pids is None:
+        _pids = _sids
+    train_group_ids = _pids[train_idx] if _pids is not None else None
+
+    # Context for the downstream-task metrics (spatial architecture, cell-type
+    # composition). Both are computed on the test fold only.
+    _vm = cache.get("valid_mask")
+    eval_ctx = {
+        "positions": positions[test_idx] if positions is not None else None,
+        "valid_mask": _vm[test_idx] if _vm is not None else None,
+    }
 
     # The full-supervision upper bound trains once on the whole fold for the
     # (typically longer) full_epochs schedule; per-round AL training uses the
@@ -361,6 +434,7 @@ def _run_one_run(
         epochs=train_epochs, batch_size=config.batch_size,
         device=device, loss_fn=config.loss_fn, num_workers=config.num_workers,
         backbone_lr_mult=getattr(config, "backbone_lr_mult", 1.0),
+        patience=getattr(config, "patience", 10),
     )
 
     # Feature cache passed to AL strategies is the *training-fold* feature matrix,
@@ -373,23 +447,36 @@ def _run_one_run(
     n_train = len(train_ds)
     top_n_cutoffs = list(getattr(config, "pcc_top_n", []) or [])
     result_keys = ("pcc_per_gene", "pcc_per_spot", "pcc_per_gene_by_slide",
-                   "mse", "mae", "frac", "n_labeled")
+                   "ari", "nmi", "mse", "mae", "frac", "n_labeled",
+                   "epochs_run", "selection_diversity", "spatial", "celltype")
     if top_n_cutoffs:
-        result_keys = result_keys + ("pcc_topN",)
+        result_keys = result_keys + ("pcc_topN", "pcc_topN_by_slide")
 
     if method_name == "full_supervision":
         # Upper bound: train on the entire labeled training fold, single pass.
-        # Reported as a single checkpoint at frac = 1.0.
-        trainer.train(train_ds, list(range(n_train)))
-        metrics = _evaluate_model(trainer, test_ds, device, top_n_cutoffs, test_group_ids)
+        # Reported as a single checkpoint at frac = 1.0. When val_frac > 0 the
+        # ceiling early-stops on the same kind of holdout as every AL checkpoint,
+        # so the "X% of labels matches 100%" comparison is recipe-controlled.
+        _trn, _val = group_aware_val_split(
+            list(range(n_train)), getattr(config, "val_frac", 0.0), seed,
+            train_group_ids,
+        )
+        if _val:
+            trainer.train(train_ds, _trn, val_dataset=train_ds, val_indices=_val)
+        else:
+            trainer.train(train_ds, list(range(n_train)))
+        metrics = _evaluate_model(trainer, test_ds, device, top_n_cutoffs,
+                                  test_group_ids, eval_ctx)
         # Persist the trained ceiling model (the meaningful end-to-end weights).
         _maybe_save_model(config, trainer, method_name, fold_idx, seed, n_genes)
-        keys = ("pcc_per_gene", "pcc_per_spot", "pcc_per_gene_by_slide", "mse", "mae")
+        keys = ("pcc_per_gene", "pcc_per_spot", "pcc_per_gene_by_slide",
+                "ari", "nmi", "mse", "mae", "spatial", "celltype")
         out = {k: [metrics[k]] for k in keys if k in metrics}
         out["frac"] = [1.0]
         out["n_labeled"] = [n_train]
         if top_n_cutoffs:
             out["pcc_topN"] = [metrics.get("pcc_topN", {})]
+            out["pcc_topN_by_slide"] = [metrics.get("pcc_topN_by_slide", {})]
         return out
 
     budget_targets = _budget_targets(n_train, config.budget_ratios)
@@ -403,7 +490,8 @@ def _run_one_run(
         budget_per_round=config.budget_per_round, num_rounds=config.num_rounds,
         seed=seed, feature_cache=train_feature_cache, position_cache=train_position_cache,
         budget_targets=budget_targets, top_n_cutoffs=top_n_cutoffs or None,
-        dynamic_features=dynamic, test_group_ids=test_group_ids,
+        dynamic_features=dynamic, test_group_ids=test_group_ids, eval_ctx=eval_ctx,
+        val_frac=getattr(config, "val_frac", 0.0), train_group_ids=train_group_ids,
     )
     res = loop.run()
     return {k: res[k] for k in result_keys if k in res}
@@ -445,34 +533,44 @@ def _budget_targets(n_train: int, ratios: List[float]) -> List[int]:
     return targets
 
 
-def _aggregate_by_ratio(detailed: Dict[str, List[Dict]], ratios: List[float]) -> Dict:
-    """{method: {ratio: [pcc_per_gene per (fold,seed)]}} by matching each run's
-    recorded `frac` checkpoints to the nearest configured budget ratio."""
+def _aggregate_by_ratio(detailed: Dict[str, List[Dict]], ratios: List[float],
+                        key: str = "pcc_per_gene") -> Dict:
+    """{method: {ratio: [PCC per (fold,seed)]}} by matching each run's recorded
+    `frac` checkpoints to the nearest configured budget ratio.
+
+    `key` selects the series: "pcc_per_gene" (pooled) or "pcc_per_gene_by_slide"
+    (the primary convention) - the budget curve is read in whichever convention
+    the write-up uses, so both are aggregated."""
     out: Dict[str, Dict[str, List[float]]] = {}
     for method, runs in detailed.items():
         per_ratio: Dict[str, List[float]] = {f"{r:.2f}": [] for r in ratios}
         for run in runs:
             fracs = run.get("frac", [])
-            pccs = run.get("pcc_per_gene", [])
+            pccs = run.get(key, [])
             for r in ratios:
                 if not fracs:
                     continue
                 # nearest recorded checkpoint to this ratio
                 j = min(range(len(fracs)), key=lambda i: abs(fracs[i] - r))
-                per_ratio[f"{r:.2f}"].append(pccs[j])
+                if j < len(pccs) and pccs[j] is not None:
+                    per_ratio[f"{r:.2f}"].append(pccs[j])
         out[method] = per_ratio
     return out
 
 
-def _aggregate_top_n(detailed: Dict[str, List[Dict]], cutoffs: List[int]) -> Dict:
-    """{method: {N: mean pcc_per_gene over top-N genes at the final checkpoint}}."""
+def _aggregate_top_n(detailed: Dict[str, List[Dict]], cutoffs: List[int],
+                     key: str = "pcc_topN") -> Dict:
+    """{method: {N: mean top-N per-gene PCC at the final checkpoint}}.
+
+    `key` selects the series: "pcc_topN" (pooled) or "pcc_topN_by_slide"
+    (per-slide averaged, the PI's convention)."""
     if not cutoffs:
         return {}
     out: Dict[str, Dict[str, float]] = {}
     for method, runs in detailed.items():
         acc: Dict[int, List[float]] = {int(n): [] for n in cutoffs}
         for run in runs:
-            series = run.get("pcc_topN", [])
+            series = run.get(key, [])
             if not series:
                 continue
             last = series[-1]  # dict {N: pcc} at the largest budget
@@ -484,6 +582,40 @@ def _aggregate_top_n(detailed: Dict[str, List[Dict]], cutoffs: List[int]) -> Dic
         out[method] = {
             str(n): (float(np.mean(vals)) if vals else None) for n, vals in acc.items()
         }
+    return out
+
+
+def _aggregate_dict(detailed: Dict[str, List[Dict]], key: str) -> Dict:
+    """{method: {sub_metric: mean over (fold,seed) of its final-checkpoint value}}
+    for metrics that are themselves dicts (spatial, celltype)."""
+    out: Dict[str, Dict[str, float]] = {}
+    for method, runs in detailed.items():
+        acc: Dict[str, List[float]] = {}
+        for run in runs:
+            series = run.get(key, [])
+            if not series or not isinstance(series[-1], dict):
+                continue
+            for k, v in series[-1].items():
+                if v is not None and not (isinstance(v, float) and np.isnan(v)):
+                    acc.setdefault(k, []).append(float(v))
+        if acc:
+            out[method] = {k: float(np.mean(v)) for k, v in acc.items()}
+    return out
+
+
+def _aggregate_scalar(detailed: Dict[str, List[Dict]], key: str) -> Dict:
+    """{method: mean over (fold,seed) of the final-checkpoint value of `key`}
+    for scalar per-checkpoint metrics (e.g. ari, nmi, pcc_per_gene_by_slide)."""
+    out: Dict[str, float] = {}
+    for method, runs in detailed.items():
+        vals = []
+        for run in runs:
+            series = run.get(key, [])
+            if series and series[-1] is not None:
+                v = float(series[-1])
+                if not np.isnan(v):
+                    vals.append(v)
+        out[method] = float(np.mean(vals)) if vals else None
     return out
 
 
@@ -515,7 +647,28 @@ def _aggregate_by_family(final_pcc: Dict[str, List[float]]) -> Dict:
     }
 
 
-def _evaluate_model(trainer, test_ds, device, top_n_cutoffs=None, group_ids=None) -> Dict[str, float]:
+def _add_task_metrics(metrics: Dict, preds, targets, group_ids, eval_ctx) -> None:
+    """Attach the two downstream-task metrics when the inputs are available.
+
+    Spatial-autocorrelation preservation (pitch task #5) needs spot positions;
+    cell-type composition similarity (task #4) is only meaningful when the target
+    *is* a composition, which we detect by the presence of `valid_mask` (written
+    only by make_celltype_cache.py)."""
+    if not eval_ctx or group_ids is None:
+        return
+    pos = eval_ctx.get("positions")
+    if pos is not None:
+        from .evaluation.metrics import spatial_autocorrelation_preservation
+        metrics["spatial"] = spatial_autocorrelation_preservation(
+            preds, targets, pos, group_ids)
+    if eval_ctx.get("valid_mask") is not None:
+        from .evaluation.metrics import celltype_composition_similarity
+        metrics["celltype"] = celltype_composition_similarity(
+            preds, targets, group_ids, eval_ctx["valid_mask"])
+
+
+def _evaluate_model(trainer, test_ds, device, top_n_cutoffs=None, group_ids=None,
+                    eval_ctx=None) -> Dict[str, float]:
     """Evaluate a trained model on a feature dataset."""
     from torch.utils.data import DataLoader
     loader = DataLoader(test_ds, batch_size=64, shuffle=False)
@@ -533,9 +686,19 @@ def _evaluate_model(trainer, test_ds, device, top_n_cutoffs=None, group_ids=None
         from .evaluation.metrics import top_n_pcc_sweep
         metrics["pcc_topN"] = top_n_pcc_sweep(preds, targets, top_n_cutoffs)
     if group_ids is not None:
-        from .evaluation.metrics import pcc_per_gene_grouped
+        from .evaluation.metrics import (
+            pcc_per_gene_grouped, spatial_domain_recovery, top_n_pcc_grouped,
+        )
         # per-slide PCC then averaged (field standard; removes per-slide batch effect)
         metrics["pcc_per_gene_by_slide"] = pcc_per_gene_grouped(preds, targets, group_ids)
+        dom = spatial_domain_recovery(preds, targets, group_ids)
+        metrics["ari"] = dom["ari"]
+        metrics["nmi"] = dom["nmi"]
+        if top_n_cutoffs:
+            metrics["pcc_topN_by_slide"] = top_n_pcc_grouped(
+                preds, targets, group_ids, top_n_cutoffs
+            )
+    _add_task_metrics(metrics, preds, targets, group_ids, eval_ctx)
     return metrics
 
 
@@ -570,6 +733,9 @@ def main():
         help="Epochs for the full-supervision upper bound (trained once on the whole fold)",
     )
     parser.add_argument("--lr", type=float, default=1e-4)
+    parser.add_argument("--val-frac", type=float, default=0.0,
+                        help="Hold back this fraction of the labeled pool for early stopping "
+                             "(needed for honest budget curves; 0 = legacy fixed epochs)")
     parser.add_argument("--backbone-lr-mult", type=float, default=1.0,
                         help="LR multiplier for a pretrained backbone vs head (e.g. 0.1 for UNI fine-tune)")
     parser.add_argument("--batch-size", type=int, default=64)
@@ -614,6 +780,7 @@ def main():
         full_epochs=args.full_epochs,
         lr=args.lr,
         backbone_lr_mult=args.backbone_lr_mult,
+        val_frac=args.val_frac,
         batch_size=args.batch_size,
         output_dir=args.output_dir,
         seed=args.seed,

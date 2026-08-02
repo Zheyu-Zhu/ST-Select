@@ -7,6 +7,32 @@ import numpy as np
 import torch
 
 
+def predict_from(model, x: torch.Tensor, head_only: bool = False) -> torch.Tensor:
+    """Run the predictor on `x`, honoring image-mode's `head_only` contract.
+
+    In image mode the AL loop hands strategies **backbone features** (extracted
+    once per round), not raw model inputs. Calling ``model(x)`` there would push
+    those 1024-d features back through the image backbone and crash, so with
+    ``head_only=True`` we apply only ``model.head``. In feature mode
+    (``head_only=False``) the model's backbone is Identity/projection and
+    ``model(x)`` is correct."""
+    if head_only and hasattr(model, "head"):
+        return model.head(x)
+    return model(x)
+
+
+def backbone_features(model, x: torch.Tensor, head_only: bool = False) -> torch.Tensor:
+    """The representation a gradient/feature strategy (BADGE) should use for `x`.
+
+    With ``head_only=True`` (image mode) `x` is already the backbone output, so
+    return it as-is. Otherwise push it through the model's backbone."""
+    if head_only:
+        return x
+    if hasattr(model, "backbone"):
+        return model.backbone(x)
+    return x
+
+
 def model_device(model, fallback: str = "cpu") -> str:
     """The device a model's parameters actually live on.
 
