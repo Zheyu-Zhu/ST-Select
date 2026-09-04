@@ -41,6 +41,10 @@ class MCDropout(ActiveLearningStrategy):
         return [candidate_indices[i] for i in top_k]
 
     def _compute_variance(self, model, candidates, features, dataloader, head_only=False):
+        # Sync to wherever the model actually lives. self.device defaults to
+        # "cuda" from the constructor, so this silently worked whenever the model
+        # happened to be on the GPU and crashed the moment it was not.
+        self.device = model_device(model, self.device)
         model.train()  # keep dropout active
 
         if features is not None:

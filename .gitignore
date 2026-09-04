@@ -52,3 +52,6 @@ processed_gene/
 # (which now persists them, so re-deriving a metric is a re-eval not a retrain).
 *.pt
 *.pth
+
+# Rendered figures: 892 MB of PNG/SVG/PDF, all regenerable from scripts/ + the run outputs
+figures/

@@ -102,6 +102,7 @@ class ActiveLearningLoop:
         test_group_ids: Optional[np.ndarray] = None,
         eval_ctx: Optional[Dict] = None,
         val_frac: float = 0.0,
+        record_epoch_curve: bool = False,
         train_group_ids: Optional[np.ndarray] = None,
     ):
         self.trainer = trainer
@@ -132,6 +133,9 @@ class ActiveLearningLoop:
         # which is what a budget-vs-performance curve has to compare. The test
         # fold is never touched.
         self.val_frac = val_frac
+        # Diagnostic only: evaluate on TEST after every epoch so the cost of the
+        # stopping rule can be measured. Never select an epoch from this curve.
+        self.record_epoch_curve = record_epoch_curve
         # Patient ids for the TRAIN pool. When present the early-stopping holdout
         # is group-aware (whole patients held out), which matters: the failure
         # mode we are trying to stop on is patient-level overfitting (batch
@@ -184,6 +188,7 @@ class ActiveLearningLoop:
             "mse": [],
             "mae": [],
             "epochs_run": [],
+            "epoch_curve": [],
         }
         if self.top_n_cutoffs:
             results["pcc_topN"] = []  # list of {cutoff: pcc} per checkpoint
@@ -289,12 +294,17 @@ class ActiveLearningLoop:
             if torch.cuda.is_available():
                 torch.cuda.manual_seed_all(self.seed * 1000 + r)
             self.trainer.model.apply(self._reset_weights_partial)
+            probe = None
+            if self.record_epoch_curve:
+                def probe(epoch, _model):
+                    return {"epoch": epoch, **self._evaluate_light()}
             trn_sel, val_sel = self._val_split(selected)
             if val_sel:
                 hist = self.trainer.train(self.dataset, trn_sel,
-                                          val_dataset=self.dataset, val_indices=val_sel)
+                                          val_dataset=self.dataset, val_indices=val_sel,
+                                          epoch_probe=probe)
             else:
-                hist = self.trainer.train(self.dataset, selected)
+                hist = self.trainer.train(self.dataset, selected, epoch_probe=probe)
             metrics = self._evaluate()
 
             results["round"].append(r)
@@ -305,6 +315,7 @@ class ActiveLearningLoop:
             # labels really did buy more overfitting, small budgets should stop
             # much earlier than large ones. Equals the epoch cap when val is off.
             results["epochs_run"].append(len(hist.get("train_loss", [])))
+            results["epoch_curve"].append(hist.get("probe", []))
             results["pcc_per_gene"].append(metrics["pcc_per_gene"])
             results["pcc_per_spot"].append(metrics["pcc_per_spot"])
             results["mse"].append(metrics["mse"])
@@ -358,6 +369,39 @@ class ActiveLearningLoop:
         return self.rng.choice(
             self.all_indices, size=size, replace=False
         ).tolist()
+
+    def _evaluate_light(self) -> Dict[str, float]:
+        """PCC only, for the per-epoch probe.
+
+        The full _evaluate() also clusters every slide (ARI/NMI) and computes
+        Moran's I over 300 genes per slide. Running that after every epoch would
+        cost more than the training it is measuring, and none of it is what the
+        epoch curve is for.
+        """
+        preds, targets = self._predict_test()
+        from ..evaluation.metrics import pcc_per_gene, pcc_per_spot
+        out = {"pcc_per_gene": float(np.nanmean(pcc_per_gene(preds, targets))),
+               "pcc_per_spot": float(np.nanmean(pcc_per_spot(preds, targets))),
+               "mse": float(np.mean((preds - targets) ** 2))}
+        if self.test_group_ids is not None:
+            from ..evaluation.metrics import pcc_per_gene_grouped
+            out["pcc_per_gene_by_slide"] = float(
+                pcc_per_gene_grouped(preds, targets, self.test_group_ids))
+        return out
+
+    def _predict_test(self):
+        test_loader = DataLoader(
+            self.test_dataset, batch_size=64, shuffle=False,
+            num_workers=getattr(self.trainer, "num_workers", 0),
+        )
+        all_preds, all_targets = [], []
+        self.trainer.model.eval()
+        with torch.no_grad():
+            for batch in test_loader:
+                images = batch["image"].to(self.trainer.device)
+                all_preds.append(self.trainer.model(images).cpu().numpy())
+                all_targets.append(batch["expression"].numpy())
+        return np.concatenate(all_preds, 0), np.concatenate(all_targets, 0)
 
     def _evaluate(self) -> Dict[str, float]:
         """Evaluate model on test set."""

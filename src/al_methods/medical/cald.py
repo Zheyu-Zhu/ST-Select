@@ -6,7 +6,7 @@ import numpy as np
 import torch
 from ...utils.reproducibility import resolve_device as _resolve_device
 
-from ..base import ActiveLearningStrategy
+from ..base import ActiveLearningStrategy, predict_from
 from ..registry import register
 from ..base import model_device
 
@@ -46,11 +46,18 @@ class CALD(ActiveLearningStrategy):
         dataloader: Optional[torch.utils.data.DataLoader] = None,
         extras: Optional[Dict] = None,
     ) -> List[int]:
-        scores = self._compute_consistency_scores(model, features, candidate_indices)
+        # In image mode the loop supplies backbone FEATURES, not images, and the
+        # backbone must not be applied a second time. predict_from() applies only
+        # model.head when head_only is set. Without this the run dies on a shape
+        # error the moment this strategy is reached.
+        head_only = bool(extras and extras.get("head_only"))
+        scores = self._compute_consistency_scores(
+            model, features, candidate_indices, head_only)
         top_k = np.argsort(scores)[-k:]
         return [candidate_indices[i] for i in top_k]
 
-    def _compute_consistency_scores(self, model, features, candidates):
+    def _compute_consistency_scores(self, model, features, candidates,
+                                    head_only=False):
         model.eval()
         self.device = model_device(model, self.device)
         x_all = torch.tensor(features[candidates], dtype=torch.float32)
@@ -60,14 +67,14 @@ class CALD(ActiveLearningStrategy):
             batch = x_all[i : i + self.batch_size].to(self.device)
 
             with torch.no_grad():
-                pred_orig = model(batch)
+                pred_orig = predict_from(model, batch, head_only)
 
             discrepancies = []
             for _ in range(self.n_augmentations):
                 noise = torch.randn_like(batch) * self.noise_std
                 augmented = batch + noise
                 with torch.no_grad():
-                    pred_aug = model(augmented)
+                    pred_aug = predict_from(model, augmented, head_only)
                 disc = (pred_aug - pred_orig).norm(dim=-1)
                 discrepancies.append(disc)
 

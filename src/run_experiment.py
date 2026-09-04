@@ -9,7 +9,7 @@ import torch
 import torchvision.transforms as T
 
 from .al_methods import get_strategy, list_strategies
-from .datasets import STDataset, STFeatureDataset, HESTLoader, PatientKFold
+from .datasets import STDataset, STFeatureDataset, HESTLoader, PatientKFold, WithinSlideSplit
 from .datasets.patch_dataset import PatchImageDataset
 from .datasets.splits import BudgetMasker
 from .evaluation import compute_metrics, compare_methods
@@ -67,6 +67,7 @@ def build_model(config: ExperimentConfig, n_genes: int) -> torch.nn.Module:
         return UNIRegressor(
             n_genes=n_genes,
             frozen_backbone=config.frozen_backbone,
+            grad_checkpointing=getattr(config, 'grad_checkpointing', True),
         )
     elif name == "histogene":
         return HisToGene(n_genes=n_genes)
@@ -211,14 +212,21 @@ def load_image_cache(config: ExperimentConfig) -> Dict:
     }
 
 
-def _records_from_ids(patient_ids, sample_ids, n: int) -> List[Dict]:
-    """Build minimal records (patient_id/sample_id per spot) for PatientKFold."""
+def _records_from_ids(patient_ids, sample_ids, n: int, positions=None) -> List[Dict]:
+    """Build minimal records (patient_id/sample_id per spot) for the splitters.
+
+    `positions` is only needed by WithinSlideSplit(mode="spatial"), which cuts
+    each slide into contiguous coordinate bands.
+    """
     records = []
     for i in range(n):
-        records.append({
+        rec = {
             "patient_id": str(patient_ids[i]) if patient_ids is not None else str(i),
             "sample_id": str(sample_ids[i]) if sample_ids is not None else str(i),
-        })
+        }
+        if positions is not None:
+            rec["position"] = (float(positions[i][0]), float(positions[i][1]))
+        records.append(rec)
     return records
 
 
@@ -242,14 +250,27 @@ def run_full_benchmark(config: ExperimentConfig) -> Dict:
 
     cache = load_image_cache(config) if config.image_mode else load_feature_cache(config)
     n_total = len(cache["expressions"])
-    records = _records_from_ids(cache["patient_ids"], cache["sample_ids"], n_total)
+    records = _records_from_ids(cache["patient_ids"], cache["sample_ids"], n_total,
+                                cache.get("positions"))
     # Grouping key for CV: patient-level (strict) or slide-level (leakier,
     # literature-comparable, tests whether AL helps once patient-shift is removed).
-    group_key = "patient_id" if config.split_level == "patient" else "sample_id"
-    folds = PatientKFold(n_folds=config.n_folds, seed=config.seed).split(
-        records, patient_key=group_key
-    )
-    print(f"Split level: {config.split_level} (group key = {group_key})")
+    if config.split_level == "within_slide":
+        # Train and test spots come from the SAME slides. Answers the acquisition
+        # question (measure part of a slide, predict the rest) rather than the
+        # cross-patient generalisation question. Scores are much higher and are
+        # NOT comparable to patient/sample splits.
+        group_key = "sample_id"
+        mode = getattr(config, "within_slide_mode", "random")
+        folds = WithinSlideSplit(n_folds=config.n_folds, seed=config.seed,
+                                 mode=mode).split(records, patient_key=group_key)
+        print(f"Split level: within_slide (mode={mode}) — train/test share slides; "
+              f"NOT comparable to patient-split numbers")
+    else:
+        group_key = "patient_id" if config.split_level == "patient" else "sample_id"
+        folds = PatientKFold(n_folds=config.n_folds, seed=config.seed).split(
+            records, patient_key=group_key
+        )
+        print(f"Split level: {config.split_level} (group key = {group_key})")
 
     # Methods to evaluate: the requested AL methods plus a full-supervision
     # upper bound (train on the entire training fold). See tutorial §5/§6.
@@ -287,10 +308,22 @@ def run_full_benchmark(config: ExperimentConfig) -> Dict:
                 break
             for seed_idx in range(config.n_seeds):
                 seed = config.seed + seed_idx
-                result = _run_one_run(
-                    config, method_name, cache, train_idx, test_idx, seed,
-                    fold_idx=fold_idx,
-                )
+                try:
+                    result = _run_one_run(
+                        config, method_name, cache, train_idx, test_idx, seed,
+                        fold_idx=fold_idx,
+                    )
+                except Exception:
+                    # One broken strategy must not destroy a multi-day sweep. The
+                    # failure is logged in full and the method is skipped; every
+                    # other method still runs and results_partial.json keeps what
+                    # completed. (A strategy that silently degraded would be far
+                    # worse than one that loudly fails, so we do not substitute
+                    # a fallback here.)
+                    import traceback as _tb
+                    print(f"  [FAILED] {method_name} fold {fold_idx} seed {seed}\n"
+                          f"{_tb.format_exc()}", flush=True)
+                    continue
                 final_pcc[method_name].append(result["pcc_per_gene"][-1])
                 detailed[method_name].append({
                     "fold": fold_idx, "seed": seed, **result,
@@ -451,6 +484,11 @@ def _run_one_run(
                    "epochs_run", "selection_diversity", "spatial", "celltype")
     if top_n_cutoffs:
         result_keys = result_keys + ("pcc_topN", "pcc_topN_by_slide")
+    # Per-epoch test metrics, when the run asked for them. This is a whitelist,
+    # so a key the loop produces but that is missing here is silently dropped on
+    # the way to results.json - which is what happened to epoch_curve.
+    if getattr(config, "record_epoch_curve", False):
+        result_keys = result_keys + ("epoch_curve",)
 
     if method_name == "full_supervision":
         # Upper bound: train on the entire labeled training fold, single pass.
@@ -461,10 +499,25 @@ def _run_one_run(
             list(range(n_train)), getattr(config, "val_frac", 0.0), seed,
             train_group_ids,
         )
+        # The ceiling gets an epoch curve too when one was asked for. It is the
+        # largest budget, so it is the checkpoint where "were 35 epochs enough?"
+        # is easiest to answer - leaving it out would drop the most informative
+        # curve of the run.
+        fs_probe = None
+        if getattr(config, "record_epoch_curve", False):
+            def fs_probe(epoch, _model):
+                m = _evaluate_model(trainer, test_ds, device, None,
+                                    test_group_ids, None)
+                return {"epoch": epoch,
+                        "pcc_per_gene": m.get("pcc_per_gene"),
+                        "pcc_per_spot": m.get("pcc_per_spot"),
+                        "pcc_per_gene_by_slide": m.get("pcc_per_gene_by_slide"),
+                        "mse": m.get("mse")}
         if _val:
-            trainer.train(train_ds, _trn, val_dataset=train_ds, val_indices=_val)
+            trainer.train(train_ds, _trn, val_dataset=train_ds, val_indices=_val,
+                          epoch_probe=fs_probe)
         else:
-            trainer.train(train_ds, list(range(n_train)))
+            trainer.train(train_ds, list(range(n_train)), epoch_probe=fs_probe)
         metrics = _evaluate_model(trainer, test_ds, device, top_n_cutoffs,
                                   test_group_ids, eval_ctx)
         # Persist the trained ceiling model (the meaningful end-to-end weights).
@@ -474,6 +527,8 @@ def _run_one_run(
         out = {k: [metrics[k]] for k in keys if k in metrics}
         out["frac"] = [1.0]
         out["n_labeled"] = [n_train]
+        if getattr(config, "record_epoch_curve", False):
+            out["epoch_curve"] = [getattr(trainer, "_last_probe", [])]
         if top_n_cutoffs:
             out["pcc_topN"] = [metrics.get("pcc_topN", {})]
             out["pcc_topN_by_slide"] = [metrics.get("pcc_topN_by_slide", {})]
@@ -492,6 +547,7 @@ def _run_one_run(
         budget_targets=budget_targets, top_n_cutoffs=top_n_cutoffs or None,
         dynamic_features=dynamic, test_group_ids=test_group_ids, eval_ctx=eval_ctx,
         val_frac=getattr(config, "val_frac", 0.0), train_group_ids=train_group_ids,
+        record_epoch_curve=getattr(config, "record_epoch_curve", False),
     )
     res = loop.run()
     return {k: res[k] for k in result_keys if k in res}

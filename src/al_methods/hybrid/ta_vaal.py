@@ -67,6 +67,11 @@ class TAVAAL(ActiveLearningStrategy):
         dataloader: Optional[torch.utils.data.DataLoader] = None,
         extras: Optional[Dict] = None,
     ) -> List[int]:
+        # Sync to the model's device BEFORE building the VAE/discriminator. The
+        # old code synced inside _compute_loss_signals, by which point these two
+        # modules and the feature tensor had already been placed on the
+        # constructor's default device — a guaranteed mismatch crash.
+        self.device = model_device(model, self.device)
         input_dim = features.shape[1]
         vae = VAE(input_dim, self.latent_dim).to(self.device)
         disc = TaskAwareDiscriminator(self.latent_dim).to(self.device)

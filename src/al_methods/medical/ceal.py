@@ -6,7 +6,7 @@ import numpy as np
 import torch
 from ...utils.reproducibility import resolve_device as _resolve_device
 
-from ..base import ActiveLearningStrategy
+from ..base import ActiveLearningStrategy, predict_from
 from ..registry import register
 from ..base import model_device
 
@@ -47,8 +47,13 @@ class CEAL(ActiveLearningStrategy):
         dataloader: Optional[torch.utils.data.DataLoader] = None,
         extras: Optional[Dict] = None,
     ) -> List[int]:
+        # In image mode the loop supplies backbone FEATURES, not images, and the
+        # backbone must not be applied a second time. predict_from() applies only
+        # model.head when head_only is set. Without this the run dies on a shape
+        # error the moment this strategy is reached.
+        head_only = bool(extras and extras.get("head_only"))
         query_indices, pseudo_indices = self._split_candidates(
-            model, features, candidate_indices, k
+            model, features, candidate_indices, k, head_only
         )
 
         # Store pseudo-labeled indices in extras for downstream use
@@ -58,7 +63,7 @@ class CEAL(ActiveLearningStrategy):
         return query_indices
 
     def _split_candidates(
-        self, model, features, candidates, k
+        self, model, features, candidates, k, head_only: bool = False
     ) -> Tuple[List[int], List[int]]:
         model.eval()
         self.device = model_device(model, self.device)
@@ -68,7 +73,7 @@ class CEAL(ActiveLearningStrategy):
         for i in range(0, len(x_all), self.batch_size):
             batch = x_all[i : i + self.batch_size].to(self.device)
             with torch.no_grad():
-                pred = model(batch)
+                pred = predict_from(model, batch, head_only)
             all_preds.append(pred.cpu())
 
         preds = torch.cat(all_preds, dim=0)

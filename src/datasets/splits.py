@@ -129,3 +129,83 @@ class BudgetMasker:
         if ratios is None:
             ratios = [0.05, 0.10, 0.15, 0.30, 0.50, 0.75]
         return {r: self.mask(indices, r) for r in ratios}
+
+
+class WithinSlideSplit:
+    """Within-slide k-fold: train and test spots come from the SAME slides.
+
+    This is the acquisition question the cost argument actually rests on: given a
+    slide you are going to profile, can you measure a fraction of its spots and
+    predict the rest? Every other split in this codebase (PatientKFold) answers a
+    different question - can a model trained on some patients generalise to a NEW
+    patient - and the two are not comparable. Numbers here are far higher, because
+    the model has already seen the slide's morphology, staining and batch effects
+    and only has to fill in gaps.
+
+    Why a fixed reserved test set rather than "predict whatever you did not
+    select": with the complement as the test set, every budget is scored on a
+    different set of spots (5% budget -> predict 95%, 50% -> predict 50%), so
+    budgets cannot be compared, and at 100% budget the test set is empty so there
+    is no full-supervision reference to retain a fraction *of*. Reserving a fixed
+    slice of each slide keeps the test set identical at every budget.
+
+    Two holdout geometries, because they answer different questions:
+
+      mode="random"   test spots are interleaved with selectable ones. Matches
+                      deployment (you skip individual spots on a dense grid), but
+                      every test spot has immediate labeled neighbours, so strong
+                      spatial autocorrelation alone can score well. Always pair
+                      with the nearest-neighbour control baseline.
+      mode="spatial"  test spots form contiguous regions (a coordinate band per
+                      slide). Harder and more honest about whether morphology
+                      predicts expression, rather than neighbouring spots doing it.
+    """
+
+    def __init__(self, n_folds: int = 4, seed: int = 42, mode: str = "random"):
+        if n_folds < 2:
+            raise ValueError(f"n_folds must be >= 2, got {n_folds}.")
+        if mode not in ("random", "spatial"):
+            raise ValueError(f"mode must be 'random' or 'spatial', got {mode!r}.")
+        self.n_folds = n_folds
+        self.seed = seed
+        self.mode = mode
+
+    def split(
+        self,
+        records: List[Dict],
+        patient_key: str = "sample_id",
+    ) -> List[Tuple[List[int], List[int]]]:
+        """Returns n_folds (pool_indices, test_indices) pairs.
+
+        Both sides span every slide. Each slide contributes 1/n_folds of its spots
+        to the test side of each fold, so across folds every spot is tested once.
+        """
+        by_slide: Dict[str, List[int]] = {}
+        for i, r in enumerate(records):
+            by_slide.setdefault(str(r.get(patient_key, i)), []).append(i)
+
+        rng = np.random.default_rng(self.seed)
+        # chunks[slide] = list of n_folds index-arrays
+        chunks: Dict[str, List[np.ndarray]] = {}
+        for slide, idx in by_slide.items():
+            idx_arr = np.asarray(idx)
+            if self.mode == "spatial":
+                # Order by a random 2-D direction, then cut into contiguous bands.
+                # A random direction (rather than always x) stops the split from
+                # aligning with tissue structure the same way on every slide.
+                pos = np.asarray([records[i].get("position", (0.0, 0.0)) for i in idx_arr],
+                                 dtype=float)
+                theta = rng.uniform(0, np.pi)
+                order = np.argsort(pos @ np.array([np.cos(theta), np.sin(theta)]))
+            else:
+                order = rng.permutation(len(idx_arr))
+            chunks[slide] = [c for c in np.array_split(idx_arr[order], self.n_folds)]
+
+        folds = []
+        for k in range(self.n_folds):
+            test, pool = [], []
+            for slide, cs in chunks.items():
+                for j, c in enumerate(cs):
+                    (test if j == k else pool).extend(c.tolist())
+            folds.append((sorted(pool), sorted(test)))
+        return folds

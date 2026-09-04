@@ -46,6 +46,11 @@ class BatchBALD(ActiveLearningStrategy):
         return [candidate_indices[i] for i in picks]
 
     def _get_mc_predictions(self, model, candidates, features, head_only=False):
+        # Follow the model, do not assume it. self.device defaults to "cuda" from
+        # the constructor, so batches were moved to the GPU while the model could
+        # be on the CPU (or vice versa) — a hard device-mismatch crash the moment
+        # this strategy runs. Every other model-using strategy syncs here.
+        self.device = model_device(model, self.device)
         model.train()
         all_preds = []
         x_all = torch.tensor(features[candidates], dtype=torch.float32)

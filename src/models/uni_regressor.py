@@ -20,6 +20,9 @@ class UNIRegressor(nn.Module):
         frozen_backbone: bool = False,
         grad_checkpointing: bool = True,
         dropout: float = 0.1,
+        lora_rank: int = 0,
+        lora_alpha: int = 32,
+        lora_dropout: float = 0.05,
     ):
         super().__init__()
         try:
@@ -36,6 +39,27 @@ class UNIRegressor(nn.Module):
         if frozen_backbone:
             for p in self.backbone.parameters():
                 p.requires_grad = False
+        elif lora_rank > 0:
+            # LoRA: freeze W, learn a low-rank update W + (alpha/r)·BA on every
+            # attention and MLP projection (96 Linear layers: qkv, proj, fc1, fc2).
+            # The forward cost is essentially unchanged and gradients still flow
+            # through the whole network, so the speedup is NOT from "training
+            # fewer parameters" — it comes from dropping the optimizer state and
+            # gradient buffers for 304 M frozen weights, which frees enough memory
+            # to switch gradient checkpointing off.
+            try:
+                from peft import LoraConfig, get_peft_model
+            except ImportError as e:
+                raise ImportError(
+                    "lora_rank>0 needs peft: pip install peft"
+                ) from e
+            cfg = LoraConfig(
+                r=lora_rank, lora_alpha=lora_alpha, lora_dropout=lora_dropout,
+                target_modules=["qkv", "proj", "fc1", "fc2"], bias="none",
+            )
+            self.backbone = get_peft_model(self.backbone, cfg)
+            if grad_checkpointing and hasattr(self.backbone, "set_grad_checkpointing"):
+                self.backbone.set_grad_checkpointing(True)
         elif grad_checkpointing and hasattr(self.backbone, "set_grad_checkpointing"):
             # Recompute activations in backward -> big activation-memory saving,
             # which is what lets ViT-L fine-tune on a 10 GB card.

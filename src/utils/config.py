@@ -34,11 +34,22 @@ class ExperimentConfig:
     # <1.0 fine-tunes a pretrained backbone (e.g. UNI ViT-L) at a lower LR than
     # the head; 1.0 = single LR for the whole model (default).
     backbone_lr_mult: float = 1.0
+    # Gradient checkpointing trades compute for memory by recomputing activations
+    # in the backward pass. Measured on the real HER2 pipeline: OFF is 1.48x faster
+    # (0.37 -> 0.25 s/step) and still fits (8.35 of 10.24 GB reserved). Gradients are
+    # mathematically identical either way, so results stay comparable - only CUDA
+    # nondeterminism differs (~0.001, the level two identical re-runs already differ by).
+    grad_checkpointing: bool = True
     # >0 holds back this fraction of the labeled pool for early stopping, so every
     # budget checkpoint trains to its own optimum instead of a fixed epoch count.
     # Required for an honest budget-vs-performance curve (see loop.val_frac);
     # 0.0 keeps the legacy fixed-epoch behaviour.
     val_frac: float = 0.0
+    # Diagnostic: evaluate on the TEST split after every epoch and store the
+    # curve, so the cost of the stopping rule can be quantified. Adds a full
+    # test pass per epoch. Never pick an epoch from this curve to report -
+    # that is test-set selection and it rewards variance, not quality.
+    record_epoch_curve: bool = False
     # Early-stopping patience (epochs without val improvement) when val_frac > 0.
     patience: int = 10
 
@@ -60,6 +71,11 @@ class ExperimentConfig:
 
     # Evaluation
     n_folds: int = 4
+    # "patient" (strict, the default), "sample" (slide-level), or "within_slide"
+    # (train and test spots come from the SAME slides - the acquisition question:
+    # measure a fraction of a slide, predict the rest). within_slide numbers are
+    # NOT comparable to the other two: the model has already seen the slide.
+    within_slide_mode: str = "random"   # "random" (interleaved) | "spatial" (blocks)
     # >0 runs only the first N of the n_folds patient folds. For smoke/dry runs
     # only: the split geometry stays identical to the full run (same n_folds), so
     # a dry run exercises the real code path at a fraction of the cost. Note

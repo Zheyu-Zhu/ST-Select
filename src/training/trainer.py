@@ -60,8 +60,20 @@ class ALTrainer:
         selected_indices: list,
         val_dataset=None,
         val_indices: Optional[list] = None,
+        epoch_probe=None,
     ) -> Dict[str, list]:
-        """Train model on selected subset."""
+        """Train model on selected subset.
+
+        ``epoch_probe`` is a diagnostic hook called as ``probe(epoch, model)``
+        after every epoch; whatever it returns is appended to
+        ``history["probe"]``. It exists to answer "how much does the choice of
+        stopping epoch move the number?", so it is normally wired to the TEST
+        metric — which makes anything derived from it unusable as a reported
+        result. Selecting the epoch on this curve is test-set selection, and it
+        favours whichever arm happens to be noisiest rather than best. Report
+        the last epoch, or an epoch chosen on a validation split; use the probe
+        only to characterise the gap between those.
+        """
         train_subset = Subset(dataset, selected_indices)
         train_loader = DataLoader(
             train_subset, batch_size=self.batch_size, shuffle=True,
@@ -102,7 +114,7 @@ class ALTrainer:
             scheduler = None
 
         loss_fn = self._get_loss_fn()
-        history = {"train_loss": [], "val_loss": []}
+        history = {"train_loss": [], "val_loss": [], "probe": []}
         best_val_loss = float("inf")
         patience_counter = 0
         best_state = None
@@ -138,6 +150,14 @@ class ALTrainer:
             if scheduler:
                 scheduler.step()
 
+            if epoch_probe is not None:
+                was_training = self.model.training
+                self.model.eval()
+                with torch.no_grad():
+                    history["probe"].append(epoch_probe(epoch, self.model))
+                if was_training:
+                    self.model.train()
+
             # Validation
             if val_loader is not None:
                 val_loss = self._validate(val_loader, loss_fn)
@@ -151,6 +171,10 @@ class ALTrainer:
                     patience_counter += 1
                     if patience_counter >= self.patience:
                         break
+
+        # Expose the probe curve on the trainer as well, for callers that drive
+        # train() directly and never see the returned history (full_supervision).
+        self._last_probe = history["probe"]
 
         # Restore best model
         if best_state is not None:

@@ -6,7 +6,7 @@ import numpy as np
 import torch
 from ...utils.reproducibility import resolve_device as _resolve_device
 
-from ..base import ActiveLearningStrategy
+from ..base import ActiveLearningStrategy, predict_from
 from ..registry import register
 from ..base import model_device
 
@@ -47,13 +47,19 @@ class ALFAMix(ActiveLearningStrategy):
         dataloader: Optional[torch.utils.data.DataLoader] = None,
         extras: Optional[Dict] = None,
     ) -> List[int]:
+        # In image mode the loop supplies backbone FEATURES, not images, and the
+        # backbone must not be applied a second time. predict_from() applies only
+        # model.head when head_only is set. Without this the run dies on a shape
+        # error the moment this strategy is reached.
+        head_only = bool(extras and extras.get("head_only"))
         scores = self._compute_flip_scores(
-            model, features, candidate_indices, selected_indices
+            model, features, candidate_indices, selected_indices, head_only
         )
         top_k = np.argsort(scores)[:k]  # smaller alpha = more informative
         return [candidate_indices[i] for i in top_k]
 
-    def _compute_flip_scores(self, model, features, candidates, selected):
+    def _compute_flip_scores(self, model, features, candidates, selected,
+                             head_only=False):
         model.eval()
         self.device = model_device(model, self.device)
 
@@ -66,7 +72,7 @@ class ALFAMix(ActiveLearningStrategy):
 
         # Get predictions for candidates
         with torch.no_grad():
-            cand_preds = model(cand_feats)  # (N_cand, G)
+            cand_preds = predict_from(model, cand_feats, head_only)  # (N_cand, G)
 
         # For each candidate, find smallest alpha that causes significant prediction change
         alphas = torch.linspace(0, 1, self.n_alpha_steps, device=self.device)
@@ -84,7 +90,7 @@ class ALFAMix(ActiveLearningStrategy):
                     # Interpolate
                     mixed = alpha * batch_feats + (1 - alpha) * anchor.unsqueeze(0)
                     with torch.no_grad():
-                        mixed_preds = model(mixed)
+                        mixed_preds = predict_from(model, mixed, head_only)
 
                     # Check for significant change (> threshold in L2 norm)
                     change = (mixed_preds - batch_preds).norm(dim=-1)
