@@ -55,3 +55,6 @@ processed_gene/
 
 # Rendered figures: 892 MB of PNG/SVG/PDF, all regenerable from scripts/ + the run outputs
 figures/
+
+# Distribution bundle: byte-identical to manuscripts/spie2027_revised/ plus a rebuildable ZIP
+output/

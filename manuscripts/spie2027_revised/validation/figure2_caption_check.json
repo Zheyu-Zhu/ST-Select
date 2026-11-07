@@ -1,0 +1,170 @@
+{
+  "checked_at_utc": "2026-11-07T19:42:19.154574+00:00",
+  "slide": "SPA143",
+  "patient": "Patient_B",
+  "heldout_folds": [
+    1
+  ],
+  "gene": "COL1A1",
+  "zero_based_target_column": 167,
+  "gene_panel": "First 300 of the 967 alphabetically ordered expression_norm genes; exact match to target-name list",
+  "n_spots": 277,
+  "array_shape": [
+    277,
+    300
+  ],
+  "sd_convention": "Population SD across spots, ddof=0, matching make_budget_grid.py",
+  "measured_sd": 0.8715351223945618,
+  "measured_sd_2dp": "0.87",
+  "record_targets_exact_equal_saved_gt": true,
+  "raw_HEST_log1p_COL1A1_exact_rowaligned_match_saved_gt": true,
+  "budgets": {
+    "0.05": {
+      "epoch": 110,
+      "prediction_population_sds": {
+        "random": 0.25786954164505005,
+        "coreset": 0.1832025945186615,
+        "mc_dropout": 0.20130088925361633,
+        "tod": 0.2526138424873352,
+        "typiclust": 0.2759232819080353
+      },
+      "min": 0.1832025945186615,
+      "max": 0.2759232819080353,
+      "rounded_min_2dp": "0.18",
+      "rounded_max_2dp": "0.28"
+    },
+    "0.5": {
+      "epoch": 60,
+      "prediction_population_sds": {
+        "random": 0.7007775902748108,
+        "coreset": 0.6748893857002258,
+        "mc_dropout": 0.6657227873802185,
+        "tod": 0.6954904198646545,
+        "typiclust": 0.6894589066505432
+      },
+      "min": 0.6657227873802185,
+      "max": 0.7007775902748108,
+      "rounded_min_2dp": "0.67",
+      "rounded_max_2dp": "0.70"
+    }
+  },
+  "caption_claims_verified": true,
+  "sources": {
+    "C:\\Users\\zheyu\\workspace\\ST-Select\\manuscripts\\spie2027_revised\\main.tex": {
+      "sha256": "1feb1cd41715f9e620dd192f3b7138e6c93e489ff13c665b17354dc8d44c0830",
+      "bytes": 26115
+    },
+    "C:\\Users\\zheyu\\workspace\\ST-Select\\processed_gene\\gene_names\\HER2_expression_norm_genes.npy": {
+      "sha256": "2ca5c73518d255d2bdef608e1c2053d5f00aad42076ecf02517a38797a7f7c92",
+      "bytes": 38808
+    },
+    "C:\\Users\\zheyu\\OneDrive\\Desktop\\random\\random_clean\\target_genes\\HER2_target_genes_300.txt": {
+      "sha256": "f8bdbe55452e5cef84b4fcc4392e9bda07d88ec22af46ba8a6c2078bd6f2a2da",
+      "bytes": 1784
+    },
+    "C:\\Users\\zheyu\\workspace\\stnet_ref\\data_infor\\HER2\\Patient_B\\SPA143.npy": {
+      "sha256": "7c583b1375fb299fe18d88cdc6d003ba1f40057c09f677825fb446f801424ca1",
+      "bytes": 2015669
+    },
+    "C:\\Users\\zheyu\\workspace\\ST-Select\\hest_data\\st\\SPA143.h5ad": {
+      "sha256": "3691fc73a24d09d78668683dc9fa9aae4dd221d68f99960e143933d1914d1777",
+      "bytes": 38376584
+    },
+    "C:\\Users\\zheyu\\workspace\\stnet_ref\\ST-Net\\weights_st\\HER2\\random_0.05\\fold1\\gt\\SPA143_gt.npy": {
+      "sha256": "6741942bbb521cab3590856ce1fe719d4d9a367fbfab474a28d3a38a1c40db04",
+      "bytes": 332528
+    },
+    "C:\\Users\\zheyu\\workspace\\stnet_ref\\ST-Net\\cross_fold.py": {
+      "sha256": "8a60d952944ebe780d7d6cc005c78321aff3fd00190ad7addb373015b006ac42",
+      "bytes": 10667
+    },
+    "C:\\Users\\zheyu\\workspace\\stnet_ref\\ST-Net\\config.py": {
+      "sha256": "156a96c71aac519170792205ca401c5c3a92962e88c2557f31c49e317139422c",
+      "bytes": 4864
+    },
+    "C:\\Users\\zheyu\\workspace\\stnet_ref\\ST-Net\\data_loader.py": {
+      "sha256": "df55247ce6f6c842576288c9b916c7384b57f28bf9368c9fb16ccf8d3137e62c",
+      "bytes": 5700
+    },
+    "C:\\Users\\zheyu\\workspace\\ST-Select\\scripts\\make_budget_grid.py": {
+      "sha256": "401e935b60b41cac8ecd1f0150c671abbd92c5b10f66061e092b97dd7542e63b",
+      "bytes": 7126
+    },
+    "C:\\Users\\zheyu\\workspace\\stnet_ref\\ST-Net\\weights_st\\HER2\\random_0.05\\fold1\\pred\\epoch_110\\SPA143_pred.npy": {
+      "sha256": "230cf2f77805a6a84423ccf1af0a77d145cf17b348125dd451e73906090e9e24",
+      "bytes": 332528
+    },
+    "C:\\Users\\zheyu\\workspace\\stnet_ref\\ST-Net\\weights_st\\HER2\\coreset_0.05\\fold1\\pred\\epoch_110\\SPA143_pred.npy": {
+      "sha256": "1985866cf510b75fedb7a4d17c8fa877a82a9464efb1ca3ccd89c92b0b8e00bd",
+      "bytes": 332528
+    },
+    "C:\\Users\\zheyu\\workspace\\stnet_ref\\ST-Net\\weights_st\\HER2\\coreset_0.05\\fold1\\gt\\SPA143_gt.npy": {
+      "sha256": "6741942bbb521cab3590856ce1fe719d4d9a367fbfab474a28d3a38a1c40db04",
+      "bytes": 332528
+    },
+    "C:\\Users\\zheyu\\workspace\\stnet_ref\\ST-Net\\weights_st\\HER2\\mc_dropout_0.05\\fold1\\pred\\epoch_110\\SPA143_pred.npy": {
+      "sha256": "37eb801aa5a9db68ae18764f410471beee75f5a3126e72d717fea1428e580976",
+      "bytes": 332528
+    },
+    "C:\\Users\\zheyu\\workspace\\stnet_ref\\ST-Net\\weights_st\\HER2\\mc_dropout_0.05\\fold1\\gt\\SPA143_gt.npy": {
+      "sha256": "6741942bbb521cab3590856ce1fe719d4d9a367fbfab474a28d3a38a1c40db04",
+      "bytes": 332528
+    },
+    "C:\\Users\\zheyu\\workspace\\stnet_ref\\ST-Net\\weights_st\\HER2\\tod_0.05\\fold1\\pred\\epoch_110\\SPA143_pred.npy": {
+      "sha256": "e5b788989581b88066f1a553dbaf96cadf57b40621954bd34756c084d2251d82",
+      "bytes": 332528
+    },
+    "C:\\Users\\zheyu\\workspace\\stnet_ref\\ST-Net\\weights_st\\HER2\\tod_0.05\\fold1\\gt\\SPA143_gt.npy": {
+      "sha256": "6741942bbb521cab3590856ce1fe719d4d9a367fbfab474a28d3a38a1c40db04",
+      "bytes": 332528
+    },
+    "C:\\Users\\zheyu\\workspace\\stnet_ref\\ST-Net\\weights_st\\HER2\\typiclust_0.05\\fold1\\pred\\epoch_110\\SPA143_pred.npy": {
+      "sha256": "4e96d1a64c1d11a3decc3215eb94375e5838eebcb667e7ba48c48a4b2a446076",
+      "bytes": 332528
+    },
+    "C:\\Users\\zheyu\\workspace\\stnet_ref\\ST-Net\\weights_st\\HER2\\typiclust_0.05\\fold1\\gt\\SPA143_gt.npy": {
+      "sha256": "6741942bbb521cab3590856ce1fe719d4d9a367fbfab474a28d3a38a1c40db04",
+      "bytes": 332528
+    },
+    "C:\\Users\\zheyu\\workspace\\stnet_ref\\ST-Net\\weights_st\\HER2\\random_0.5\\fold1\\pred\\epoch_60\\SPA143_pred.npy": {
+      "sha256": "b9e28ab51c6e778543d6e98ed358c7348e808f3acb875087519a1e548e52b774",
+      "bytes": 332528
+    },
+    "C:\\Users\\zheyu\\workspace\\stnet_ref\\ST-Net\\weights_st\\HER2\\random_0.5\\fold1\\gt\\SPA143_gt.npy": {
+      "sha256": "6741942bbb521cab3590856ce1fe719d4d9a367fbfab474a28d3a38a1c40db04",
+      "bytes": 332528
+    },
+    "C:\\Users\\zheyu\\workspace\\stnet_ref\\ST-Net\\weights_st\\HER2\\coreset_0.5\\fold1\\pred\\epoch_60\\SPA143_pred.npy": {
+      "sha256": "40605c59b82644a8186d3b415cb9cca70f3ff28005a4c33fab4ef94252a852e1",
+      "bytes": 332528
+    },
+    "C:\\Users\\zheyu\\workspace\\stnet_ref\\ST-Net\\weights_st\\HER2\\coreset_0.5\\fold1\\gt\\SPA143_gt.npy": {
+      "sha256": "6741942bbb521cab3590856ce1fe719d4d9a367fbfab474a28d3a38a1c40db04",
+      "bytes": 332528
+    },
+    "C:\\Users\\zheyu\\workspace\\stnet_ref\\ST-Net\\weights_st\\HER2\\mc_dropout_0.5\\fold1\\pred\\epoch_60\\SPA143_pred.npy": {
+      "sha256": "0936eb1b22bb2ec5e64d0fa75ccd852891266459f34a68fab86c94aed7b6c7e8",
+      "bytes": 332528
+    },
+    "C:\\Users\\zheyu\\workspace\\stnet_ref\\ST-Net\\weights_st\\HER2\\mc_dropout_0.5\\fold1\\gt\\SPA143_gt.npy": {
+      "sha256": "6741942bbb521cab3590856ce1fe719d4d9a367fbfab474a28d3a38a1c40db04",
+      "bytes": 332528
+    },
+    "C:\\Users\\zheyu\\workspace\\stnet_ref\\ST-Net\\weights_st\\HER2\\tod_0.5\\fold1\\pred\\epoch_60\\SPA143_pred.npy": {
+      "sha256": "b11a0e0d4dd154df4255e4d5ab10acd97a2b81837ee4666db4d41cd2c279e249",
+      "bytes": 332528
+    },
+    "C:\\Users\\zheyu\\workspace\\stnet_ref\\ST-Net\\weights_st\\HER2\\tod_0.5\\fold1\\gt\\SPA143_gt.npy": {
+      "sha256": "6741942bbb521cab3590856ce1fe719d4d9a367fbfab474a28d3a38a1c40db04",
+      "bytes": 332528
+    },
+    "C:\\Users\\zheyu\\workspace\\stnet_ref\\ST-Net\\weights_st\\HER2\\typiclust_0.5\\fold1\\pred\\epoch_60\\SPA143_pred.npy": {
+      "sha256": "f3b50762a58923da71b911f8b792fb21dc2f31398184f56620946c6c72165df5",
+      "bytes": 332528
+    },
+    "C:\\Users\\zheyu\\workspace\\stnet_ref\\ST-Net\\weights_st\\HER2\\typiclust_0.5\\fold1\\gt\\SPA143_gt.npy": {
+      "sha256": "6741942bbb521cab3590856ce1fe719d4d9a367fbfab474a28d3a38a1c40db04",
+      "bytes": 332528
+    }
+  }
+}

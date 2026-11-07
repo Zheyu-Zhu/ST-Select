@@ -1,0 +1,153 @@
+{
+  "metadata_source": "C:\\Users\\zheyu\\workspace\\ST-Select\\hest_data\\HEST_v1_3_0.csv",
+  "metadata_sha256": "5703d7169c7a31aa4cc74a900df9179326e0cc51bda617a1cf7ac179b6ed5d63",
+  "network_input": "Separate native-resolution 224x224 training PNGs, not HEST resampled .h5 patch images",
+  "wsi_checks": [
+    {
+      "slide": "SPA143",
+      "record_index": 0,
+      "x": 2582,
+      "y": 3507,
+      "pixel_exact_native_level0_crop": true,
+      "mean_absolute_pixel_difference": 0.0
+    },
+    {
+      "slide": "SPA143",
+      "record_index": 138,
+      "x": 5779,
+      "y": 4980,
+      "pixel_exact_native_level0_crop": true,
+      "mean_absolute_pixel_difference": 0.0
+    },
+    {
+      "slide": "SPA143",
+      "record_index": 276,
+      "x": 2306,
+      "y": 8180,
+      "pixel_exact_native_level0_crop": true,
+      "mean_absolute_pixel_difference": 0.0
+    },
+    {
+      "slide": "SPA131",
+      "record_index": 0,
+      "x": 2589,
+      "y": 2928,
+      "pixel_exact_native_level0_crop": true,
+      "mean_absolute_pixel_difference": 0.0
+    },
+    {
+      "slide": "SPA131",
+      "record_index": 157,
+      "x": 4949,
+      "y": 7542,
+      "pixel_exact_native_level0_crop": true,
+      "mean_absolute_pixel_difference": 0.0
+    },
+    {
+      "slide": "SPA131",
+      "record_index": 314,
+      "x": 2345,
+      "y": 7826,
+      "pixel_exact_native_level0_crop": true,
+      "mean_absolute_pixel_difference": 0.0
+    },
+    {
+      "slide": "SPA135",
+      "record_index": 0,
+      "x": 2577,
+      "y": 3200,
+      "pixel_exact_native_level0_crop": true,
+      "mean_absolute_pixel_difference": 0.0
+    },
+    {
+      "slide": "SPA135",
+      "record_index": 151,
+      "x": 4946,
+      "y": 5832,
+      "pixel_exact_native_level0_crop": true,
+      "mean_absolute_pixel_difference": 0.0
+    },
+    {
+      "slide": "SPA135",
+      "record_index": 302,
+      "x": 2333,
+      "y": 8134,
+      "pixel_exact_native_level0_crop": true,
+      "mean_absolute_pixel_difference": 0.0
+    },
+    {
+      "slide": "SPA125",
+      "record_index": 0,
+      "x": 2593,
+      "y": 2614,
+      "pixel_exact_native_level0_crop": true,
+      "mean_absolute_pixel_difference": 0.0
+    },
+    {
+      "slide": "SPA125",
+      "record_index": 355,
+      "x": 6416,
+      "y": 4943,
+      "pixel_exact_native_level0_crop": true,
+      "mean_absolute_pixel_difference": 0.0
+    },
+    {
+      "slide": "SPA125",
+      "record_index": 711,
+      "x": 2334,
+      "y": 2332,
+      "pixel_exact_native_level0_crop": true,
+      "mean_absolute_pixel_difference": 0.0
+    }
+  ],
+  "cohorts": {
+    "HER2": {
+      "n_patients": 8,
+      "n_slides": 36,
+      "n_spots": 13620,
+      "native_mpp_min": 0.6621175001151953,
+      "native_mpp_max": 0.9463330494889765,
+      "patch_fov_um_min": 148.31432002580374,
+      "patch_fov_um_max": 211.97860308553072,
+      "fraction_resolution_variance_between_patients": 0.9916320796176673,
+      "n_euclidean_neighbor_lt224": 2108,
+      "fraction_euclidean_neighbor_lt224": 0.15477239353891337,
+      "n_square_patch_overlap": 2124,
+      "fraction_square_patch_overlap": 0.15594713656387665
+    },
+    "cscc": {
+      "n_patients": 4,
+      "n_slides": 12,
+      "n_spots": 8671,
+      "native_mpp_min": 0.5454034197725375,
+      "native_mpp_max": 0.5539194752194792,
+      "patch_fov_um_min": 122.1703660290484,
+      "patch_fov_um_max": 124.07796244916332,
+      "fraction_resolution_variance_between_patients": 0.10935450423437343,
+      "n_euclidean_neighbor_lt224": 0,
+      "fraction_euclidean_neighbor_lt224": 0.0,
+      "n_square_patch_overlap": 8670,
+      "fraction_square_patch_overlap": 0.9998846730480914
+    }
+  },
+  "target_preprocessing": {
+    "HER2": {
+      "max_log1p_raw_error": 0.0,
+      "max_fitted_row_scaled_log1p_error": 0.0,
+      "scale_factor_min": 1.0,
+      "scale_factor_max": 1.0,
+      "max_ground_truth_error": 0.0,
+      "max_log1p_cp10k_hest_total_error": 8.517293184511917
+    },
+    "cscc": {
+      "max_log1p_raw_error": 5.152792930603027,
+      "max_fitted_row_scaled_log1p_error": 4.76837158203125e-07,
+      "scale_factor_min": 0.11551879511939155,
+      "scale_factor_max": 344.8275146484375,
+      "max_ground_truth_error": 0.0,
+      "max_log1p_cp10k_hest_total_error": 0.13302697811784014,
+      "n_common_genes": 13251,
+      "max_log1p_cp10k_common_13251_error": 2.3840582308309877e-07
+    }
+  }
+}

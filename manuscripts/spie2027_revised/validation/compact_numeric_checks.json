@@ -1,0 +1,31 @@
+{
+  "checked_at_utc": "2026-11-07T19:42:19.130274+00:00",
+  "scope": "Final compact manuscript PCC, pooled paired summaries, and all-budget ARI/Moran means and boldface",
+  "counts": {
+    "pcc_mean_sd_cells": 40,
+    "pooled_difference_sign_cells": 8,
+    "spatial_mean_cells": 80,
+    "spatial_boldface_checks": 80
+  },
+  "issues": [],
+  "passed": true,
+  "comparison_rule": "Exact printed four-decimal values versus unrounded CSV means rounded once; pooled sign counts exact; spatial boldface versus unrounded column maximum",
+  "sources": {
+    "C:\\Users\\zheyu\\workspace\\ST-Select\\manuscripts\\spie2027_revised\\main.tex": {
+      "sha256": "1feb1cd41715f9e620dd192f3b7138e6c93e489ff13c665b17354dc8d44c0830",
+      "bytes": 26115
+    },
+    "C:\\Users\\zheyu\\workspace\\ST-Select\\manuscripts\\spie2027_revised\\validation\\pcc_summary.csv": {
+      "sha256": "e4ac41c11cacc106c135fad2fba9b24ab959594f82c0ff46e4b44b32ffbdf9a1",
+      "bytes": 3490
+    },
+    "C:\\Users\\zheyu\\workspace\\ST-Select\\manuscripts\\spie2027_revised\\validation\\pooled_descriptive_pcc.csv": {
+      "sha256": "06c73c6fe794479173e42cbdaee1cbdf4eb8d1dc057a1c9d5aa2992b7ee6bccb",
+      "bytes": 391
+    },
+    "C:\\Users\\zheyu\\workspace\\ST-Select\\manuscripts\\spie2027_revised\\validation\\spatial_descriptive_summary.csv": {
+      "sha256": "a41998dd16b1e26105134af7217023cc40dce520536608f297d8709be076cc8a",
+      "bytes": 10846
+    }
+  }
+}

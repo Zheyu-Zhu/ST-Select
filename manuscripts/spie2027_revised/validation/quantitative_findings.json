@@ -1,0 +1,56 @@
+{
+  "scope": "HER2/cSCC, seed42 only; saved slidewise PCC CSV means then four-fold summaries",
+  "sd_ddof": 1,
+  "fold_cells": 168,
+  "comparisons_in_holm_family": 32,
+  "holm_rejections_005_exploratory": 0,
+  "minimum_raw_p_exploratory": 0.12797240050464875,
+  "minimum_holm_p_exploratory": 1.0,
+  "her2_30_percent_pooled_delta_exact": 0.005537615772078024,
+  "original_manuscript_pcc_means_differing_at_4dp": 0,
+  "original_manuscript_pcc_sds_differing_at_4dp": 19,
+  "last10_percent_of_final_extrema_by_budget": {
+    "0.05": {
+      "min": 10.107178792393295,
+      "max": 27.830154842795924,
+      "max_abs": 27.830154842795924
+    },
+    "0.1": {
+      "min": 4.58836068669639,
+      "max": 23.035783411833844,
+      "max_abs": 23.035783411833844
+    },
+    "0.3": {
+      "min": -3.299185666046069,
+      "max": 3.472844789526528,
+      "max_abs": 3.472844789526528
+    },
+    "0.5": {
+      "min": -1.952733518086639,
+      "max": 3.9621270664542387,
+      "max_abs": 3.9621270664542387
+    }
+  },
+  "inference_limitations": [
+    "The four CV folds share training patients and are not independent replicates.",
+    "The corrected test uses a heuristic nominal test/train ratio 1/3 and df=3.",
+    "One fixed partition and one optimization seed do not establish seed or split robustness.",
+    "Grouped heterogeneous patients and nonlinear PCC were not calibrated in this test's derivation.",
+    "No rejection does not establish equivalence or noninferiority.",
+    "Pointwise intervals are approximate and not simultaneous; Holm applies only to the 32 PCC p-values.",
+    "Epoch50 matching equalizes epochs, not optimizer steps or labeled-example presentations. The actual LR is iteration-based with shared denominator 1e8, not epoch-horizon-normalized; see separate LR scalar audit.",
+    "Tail changes do not prove convergence or choose an early-stopping epoch.",
+    "Timing logs lack load monitoring; cross-date timing differences are descriptive, not a controlled scaling experiment."
+  ],
+  "method_sources": {
+    "Nadeau_Bengio_1999": "https://papers.nips.cc/paper_files/paper/1999/file/7d12b66d3df6af8d429c1a357d8b9e1a-Paper.pdf",
+    "Bouckaert_Frank_2004": "https://ml.cms.waikato.ac.nz/publications/2004/bouckaert-frank.pdf",
+    "Holm_1979": "https://www.jstor.org/stable/4615733"
+  },
+  "analysis_environment_versions_not_training_versions": {
+    "python": "3.12.7",
+    "numpy": "1.26.4",
+    "pandas": "2.2.2",
+    "scipy": "1.13.1"
+  }
+}

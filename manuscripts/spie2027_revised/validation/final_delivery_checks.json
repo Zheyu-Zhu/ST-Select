@@ -1,0 +1,19 @@
+{
+  "manuscript_pages_including_references": 8,
+  "working_page_cap_including_references": 8,
+  "professor_deadline": "2026-11-15",
+  "public_spie_deadline": "2027-01-27",
+  "official_page_cap_confirmed_in_portal": false,
+  "letter_page_dimensions": true,
+  "all_fonts_embedded": true,
+  "no_overfull_boxes": true,
+  "no_undefined_references": true,
+  "no_bibtex_warnings": true,
+  "source_checks_pass": true,
+  "abstract_word_count_check": 217,
+  "keyword_count": 5,
+  "tables": 4,
+  "figures": 2,
+  "main_pdf_sha256": "62d6ea537cdc43e711d16c189edf7f041a2e455b67cf4518b0d3412a3ebd7dce",
+  "submitted_or_sent": false
+}

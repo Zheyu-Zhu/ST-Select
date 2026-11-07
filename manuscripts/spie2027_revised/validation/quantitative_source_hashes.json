@@ -1,0 +1,1838 @@
+{
+  "C:\\Users\\zheyu\\workspace\\ST-Select\\manuscripts\\spie2027_revised\\main_original.tex": {
+    "bytes": 31730,
+    "sha256": "6614b4e4d0f86ed6bb7d850320cf6e75bc6b5082d75bda1fd5dbf2370965c05b"
+  },
+  "C:\\Users\\zheyu\\workspace\\stnet_ref\\ST-Net\\HER2_spatial_metrics_full.csv": {
+    "bytes": 12637,
+    "sha256": "b7dfcb180912d1b0665e9cbb5491ec5068ed7a0074b53d116564a71a52f1d1c5"
+  },
+  "C:\\Users\\zheyu\\workspace\\stnet_ref\\ST-Net\\cscc_spatial_metrics_full.csv": {
+    "bytes": 12663,
+    "sha256": "37a6d48c68116339f34eab3e9a3a75d0a1e30b31816980d728ab7f8c7374211b"
+  },
+  "C:\\Users\\zheyu\\workspace\\stnet_ref\\ST-Net\\logs\\HER2_coreset_0.05_fold0.log": {
+    "bytes": 159841,
+    "sha256": "d8c6f4b47e5279867258bdf36eae737d825d63c599e9dce8e5382df5276d4942"
+  },
+  "C:\\Users\\zheyu\\workspace\\stnet_ref\\ST-Net\\logs\\HER2_coreset_0.05_fold1.log": {
+    "bytes": 159865,
+    "sha256": "c48d9698b445a844d960b04aab05d2403cd813b0b135195d424db10bdd16fd1c"
+  },
+  "C:\\Users\\zheyu\\workspace\\stnet_ref\\ST-Net\\logs\\HER2_coreset_0.05_fold2.log": {
+    "bytes": 159859,
+    "sha256": "f12cecb05551476d3dfc1028b0891e38e3f304ba02fb67549238cc7b5ee9e6eb"
+  },
+  "C:\\Users\\zheyu\\workspace\\stnet_ref\\ST-Net\\logs\\HER2_coreset_0.05_fold3.log": {
+    "bytes": 159849,
+    "sha256": "8544a2ad405748d9273cf3f838d5ea747c8510f272f3564ed2a5f7b7232d01f2"
+  },
+  "C:\\Users\\zheyu\\workspace\\stnet_ref\\ST-Net\\logs\\HER2_coreset_0.1_fold0.log": {
+    "bytes": 171743,
+    "sha256": "411b83b495bfaa59a49c308cb5830031858419afa31a2b445da42ee5604d247f"
+  },
+  "C:\\Users\\zheyu\\workspace\\stnet_ref\\ST-Net\\logs\\HER2_coreset_0.1_fold1.log": {
+    "bytes": 171750,
+    "sha256": "49a7484cf78260513855b60088799e634855f849eb7820dc542ee3e6b336c882"
+  },
+  "C:\\Users\\zheyu\\workspace\\stnet_ref\\ST-Net\\logs\\HER2_coreset_0.1_fold2.log": {
+    "bytes": 181010,
+    "sha256": "f501912393600a69a5a934f7646519061f9a4fd794c6367a108e2979a681a94e"
+  },
+  "C:\\Users\\zheyu\\workspace\\stnet_ref\\ST-Net\\logs\\HER2_coreset_0.1_fold3.log": {
+    "bytes": 171813,
+    "sha256": "015d94b9e874d30fdfe7fd1c261a1ced8806ebfdfbdf03237ab23d9020972ffd"
+  },
+  "C:\\Users\\zheyu\\workspace\\stnet_ref\\ST-Net\\logs\\HER2_coreset_0.3_fold0.log": {
+    "bytes": 343293,
+    "sha256": "86dc352f56e047154469231cecc9a9c7f03c8094f2365cbd1fc763af61264ecd"
+  },
+  "C:\\Users\\zheyu\\workspace\\stnet_ref\\ST-Net\\logs\\HER2_coreset_0.3_fold1.log": {
+    "bytes": 343285,
+    "sha256": "d945423b38f9c028c8aabe0457fc1ff418f99663dad09c54754b6af9dc68d2db"
+  },
+  "C:\\Users\\zheyu\\workspace\\stnet_ref\\ST-Net\\logs\\HER2_coreset_0.3_fold2.log": {
+    "bytes": 382615,
+    "sha256": "618ef2e649a94fd72344daf524d7fa02f42a6b7bb4500165de88db18f1c90fa9"
+  },
+  "C:\\Users\\zheyu\\workspace\\stnet_ref\\ST-Net\\logs\\HER2_coreset_0.3_fold3.log": {
+    "bytes": 351154,
+    "sha256": "348fc9e83c87f4a22b4be50ac4cf6decef31cf2a5da3231d953b0e88299d0e60"
+  },
+  "C:\\Users\\zheyu\\workspace\\stnet_ref\\ST-Net\\logs\\HER2_coreset_0.5_fold0.log": {
+    "bytes": 457053,
+    "sha256": "a6407601d647eccbe7837a2ec2be6a6230283c2aca3fdc997b3c44b77319654f"
+  },
+  "C:\\Users\\zheyu\\workspace\\stnet_ref\\ST-Net\\logs\\HER2_coreset_0.5_fold1.log": {
+    "bytes": 457045,
+    "sha256": "0318ac7414890f3fbac8944ac59bca72f788537ebd3c332cc80fdd59cb5d1aed"
+  },
+  "C:\\Users\\zheyu\\workspace\\stnet_ref\\ST-Net\\logs\\HER2_coreset_0.5_fold2.log": {
+    "bytes": 511497,
+    "sha256": "fbe486be9a91830b3419cc9490c9e49b380cbf18111805a48c9d355e399a857b"
+  },
+  "C:\\Users\\zheyu\\workspace\\stnet_ref\\ST-Net\\logs\\HER2_coreset_0.5_fold3.log": {
+    "bytes": 463945,
+    "sha256": "4150f8e97cfa6ee3ab4d6a31ff7ff266f22a3bc1c452376b44821d0742e395ed"
+  },
+  "C:\\Users\\zheyu\\workspace\\stnet_ref\\ST-Net\\logs\\HER2_mc_dropout_0.05_fold0.log": {
+    "bytes": 159895,
+    "sha256": "b8429664c55211ccbe18b97fa7d75e9e4573c757a73bb8e3497d2fc22f44df52"
+  },
+  "C:\\Users\\zheyu\\workspace\\stnet_ref\\ST-Net\\logs\\HER2_mc_dropout_0.05_fold1.log": {
+    "bytes": 159910,
+    "sha256": "932fa8438ce801b6947e59e9073087fbb69111db3ae5d1934a9493db235dc185"
+  },
+  "C:\\Users\\zheyu\\workspace\\stnet_ref\\ST-Net\\logs\\HER2_mc_dropout_0.05_fold2.log": {
+    "bytes": 159908,
+    "sha256": "6ca6ffc0fe9096d4f03538a64330039dcbf37f3c3adab1a8830700ad1b727076"
+  },
+  "C:\\Users\\zheyu\\workspace\\stnet_ref\\ST-Net\\logs\\HER2_mc_dropout_0.05_fold3.log": {
+    "bytes": 159897,
+    "sha256": "4e9fd06f24f0c21ee72c3a68cf22f3437dce5c38cb7861ba386ba4b0ee6c5676"
+  },
+  "C:\\Users\\zheyu\\workspace\\stnet_ref\\ST-Net\\logs\\HER2_mc_dropout_0.1_fold0.log": {
+    "bytes": 171786,
+    "sha256": "05b613d8b598eac09b6add486cde0cae37e56c72879b58dff633673ed8ed8ade"
+  },
+  "C:\\Users\\zheyu\\workspace\\stnet_ref\\ST-Net\\logs\\HER2_mc_dropout_0.1_fold1.log": {
+    "bytes": 171792,
+    "sha256": "22fb7e3a637fe08612310aafe551ece89cbbe5fc5516a444477b2ea4fea9e580"
+  },
+  "C:\\Users\\zheyu\\workspace\\stnet_ref\\ST-Net\\logs\\HER2_mc_dropout_0.1_fold2.log": {
+    "bytes": 181050,
+    "sha256": "8e34e61277cff0b9a03cc84d96d81ca07a159f93c443cd27f4519939de0dcd0c"
+  },
+  "C:\\Users\\zheyu\\workspace\\stnet_ref\\ST-Net\\logs\\HER2_mc_dropout_0.1_fold3.log": {
+    "bytes": 171848,
+    "sha256": "bc0b66728c2226800db5d32bf39e9d87cb39b269735e9c039b89d8e0465fef02"
+  },
+  "C:\\Users\\zheyu\\workspace\\stnet_ref\\ST-Net\\logs\\HER2_mc_dropout_0.3_fold0.log": {
+    "bytes": 343332,
+    "sha256": "de36efef1ca57bdf35f4de6d39e993c0bbcd7630d40980e4f23be5d9bb851d85"
+  },
+  "C:\\Users\\zheyu\\workspace\\stnet_ref\\ST-Net\\logs\\HER2_mc_dropout_0.3_fold1.log": {
+    "bytes": 343325,
+    "sha256": "976bd1c4b5dd90273fd73fb844fd0fc5eea82f84b9aa0d2fb5208e5cb62e9a31"
+  },
+  "C:\\Users\\zheyu\\workspace\\stnet_ref\\ST-Net\\logs\\HER2_mc_dropout_0.3_fold2.log": {
+    "bytes": 382654,
+    "sha256": "4610d0c9335e6c66e634bf94c91e711f38549c0eedd6f44493d22f9836acfaf9"
+  },
+  "C:\\Users\\zheyu\\workspace\\stnet_ref\\ST-Net\\logs\\HER2_mc_dropout_0.3_fold3.log": {
+    "bytes": 351192,
+    "sha256": "c915da5fd64b00dc2329111557be2824bce3ddbf53bc8389680eb960b01f7d99"
+  },
+  "C:\\Users\\zheyu\\workspace\\stnet_ref\\ST-Net\\logs\\HER2_mc_dropout_0.5_fold0.log": {
+    "bytes": 457088,
+    "sha256": "7ca306654599143ef50bf39cbcadf11fa7df3a36add9f19e84366805b03385a5"
+  },
+  "C:\\Users\\zheyu\\workspace\\stnet_ref\\ST-Net\\logs\\HER2_mc_dropout_0.5_fold1.log": {
+    "bytes": 457080,
+    "sha256": "bb9e027daf99e01bfc608c4ec2b470054e6c518c76303bbb2991fb8e816f1531"
+  },
+  "C:\\Users\\zheyu\\workspace\\stnet_ref\\ST-Net\\logs\\HER2_mc_dropout_0.5_fold2.log": {
+    "bytes": 511533,
+    "sha256": "ec8b234431274e63b2c3bf98b622f5acf22b6c4c42fbde00ec732b7f6c327739"
+  },
+  "C:\\Users\\zheyu\\workspace\\stnet_ref\\ST-Net\\logs\\HER2_mc_dropout_0.5_fold3.log": {
+    "bytes": 463980,
+    "sha256": "44e554e7e6576fdc18cb7b7ec3ad51f1e5cef325b1dc310c1d2e53102fe7ac7a"
+  },
+  "C:\\Users\\zheyu\\workspace\\stnet_ref\\ST-Net\\logs\\HER2_tod_0.05_fold0.log": {
+    "bytes": 159776,
+    "sha256": "74c890e3c72fa1b5d14c7ff7ec7eeef9a84565402a3d5d254ad88993f8baaf24"
+  },
+  "C:\\Users\\zheyu\\workspace\\stnet_ref\\ST-Net\\logs\\HER2_tod_0.05_fold1.log": {
+    "bytes": 159782,
+    "sha256": "fe810edac21df4fea7f991fa292323a12a868e7ce00fc758c373afec27b8f0e4"
+  },
+  "C:\\Users\\zheyu\\workspace\\stnet_ref\\ST-Net\\logs\\HER2_tod_0.05_fold2.log": {
+    "bytes": 159779,
+    "sha256": "942016d91d606c51c478c768583d306558ed25f228728ea62e05f4bf24e15fc9"
+  },
+  "C:\\Users\\zheyu\\workspace\\stnet_ref\\ST-Net\\logs\\HER2_tod_0.05_fold3.log": {
+    "bytes": 159799,
+    "sha256": "106fa0035dd87019eac2e31d76507981b23eaa25e6b1e49bd32bde6ab387fe8a"
+  },
+  "C:\\Users\\zheyu\\workspace\\stnet_ref\\ST-Net\\logs\\HER2_tod_0.1_fold0.log": {
+    "bytes": 171682,
+    "sha256": "bb467b49bcc852ca4979aaa6f47c9d0ec0a35441fc8755b87d7f04ec7f70dfda"
+  },
+  "C:\\Users\\zheyu\\workspace\\stnet_ref\\ST-Net\\logs\\HER2_tod_0.1_fold1.log": {
+    "bytes": 171684,
+    "sha256": "f04863f93331365288f24a5f1b11d09de0747b99d36f0464e0ca3e05febc5f0c"
+  },
+  "C:\\Users\\zheyu\\workspace\\stnet_ref\\ST-Net\\logs\\HER2_tod_0.1_fold2.log": {
+    "bytes": 180949,
+    "sha256": "8abb71988521bc3431061b3665138c27815d7bddbe7ab4eacf5e75dd72f092a8"
+  },
+  "C:\\Users\\zheyu\\workspace\\stnet_ref\\ST-Net\\logs\\HER2_tod_0.1_fold3.log": {
+    "bytes": 171757,
+    "sha256": "3bf1e441ce406fc62c552ae2295b06573bb683e0b868de031dbe4eaaa8d7fca4"
+  },
+  "C:\\Users\\zheyu\\workspace\\stnet_ref\\ST-Net\\logs\\HER2_tod_0.3_fold0.log": {
+    "bytes": 343238,
+    "sha256": "508323e4c07c06cb98274fbfa7e483ac2d5cb4912cad7ad06461e7898c3220f4"
+  },
+  "C:\\Users\\zheyu\\workspace\\stnet_ref\\ST-Net\\logs\\HER2_tod_0.3_fold1.log": {
+    "bytes": 343228,
+    "sha256": "eaf46d6797cc8bd888665c11deadab22da2c4c5d79491a768129938e6a381e77"
+  },
+  "C:\\Users\\zheyu\\workspace\\stnet_ref\\ST-Net\\logs\\HER2_tod_0.3_fold2.log": {
+    "bytes": 382560,
+    "sha256": "59d174b228546404219fa86197cb187b9627c25ece2a845fea8c36b95008f993"
+  },
+  "C:\\Users\\zheyu\\workspace\\stnet_ref\\ST-Net\\logs\\HER2_tod_0.3_fold3.log": {
+    "bytes": 351099,
+    "sha256": "d2ff21a4dbb36e191f0e873594fb8846278051e40d477a42fad0dc471ff3445d"
+  },
+  "C:\\Users\\zheyu\\workspace\\stnet_ref\\ST-Net\\logs\\HER2_tod_0.5_fold0.log": {
+    "bytes": 457002,
+    "sha256": "2d9e929ff5e7052d0413f1bdef2c562e9a4fc1641dc9ffbe11f34e3fec5b94ad"
+  },
+  "C:\\Users\\zheyu\\workspace\\stnet_ref\\ST-Net\\logs\\HER2_tod_0.5_fold1.log": {
+    "bytes": 456991,
+    "sha256": "8c9390720e6ba9ab91ce444d29c947699d26b0287748b2f582b94468c7359878"
+  },
+  "C:\\Users\\zheyu\\workspace\\stnet_ref\\ST-Net\\logs\\HER2_tod_0.5_fold2.log": {
+    "bytes": 511444,
+    "sha256": "f859eb69db692c414652b29720bee9384fe4defcff1b688071902a631d4594a1"
+  },
+  "C:\\Users\\zheyu\\workspace\\stnet_ref\\ST-Net\\logs\\HER2_tod_0.5_fold3.log": {
+    "bytes": 463892,
+    "sha256": "9ea5ed356d1f23d512f111849dd7936d376e1f767deceb59c8e95cfde27ee9d6"
+  },
+  "C:\\Users\\zheyu\\workspace\\stnet_ref\\ST-Net\\logs\\HER2_typiclust_0.05_fold0.log": {
+    "bytes": 159880,
+    "sha256": "be077b1389a98f8ac538a02c89f2b6dbb2f6833908f08cd950ecb066be9c961a"
+  },
+  "C:\\Users\\zheyu\\workspace\\stnet_ref\\ST-Net\\logs\\HER2_typiclust_0.05_fold1.log": {
+    "bytes": 159881,
+    "sha256": "75eebb2a4595e1940e999fa02fe1f478a78de6b5894679ce2ff7b8602d6f218d"
+  },
+  "C:\\Users\\zheyu\\workspace\\stnet_ref\\ST-Net\\logs\\HER2_typiclust_0.05_fold2.log": {
+    "bytes": 159880,
+    "sha256": "b27719d07d007eb82336c668dd6d501b17d0d7001a751e68e85324ef51ebc3e5"
+  },
+  "C:\\Users\\zheyu\\workspace\\stnet_ref\\ST-Net\\logs\\HER2_typiclust_0.05_fold3.log": {
+    "bytes": 159883,
+    "sha256": "35cdd14f7d6ff2386cb329a7837cda16bbe5753a3010a239beece19b719166e8"
+  },
+  "C:\\Users\\zheyu\\workspace\\stnet_ref\\ST-Net\\logs\\HER2_typiclust_0.1_fold0.log": {
+    "bytes": 171771,
+    "sha256": "d92ba7aa1682069800251172c2ffc5b7d53560f70fc94691823aa004b5925a78"
+  },
+  "C:\\Users\\zheyu\\workspace\\stnet_ref\\ST-Net\\logs\\HER2_typiclust_0.1_fold1.log": {
+    "bytes": 171773,
+    "sha256": "473329131f5a41e58b593dd595f37c52314b9fd5bc4be258a2eaa952af812607"
+  },
+  "C:\\Users\\zheyu\\workspace\\stnet_ref\\ST-Net\\logs\\HER2_typiclust_0.1_fold2.log": {
+    "bytes": 181031,
+    "sha256": "d4a629a47e962f8c14d2d16004c867c132c2442eb3f6879498229b1e362320fa"
+  },
+  "C:\\Users\\zheyu\\workspace\\stnet_ref\\ST-Net\\logs\\HER2_typiclust_0.1_fold3.log": {
+    "bytes": 171836,
+    "sha256": "997e406e9b22d1d2b0828b5d7857b0ac9e921e3b0f9fa956402e9d98b1f0cb11"
+  },
+  "C:\\Users\\zheyu\\workspace\\stnet_ref\\ST-Net\\logs\\HER2_typiclust_0.3_fold0.log": {
+    "bytes": 343330,
+    "sha256": "8b1772fd48b9862270ffe569fb83c8255132cab84a1dc83608976c2054c0be2c"
+  },
+  "C:\\Users\\zheyu\\workspace\\stnet_ref\\ST-Net\\logs\\HER2_typiclust_0.3_fold1.log": {
+    "bytes": 343320,
+    "sha256": "89f98bab8a04daf30daf2d2546d1e2d9da1e2a1ba99046051f6c852d95c1c722"
+  },
+  "C:\\Users\\zheyu\\workspace\\stnet_ref\\ST-Net\\logs\\HER2_typiclust_0.3_fold2.log": {
+    "bytes": 382648,
+    "sha256": "011f00b79831ab166288aed92d198fb7f17dfffcfc1f0175f1853284cb916a2c"
+  },
+  "C:\\Users\\zheyu\\workspace\\stnet_ref\\ST-Net\\logs\\HER2_typiclust_0.3_fold3.log": {
+    "bytes": 351191,
+    "sha256": "40d6cf61f04ee69af275b5e75d7ea8652d9f3312d2bc53073b488a3301b9f64e"
+  },
+  "C:\\Users\\zheyu\\workspace\\stnet_ref\\ST-Net\\logs\\HER2_typiclust_0.5_fold0.log": {
+    "bytes": 457087,
+    "sha256": "89f7b6705a14dafac74aa7aea92c404fadb2162243913a8ec3148d85a5cced5d"
+  },
+  "C:\\Users\\zheyu\\workspace\\stnet_ref\\ST-Net\\logs\\HER2_typiclust_0.5_fold1.log": {
+    "bytes": 457069,
+    "sha256": "0e9dcd2c6529db8e73d8920a085070e41ca6979ac99fc86866567b4351a6134d"
+  },
+  "C:\\Users\\zheyu\\workspace\\stnet_ref\\ST-Net\\logs\\HER2_typiclust_0.5_fold2.log": {
+    "bytes": 511521,
+    "sha256": "1b27d53d0ad26f3b97163a0d8b458b926006ba83fa647de280f425f331b77bc2"
+  },
+  "C:\\Users\\zheyu\\workspace\\stnet_ref\\ST-Net\\logs\\HER2_typiclust_0.5_fold3.log": {
+    "bytes": 463969,
+    "sha256": "7ea23821193597851f96b117875db3edcc1d69e586d3ddd6142b5f7207fe08ef"
+  },
+  "C:\\Users\\zheyu\\workspace\\stnet_ref\\ST-Net\\logs\\cscc_coreset_0.05_fold0.log": {
+    "bytes": 119427,
+    "sha256": "1bc5dc9136cb05b04bac085d50fb8b88738a4a7dec9d2b60357fd31f88034310"
+  },
+  "C:\\Users\\zheyu\\workspace\\stnet_ref\\ST-Net\\logs\\cscc_coreset_0.05_fold1.log": {
+    "bytes": 106216,
+    "sha256": "99f60c19478589689e247b5d09164f8798b07cb365c153114c8473cc8e8be959"
+  },
+  "C:\\Users\\zheyu\\workspace\\stnet_ref\\ST-Net\\logs\\cscc_coreset_0.05_fold2.log": {
+    "bytes": 119421,
+    "sha256": "0b06c0273ba454f97b026bcb0a502587e595726282a8ccbfa30f9086525d0e71"
+  },
+  "C:\\Users\\zheyu\\workspace\\stnet_ref\\ST-Net\\logs\\cscc_coreset_0.05_fold3.log": {
+    "bytes": 119431,
+    "sha256": "6df4e3f74cefc33517dfc3621b8fb979a9cfc52bb299647ca893d35ff9037967"
+  },
+  "C:\\Users\\zheyu\\workspace\\stnet_ref\\ST-Net\\logs\\cscc_coreset_0.1_fold0.log": {
+    "bytes": 124475,
+    "sha256": "ea53d9b894a3d90115213f2c18ecf9aa10ac38cec5bb815e0e918002950ac3ec"
+  },
+  "C:\\Users\\zheyu\\workspace\\stnet_ref\\ST-Net\\logs\\cscc_coreset_0.1_fold1.log": {
+    "bytes": 106053,
+    "sha256": "fc6994f81d6434c6439bbb02fc0ab842ed55119a48461f3348dade55f7644f8c"
+  },
+  "C:\\Users\\zheyu\\workspace\\stnet_ref\\ST-Net\\logs\\cscc_coreset_0.1_fold2.log": {
+    "bytes": 124471,
+    "sha256": "25afda26c20a7095758246e14717f881f11767aa08ddbcdf147e606fbbc26aef"
+  },
+  "C:\\Users\\zheyu\\workspace\\stnet_ref\\ST-Net\\logs\\cscc_coreset_0.1_fold3.log": {
+    "bytes": 123992,
+    "sha256": "78a79ffb1529336c8c7f30418b8c6819e45f9d6861c8e726fb40c5ad73d1f5fc"
+  },
+  "C:\\Users\\zheyu\\workspace\\stnet_ref\\ST-Net\\logs\\cscc_coreset_0.3_fold0.log": {
+    "bytes": 253475,
+    "sha256": "62171294ff379e92cf03d7146720b4b390902638137f4a06133a72be7510ca05"
+  },
+  "C:\\Users\\zheyu\\workspace\\stnet_ref\\ST-Net\\logs\\cscc_coreset_0.3_fold1.log": {
+    "bytes": 197445,
+    "sha256": "773567e9c4f03ebd1ad4bab86c192258db3a3b084f5e93ac6d0f8d30119426ad"
+  },
+  "C:\\Users\\zheyu\\workspace\\stnet_ref\\ST-Net\\logs\\cscc_coreset_0.3_fold2.log": {
+    "bytes": 253472,
+    "sha256": "7c075e466e16f7cbb23e483c4216db005bd7c93bef69b8401972be7ecb5d35e7"
+  },
+  "C:\\Users\\zheyu\\workspace\\stnet_ref\\ST-Net\\logs\\cscc_coreset_0.3_fold3.log": {
+    "bytes": 245249,
+    "sha256": "af77980afe7b0dd68c670515f546b0246ca80e67953a383b9af48f7b6a702710"
+  },
+  "C:\\Users\\zheyu\\workspace\\stnet_ref\\ST-Net\\logs\\cscc_coreset_0.5_fold0.log": {
+    "bytes": 328810,
+    "sha256": "4fb3fabc1ea7539f182d1783a36a6c02720e641f5aca244483ccfc488541da46"
+  },
+  "C:\\Users\\zheyu\\workspace\\stnet_ref\\ST-Net\\logs\\cscc_coreset_0.5_fold1.log": {
+    "bytes": 254147,
+    "sha256": "309d5b08a29cecd40f13d8b792bb9944fe3535c4fa4bd328a11eff8086e2869e"
+  },
+  "C:\\Users\\zheyu\\workspace\\stnet_ref\\ST-Net\\logs\\cscc_coreset_0.5_fold2.log": {
+    "bytes": 328808,
+    "sha256": "ce21c3472e778d95bbe400933104b610aa173d54ae1023471c787a3845a80683"
+  },
+  "C:\\Users\\zheyu\\workspace\\stnet_ref\\ST-Net\\logs\\cscc_coreset_0.5_fold3.log": {
+    "bytes": 314290,
+    "sha256": "e0dcb9e43f74fc842348944803b3e4d3173d52bfccc38f1b9a86a9b73e928b78"
+  },
+  "C:\\Users\\zheyu\\workspace\\stnet_ref\\ST-Net\\logs\\cscc_mc_dropout_0.05_fold0.log": {
+    "bytes": 119481,
+    "sha256": "7978d5407a74944848ec75fb4f540adb0337483d64fdba8e729a159270b0f61a"
+  },
+  "C:\\Users\\zheyu\\workspace\\stnet_ref\\ST-Net\\logs\\cscc_mc_dropout_0.05_fold1.log": {
+    "bytes": 106271,
+    "sha256": "0c9af9ae8df9e02b09ae95fa6e919ba59ff96b00e1695fd9838cdbcad1627b09"
+  },
+  "C:\\Users\\zheyu\\workspace\\stnet_ref\\ST-Net\\logs\\cscc_mc_dropout_0.05_fold2.log": {
+    "bytes": 119476,
+    "sha256": "7936dda36f3cd1a514378847c81169c021ee6b1d4560aaeb2b078271dcebdd98"
+  },
+  "C:\\Users\\zheyu\\workspace\\stnet_ref\\ST-Net\\logs\\cscc_mc_dropout_0.05_fold3.log": {
+    "bytes": 119483,
+    "sha256": "268b6a0eb90f20b8edcd201930f9f66c18fe6149bb5f224cd68a4d1227f76ee7"
+  },
+  "C:\\Users\\zheyu\\workspace\\stnet_ref\\ST-Net\\logs\\cscc_mc_dropout_0.1_fold0.log": {
+    "bytes": 124519,
+    "sha256": "212ede6621f60d674c2ecb4ee4ef920b18c7e31b8a219a4aee74460df93826db"
+  },
+  "C:\\Users\\zheyu\\workspace\\stnet_ref\\ST-Net\\logs\\cscc_mc_dropout_0.1_fold1.log": {
+    "bytes": 106100,
+    "sha256": "794b7fd621e4c768897ef5a3372552ae14c8fec61bf18d259178bf117de2b567"
+  },
+  "C:\\Users\\zheyu\\workspace\\stnet_ref\\ST-Net\\logs\\cscc_mc_dropout_0.1_fold2.log": {
+    "bytes": 124519,
+    "sha256": "d11028c6ae0f7b54a1a8db6dc85a4610334e9f622ec578b46ed8328333ba2a69"
+  },
+  "C:\\Users\\zheyu\\workspace\\stnet_ref\\ST-Net\\logs\\cscc_mc_dropout_0.1_fold3.log": {
+    "bytes": 124036,
+    "sha256": "daf45f81181327e6d7a492e115609efb80a33535c1e9a2d7a2c247d984eb877a"
+  },
+  "C:\\Users\\zheyu\\workspace\\stnet_ref\\ST-Net\\logs\\cscc_mc_dropout_0.3_fold0.log": {
+    "bytes": 253519,
+    "sha256": "605cf682b13e23aa23c4d27011d410a6c817226d4288e6e222756a620d718e49"
+  },
+  "C:\\Users\\zheyu\\workspace\\stnet_ref\\ST-Net\\logs\\cscc_mc_dropout_0.3_fold1.log": {
+    "bytes": 197489,
+    "sha256": "722741c59ca3d1988636f84bc01f7f0521b1193e7ef30a4412f5b7adc33bb02d"
+  },
+  "C:\\Users\\zheyu\\workspace\\stnet_ref\\ST-Net\\logs\\cscc_mc_dropout_0.3_fold2.log": {
+    "bytes": 253518,
+    "sha256": "06315462944cd165459c67eca0b49017ca32bbdfa1b26aac1ce5357f70734e7d"
+  },
+  "C:\\Users\\zheyu\\workspace\\stnet_ref\\ST-Net\\logs\\cscc_mc_dropout_0.3_fold3.log": {
+    "bytes": 245292,
+    "sha256": "5eb29b4049f73e2717b95ef1bd6c06cf97a786de2d2e22d540b136e7b95aae85"
+  },
+  "C:\\Users\\zheyu\\workspace\\stnet_ref\\ST-Net\\logs\\cscc_mc_dropout_0.5_fold0.log": {
+    "bytes": 328851,
+    "sha256": "e1beace14caff6872c4a6c1faa6a20a76ba55c41c372222c379fde29d94e5bea"
+  },
+  "C:\\Users\\zheyu\\workspace\\stnet_ref\\ST-Net\\logs\\cscc_mc_dropout_0.5_fold1.log": {
+    "bytes": 254188,
+    "sha256": "7039421de8fdd798b8972049537b386c2054eeb72c2cb26e1cdfeb483c711274"
+  },
+  "C:\\Users\\zheyu\\workspace\\stnet_ref\\ST-Net\\logs\\cscc_mc_dropout_0.5_fold2.log": {
+    "bytes": 328850,
+    "sha256": "f766a36dfd2aefc9b9a7bd36a289473e7d42918bbc91446db142d8b79f94c441"
+  },
+  "C:\\Users\\zheyu\\workspace\\stnet_ref\\ST-Net\\logs\\cscc_mc_dropout_0.5_fold3.log": {
+    "bytes": 314331,
+    "sha256": "653b68fd968b2b2aa298fa02cb3ed740ab748494a09fbb3b2363fd5694800fac"
+  },
+  "C:\\Users\\zheyu\\workspace\\stnet_ref\\ST-Net\\logs\\cscc_tod_0.05_fold0.log": {
+    "bytes": 119354,
+    "sha256": "e37f87fdf2f6d8902491e7701800871ee53d191632c6630deeee944322d3d240"
+  },
+  "C:\\Users\\zheyu\\workspace\\stnet_ref\\ST-Net\\logs\\cscc_tod_0.05_fold1.log": {
+    "bytes": 106147,
+    "sha256": "b28895efef9b0177f4b2f1d16d18bfb7b9d11640947191d1dae2bd2bb68ac12c"
+  },
+  "C:\\Users\\zheyu\\workspace\\stnet_ref\\ST-Net\\logs\\cscc_tod_0.05_fold2.log": {
+    "bytes": 119351,
+    "sha256": "7009cfe498663d796d5b30be1bf9d795d5f0015e78320441a429719ad1b81d9b"
+  },
+  "C:\\Users\\zheyu\\workspace\\stnet_ref\\ST-Net\\logs\\cscc_tod_0.05_fold3.log": {
+    "bytes": 119356,
+    "sha256": "ff972775fb56e8353e823b0277bf94d2e85ccf4a64a0153e73b55af61428b825"
+  },
+  "C:\\Users\\zheyu\\workspace\\stnet_ref\\ST-Net\\logs\\cscc_tod_0.1_fold0.log": {
+    "bytes": 124414,
+    "sha256": "be243e06ee67dde2b151731250f2d1994b1c4dda1e1a262d76f96cd143217dc7"
+  },
+  "C:\\Users\\zheyu\\workspace\\stnet_ref\\ST-Net\\logs\\cscc_tod_0.1_fold1.log": {
+    "bytes": 105997,
+    "sha256": "204e52bd97016f89903bd847227296cba7a4214b9ca307ee4dcece705d30028b"
+  },
+  "C:\\Users\\zheyu\\workspace\\stnet_ref\\ST-Net\\logs\\cscc_tod_0.1_fold2.log": {
+    "bytes": 124413,
+    "sha256": "93225874f53c3477a62a961f5b5831cb5c19243369ab84c9541bb3b72bcd11fc"
+  },
+  "C:\\Users\\zheyu\\workspace\\stnet_ref\\ST-Net\\logs\\cscc_tod_0.1_fold3.log": {
+    "bytes": 123933,
+    "sha256": "269a23d6f4205386e163b9f9ce0aa8c491b3d8f2d545810180644cc7d79fe94d"
+  },
+  "C:\\Users\\zheyu\\workspace\\stnet_ref\\ST-Net\\logs\\cscc_tod_0.3_fold0.log": {
+    "bytes": 253422,
+    "sha256": "aad2a879d7dda489821be0f2c5f86f54ca9322aec993c3bbde3a603773102fff"
+  },
+  "C:\\Users\\zheyu\\workspace\\stnet_ref\\ST-Net\\logs\\cscc_tod_0.3_fold1.log": {
+    "bytes": 197393,
+    "sha256": "dd572cf9e8b4be554ea29c316517bf53ad93f9ccda5193b075ae82df06c78a98"
+  },
+  "C:\\Users\\zheyu\\workspace\\stnet_ref\\ST-Net\\logs\\cscc_tod_0.3_fold2.log": {
+    "bytes": 253421,
+    "sha256": "33677e85c01b12d150947c14a0d25857f6a7e6633b601c3025bac7db105a2fb7"
+  },
+  "C:\\Users\\zheyu\\workspace\\stnet_ref\\ST-Net\\logs\\cscc_tod_0.3_fold3.log": {
+    "bytes": 245194,
+    "sha256": "3f1939f9e8635ccece390d26ac580ed970a6a6054e3508ab23a09cc88f6c42a9"
+  },
+  "C:\\Users\\zheyu\\workspace\\stnet_ref\\ST-Net\\logs\\cscc_tod_0.5_fold0.log": {
+    "bytes": 328762,
+    "sha256": "ec9902bc5cad2f70a26871cf3a5d30a7f66f32a0e2bca211b86a8b6eb569044a"
+  },
+  "C:\\Users\\zheyu\\workspace\\stnet_ref\\ST-Net\\logs\\cscc_tod_0.5_fold1.log": {
+    "bytes": 254099,
+    "sha256": "944137412599d2bc5365b9fa97c40e0d091ddf307d597ead7b833264ae45f19b"
+  },
+  "C:\\Users\\zheyu\\workspace\\stnet_ref\\ST-Net\\logs\\cscc_tod_0.5_fold2.log": {
+    "bytes": 328761,
+    "sha256": "d6bcbefd54193062899a82dcbf7e4ff7ee301341abca47e4acb3c02e146f7de9"
+  },
+  "C:\\Users\\zheyu\\workspace\\stnet_ref\\ST-Net\\logs\\cscc_tod_0.5_fold3.log": {
+    "bytes": 314242,
+    "sha256": "46e9148b1bee774e8caa0ba0c9a586d7cf0b050b941fe1732cde2601ecdff07b"
+  },
+  "C:\\Users\\zheyu\\workspace\\stnet_ref\\ST-Net\\logs\\cscc_typiclust_0.05_fold0.log": {
+    "bytes": 119456,
+    "sha256": "ed88b02e87b43e4b1d252b7acfacd604cb4a0b245fdb4102b705bbdeda35f8a2"
+  },
+  "C:\\Users\\zheyu\\workspace\\stnet_ref\\ST-Net\\logs\\cscc_typiclust_0.05_fold1.log": {
+    "bytes": 106250,
+    "sha256": "46160d077d1823ee435b57ed55948bfdfe1541924ad5d856d0d1801a69e03bf4"
+  },
+  "C:\\Users\\zheyu\\workspace\\stnet_ref\\ST-Net\\logs\\cscc_typiclust_0.05_fold2.log": {
+    "bytes": 119460,
+    "sha256": "78ff9848caab8d2d17099f98dcaf884ccf33da958803b35f4f468811132a73cc"
+  },
+  "C:\\Users\\zheyu\\workspace\\stnet_ref\\ST-Net\\logs\\cscc_typiclust_0.05_fold3.log": {
+    "bytes": 119455,
+    "sha256": "226f2c1a0f8ac54e8d7b61ba80f8cf8f92d493bb4b420c965e9f5e1f6df1bd9f"
+  },
+  "C:\\Users\\zheyu\\workspace\\stnet_ref\\ST-Net\\logs\\cscc_typiclust_0.1_fold0.log": {
+    "bytes": 124503,
+    "sha256": "610fdd1e321eb83415cc5c040b7a349d2180633283197734e9cdb38bda578eb6"
+  },
+  "C:\\Users\\zheyu\\workspace\\stnet_ref\\ST-Net\\logs\\cscc_typiclust_0.1_fold1.log": {
+    "bytes": 106082,
+    "sha256": "5bac8c4d5d1aebe1f87fab3520e363d5158d3222b5f81619933506b58b1aab49"
+  },
+  "C:\\Users\\zheyu\\workspace\\stnet_ref\\ST-Net\\logs\\cscc_typiclust_0.1_fold2.log": {
+    "bytes": 124505,
+    "sha256": "f2f80d100bd34e43335ddf8a783b72cb5254c5f2dd873bc9ecdd49397bb96b52"
+  },
+  "C:\\Users\\zheyu\\workspace\\stnet_ref\\ST-Net\\logs\\cscc_typiclust_0.1_fold3.log": {
+    "bytes": 124016,
+    "sha256": "87863920c98bfdd71b740e6f31aefa87c5ade0ec9de07193cc0176a2f0a3e145"
+  },
+  "C:\\Users\\zheyu\\workspace\\stnet_ref\\ST-Net\\logs\\cscc_typiclust_0.3_fold0.log": {
+    "bytes": 253505,
+    "sha256": "131ea7ba49cd7a4e2a5bc4c7ffb6e17978c4e18a5bb3aa335237d26ef470013c"
+  },
+  "C:\\Users\\zheyu\\workspace\\stnet_ref\\ST-Net\\logs\\cscc_typiclust_0.3_fold1.log": {
+    "bytes": 197476,
+    "sha256": "ae6e571b13d5176ffff2baafff5947d176cf1ba0e3270ab288cece810298dbc0"
+  },
+  "C:\\Users\\zheyu\\workspace\\stnet_ref\\ST-Net\\logs\\cscc_typiclust_0.3_fold2.log": {
+    "bytes": 253505,
+    "sha256": "83243bb4049fd01265e3b23e88b760b540946e6e8645249100454b3ec0e174e0"
+  },
+  "C:\\Users\\zheyu\\workspace\\stnet_ref\\ST-Net\\logs\\cscc_typiclust_0.3_fold3.log": {
+    "bytes": 245277,
+    "sha256": "14ac3f1d5e2d76cd1cf146f744b183a69a907b690ce641ed6383ff8d8f78b3c6"
+  },
+  "C:\\Users\\zheyu\\workspace\\stnet_ref\\ST-Net\\logs\\cscc_typiclust_0.5_fold0.log": {
+    "bytes": 328846,
+    "sha256": "b113e5bb9ad8693adb07911816ed098a2ffccebcf3ce5bd39eb31eb4d0a80485"
+  },
+  "C:\\Users\\zheyu\\workspace\\stnet_ref\\ST-Net\\logs\\cscc_typiclust_0.5_fold1.log": {
+    "bytes": 254181,
+    "sha256": "c7e1288eea553b566d6e41deb4a467b709d2593c2fcc1c87d0858f62addd86cc"
+  },
+  "C:\\Users\\zheyu\\workspace\\stnet_ref\\ST-Net\\logs\\cscc_typiclust_0.5_fold2.log": {
+    "bytes": 328843,
+    "sha256": "6d86fd42bc4b8a9245fd44e0087bf8d800ccb15d947bc02ef617984e54436fb0"
+  },
+  "C:\\Users\\zheyu\\workspace\\stnet_ref\\ST-Net\\logs\\cscc_typiclust_0.5_fold3.log": {
+    "bytes": 314322,
+    "sha256": "f17091a749d127e3ecac90541074f4a3071e8bd9b083c3b57165d6f065364de4"
+  },
+  "C:\\Users\\zheyu\\workspace\\stnet_ref\\ST-Net\\weights_st\\HER2\\coreset_0.05\\fold0\\slidewise_metrics\\epoch_100.csv": {
+    "bytes": 509,
+    "sha256": "d3aef302273311a648ce8a2100169f2303f5f0fa1645f98d20c44fe9df6b13c5"
+  },
+  "C:\\Users\\zheyu\\workspace\\stnet_ref\\ST-Net\\weights_st\\HER2\\coreset_0.05\\fold0\\slidewise_metrics\\epoch_110.csv": {
+    "bytes": 508,
+    "sha256": "99b58de63a67ce8b14544a0192819931b1c6768399b37d901732d2dd1afe5add"
+  },
+  "C:\\Users\\zheyu\\workspace\\stnet_ref\\ST-Net\\weights_st\\HER2\\coreset_0.05\\fold1\\slidewise_metrics\\epoch_100.csv": {
+    "bytes": 504,
+    "sha256": "bb99ed5e1da14f32c0183c507bf80fc2ec44a0cbc5bbd7e875507aaaba003ac8"
+  },
+  "C:\\Users\\zheyu\\workspace\\stnet_ref\\ST-Net\\weights_st\\HER2\\coreset_0.05\\fold1\\slidewise_metrics\\epoch_110.csv": {
+    "bytes": 504,
+    "sha256": "7f7df6cdbef3878cb41b973cf9c0cc0081ccfe4d54f11a6ae795bafe95f3c2e8"
+  },
+  "C:\\Users\\zheyu\\workspace\\stnet_ref\\ST-Net\\weights_st\\HER2\\coreset_0.05\\fold2\\slidewise_metrics\\epoch_100.csv": {
+    "bytes": 492,
+    "sha256": "cba85aa3703bc165f83fd2618d35d20815b055c82df8a81853555260f85838f1"
+  },
+  "C:\\Users\\zheyu\\workspace\\stnet_ref\\ST-Net\\weights_st\\HER2\\coreset_0.05\\fold2\\slidewise_metrics\\epoch_110.csv": {
+    "bytes": 494,
+    "sha256": "c09485a32e05679094702311b9028ce177fbdc008138a6e4580ffa565585a273"
+  },
+  "C:\\Users\\zheyu\\workspace\\stnet_ref\\ST-Net\\weights_st\\HER2\\coreset_0.05\\fold3\\slidewise_metrics\\epoch_100.csv": {
+    "bytes": 493,
+    "sha256": "eda47a37670ed9ebe802358b0dfb7c220f4048f1cdb4909d2e7ccbd8742ab84a"
+  },
+  "C:\\Users\\zheyu\\workspace\\stnet_ref\\ST-Net\\weights_st\\HER2\\coreset_0.05\\fold3\\slidewise_metrics\\epoch_110.csv": {
+    "bytes": 495,
+    "sha256": "b999ef3490ae9e3c90e767d1e9f51c6b06bc328f81e1d6957a33947a67436f05"
+  },
+  "C:\\Users\\zheyu\\workspace\\stnet_ref\\ST-Net\\weights_st\\HER2\\coreset_0.1\\fold0\\slidewise_metrics\\epoch_70.csv": {
+    "bytes": 494,
+    "sha256": "72c09d99ea0ef9a5d098e7a9f823a9808ded508e0990510fb49cd6f743490dfb"
+  },
+  "C:\\Users\\zheyu\\workspace\\stnet_ref\\ST-Net\\weights_st\\HER2\\coreset_0.1\\fold0\\slidewise_metrics\\epoch_80.csv": {
+    "bytes": 498,
+    "sha256": "466ebaba7411ffc70bdbef787a9cc08d51451a6b625c0f45a7c42ef3c9f66b34"
+  },
+  "C:\\Users\\zheyu\\workspace\\stnet_ref\\ST-Net\\weights_st\\HER2\\coreset_0.1\\fold1\\slidewise_metrics\\epoch_70.csv": {
+    "bytes": 490,
+    "sha256": "cf9449afbdcf764b87a0542e2513c0d3a042e8a48d48f6c44d1ed580c64fb47b"
+  },
+  "C:\\Users\\zheyu\\workspace\\stnet_ref\\ST-Net\\weights_st\\HER2\\coreset_0.1\\fold1\\slidewise_metrics\\epoch_80.csv": {
+    "bytes": 487,
+    "sha256": "83913edc3efbbe6e62ae4c29784d66ffd6affd6b15fc1b5e064d92fa7911f75a"
+  },
+  "C:\\Users\\zheyu\\workspace\\stnet_ref\\ST-Net\\weights_st\\HER2\\coreset_0.1\\fold2\\slidewise_metrics\\epoch_70.csv": {
+    "bytes": 487,
+    "sha256": "67960a464e47d2279823101b8283cd8a950dff856fd95c001d63a8c61e42bb5f"
+  },
+  "C:\\Users\\zheyu\\workspace\\stnet_ref\\ST-Net\\weights_st\\HER2\\coreset_0.1\\fold2\\slidewise_metrics\\epoch_80.csv": {
+    "bytes": 484,
+    "sha256": "d28bfc449e273a1ca3ba5c33bcf7703492ae246a0413b859539ca3cc42f3868f"
+  },
+  "C:\\Users\\zheyu\\workspace\\stnet_ref\\ST-Net\\weights_st\\HER2\\coreset_0.1\\fold3\\slidewise_metrics\\epoch_70.csv": {
+    "bytes": 493,
+    "sha256": "0fcf9abaa96eb9b8c693694116d931e756858d2aad20fb8bf09a96a3aa50d8cb"
+  },
+  "C:\\Users\\zheyu\\workspace\\stnet_ref\\ST-Net\\weights_st\\HER2\\coreset_0.1\\fold3\\slidewise_metrics\\epoch_80.csv": {
+    "bytes": 493,
+    "sha256": "2f29debea8c964ab62a3c1cca3d3807ea846beb64c9e28b97c19a33f3f966b38"
+  },
+  "C:\\Users\\zheyu\\workspace\\stnet_ref\\ST-Net\\weights_st\\HER2\\coreset_0.3\\fold0\\slidewise_metrics\\epoch_60.csv": {
+    "bytes": 495,
+    "sha256": "5963d44b9f260119e13d439a4c286a0cc31aec5fb075506ea2bb6a2ca3d70d5a"
+  },
+  "C:\\Users\\zheyu\\workspace\\stnet_ref\\ST-Net\\weights_st\\HER2\\coreset_0.3\\fold0\\slidewise_metrics\\epoch_70.csv": {
+    "bytes": 493,
+    "sha256": "2ac170d93d4f624357f28bedf00522c0a0bf11ecec7f02436ec729caba44d5e4"
+  },
+  "C:\\Users\\zheyu\\workspace\\stnet_ref\\ST-Net\\weights_st\\HER2\\coreset_0.3\\fold1\\slidewise_metrics\\epoch_60.csv": {
+    "bytes": 492,
+    "sha256": "ebef8be94efa5641bcda9519c4fe74ca7f9678a51d09be1f8711ca7276d1970e"
+  },
+  "C:\\Users\\zheyu\\workspace\\stnet_ref\\ST-Net\\weights_st\\HER2\\coreset_0.3\\fold1\\slidewise_metrics\\epoch_70.csv": {
+    "bytes": 489,
+    "sha256": "4fec953894a94ffafda674c97450b32eaaa2c15deecf8060f21e45a237b54159"
+  },
+  "C:\\Users\\zheyu\\workspace\\stnet_ref\\ST-Net\\weights_st\\HER2\\coreset_0.3\\fold2\\slidewise_metrics\\epoch_60.csv": {
+    "bytes": 485,
+    "sha256": "2472b8f799fb921724683a85755697126fef1a20e1da156207c848277ff3905f"
+  },
+  "C:\\Users\\zheyu\\workspace\\stnet_ref\\ST-Net\\weights_st\\HER2\\coreset_0.3\\fold2\\slidewise_metrics\\epoch_70.csv": {
+    "bytes": 480,
+    "sha256": "03f41eb70192c2e29f664b0bcb213e69d392bb600af87024c4e97a336907fd2f"
+  },
+  "C:\\Users\\zheyu\\workspace\\stnet_ref\\ST-Net\\weights_st\\HER2\\coreset_0.3\\fold3\\slidewise_metrics\\epoch_60.csv": {
+    "bytes": 491,
+    "sha256": "aa5635d49b2c156c9f98f33a0bf11dd3398c77250bdfaeeae83e4f55102b1173"
+  },
+  "C:\\Users\\zheyu\\workspace\\stnet_ref\\ST-Net\\weights_st\\HER2\\coreset_0.3\\fold3\\slidewise_metrics\\epoch_70.csv": {
+    "bytes": 481,
+    "sha256": "dbac4e8b2be387fcd997232f94c903485f89c1420b5c5685507ef872254b0fc9"
+  },
+  "C:\\Users\\zheyu\\workspace\\stnet_ref\\ST-Net\\weights_st\\HER2\\coreset_0.5\\fold0\\slidewise_metrics\\epoch_50.csv": {
+    "bytes": 497,
+    "sha256": "5fbd01ddf0bb54e749f20c4c956e93cf9a468db546db43b9b8cc11bde6b252da"
+  },
+  "C:\\Users\\zheyu\\workspace\\stnet_ref\\ST-Net\\weights_st\\HER2\\coreset_0.5\\fold0\\slidewise_metrics\\epoch_60.csv": {
+    "bytes": 496,
+    "sha256": "809d1c161546ba1a5db2fc90ed083151d4857a38bb0b95d9146906ab26c8c868"
+  },
+  "C:\\Users\\zheyu\\workspace\\stnet_ref\\ST-Net\\weights_st\\HER2\\coreset_0.5\\fold1\\slidewise_metrics\\epoch_50.csv": {
+    "bytes": 490,
+    "sha256": "a9f14b64e7cf5ac423a3733e219b3d8f23a3947acb69aa69bb738a270824f30d"
+  },
+  "C:\\Users\\zheyu\\workspace\\stnet_ref\\ST-Net\\weights_st\\HER2\\coreset_0.5\\fold1\\slidewise_metrics\\epoch_60.csv": {
+    "bytes": 490,
+    "sha256": "71dfd013021dd71365fd2800c939e88b5b640475216c521bd66c4f56a020244e"
+  },
+  "C:\\Users\\zheyu\\workspace\\stnet_ref\\ST-Net\\weights_st\\HER2\\coreset_0.5\\fold2\\slidewise_metrics\\epoch_50.csv": {
+    "bytes": 489,
+    "sha256": "73c0c0e48c8801ba01f692c35da9f5856a1a91336d09b2604da7f91cef3ad44a"
+  },
+  "C:\\Users\\zheyu\\workspace\\stnet_ref\\ST-Net\\weights_st\\HER2\\coreset_0.5\\fold2\\slidewise_metrics\\epoch_60.csv": {
+    "bytes": 491,
+    "sha256": "a1df2794fecda988589034411fc1e82855b5c4753c8b8332f60e449b1116556d"
+  },
+  "C:\\Users\\zheyu\\workspace\\stnet_ref\\ST-Net\\weights_st\\HER2\\coreset_0.5\\fold3\\slidewise_metrics\\epoch_50.csv": {
+    "bytes": 489,
+    "sha256": "8b2579849b5015c7346788522a7054d055a41f1de52d54ca0d5468d6e226a486"
+  },
+  "C:\\Users\\zheyu\\workspace\\stnet_ref\\ST-Net\\weights_st\\HER2\\coreset_0.5\\fold3\\slidewise_metrics\\epoch_60.csv": {
+    "bytes": 491,
+    "sha256": "7287668767d6b776ee5b4fe43352514d0587778679869303ff201b869591f533"
+  },
+  "C:\\Users\\zheyu\\workspace\\stnet_ref\\ST-Net\\weights_st\\HER2\\mc_dropout_0.05\\fold0\\slidewise_metrics\\epoch_100.csv": {
+    "bytes": 505,
+    "sha256": "215d86ef023987504a8662b374dec6c7f589eb18187da907ffd19f48bf6bf2e0"
+  },
+  "C:\\Users\\zheyu\\workspace\\stnet_ref\\ST-Net\\weights_st\\HER2\\mc_dropout_0.05\\fold0\\slidewise_metrics\\epoch_110.csv": {
+    "bytes": 502,
+    "sha256": "69d76ad181fb98bc29909c8e116073b45bc19d997abded931828f3c77d7b4ccc"
+  },
+  "C:\\Users\\zheyu\\workspace\\stnet_ref\\ST-Net\\weights_st\\HER2\\mc_dropout_0.05\\fold1\\slidewise_metrics\\epoch_100.csv": {
+    "bytes": 498,
+    "sha256": "8cfe5feda31f3659d5290d0400c154ce1e9668449f396439e893315543da1273"
+  },
+  "C:\\Users\\zheyu\\workspace\\stnet_ref\\ST-Net\\weights_st\\HER2\\mc_dropout_0.05\\fold1\\slidewise_metrics\\epoch_110.csv": {
+    "bytes": 500,
+    "sha256": "6577c2444041b7c631d2515f907fcb4a06fa56b27e0c8698004c39a605b0fd45"
+  },
+  "C:\\Users\\zheyu\\workspace\\stnet_ref\\ST-Net\\weights_st\\HER2\\mc_dropout_0.05\\fold2\\slidewise_metrics\\epoch_100.csv": {
+    "bytes": 493,
+    "sha256": "56a76c202dc1a6f6d8a8f695a260a79862817e42d2e6c5496927b3c7b95b4424"
+  },
+  "C:\\Users\\zheyu\\workspace\\stnet_ref\\ST-Net\\weights_st\\HER2\\mc_dropout_0.05\\fold2\\slidewise_metrics\\epoch_110.csv": {
+    "bytes": 492,
+    "sha256": "eb5a58bd3fcde9f111bc66267afe318ba1bd71c89a1f134bf8258c770a4804c3"
+  },
+  "C:\\Users\\zheyu\\workspace\\stnet_ref\\ST-Net\\weights_st\\HER2\\mc_dropout_0.05\\fold3\\slidewise_metrics\\epoch_100.csv": {
+    "bytes": 500,
+    "sha256": "d2efbd48ae4c3f50aefdc6e5ae833c80e54cc6865b85238afdc31893f5ff7360"
+  },
+  "C:\\Users\\zheyu\\workspace\\stnet_ref\\ST-Net\\weights_st\\HER2\\mc_dropout_0.05\\fold3\\slidewise_metrics\\epoch_110.csv": {
+    "bytes": 494,
+    "sha256": "235dfd0c8a9a1a50dc2ffba3a8603dfecbee5fcc8d2cfa44c1c9bed4ef429672"
+  },
+  "C:\\Users\\zheyu\\workspace\\stnet_ref\\ST-Net\\weights_st\\HER2\\mc_dropout_0.1\\fold0\\slidewise_metrics\\epoch_70.csv": {
+    "bytes": 497,
+    "sha256": "099233c0d6def9ff5ffa974831b466161cfbe78d677e643eb3e6f7bff72227e0"
+  },
+  "C:\\Users\\zheyu\\workspace\\stnet_ref\\ST-Net\\weights_st\\HER2\\mc_dropout_0.1\\fold0\\slidewise_metrics\\epoch_80.csv": {
+    "bytes": 494,
+    "sha256": "0e127d2e701c34a652f3dc2288f1f9de973dc8e5fd0a58131d7b6c7764fe7ca4"
+  },
+  "C:\\Users\\zheyu\\workspace\\stnet_ref\\ST-Net\\weights_st\\HER2\\mc_dropout_0.1\\fold1\\slidewise_metrics\\epoch_70.csv": {
+    "bytes": 488,
+    "sha256": "6001ad600185abd9000cc659e02bf35aee9e9b7a949adc8cc0cef8cdd9df487d"
+  },
+  "C:\\Users\\zheyu\\workspace\\stnet_ref\\ST-Net\\weights_st\\HER2\\mc_dropout_0.1\\fold1\\slidewise_metrics\\epoch_80.csv": {
+    "bytes": 495,
+    "sha256": "2fed2f12b6a27302ce7cfcd91e6c58ba183c03a04b1e08e471ffd9862be06440"
+  },
+  "C:\\Users\\zheyu\\workspace\\stnet_ref\\ST-Net\\weights_st\\HER2\\mc_dropout_0.1\\fold2\\slidewise_metrics\\epoch_70.csv": {
+    "bytes": 483,
+    "sha256": "5aa9113fc9e2445778bab7f0646d2966ac204e53d7c05c56c3f2f2689a73a50d"
+  },
+  "C:\\Users\\zheyu\\workspace\\stnet_ref\\ST-Net\\weights_st\\HER2\\mc_dropout_0.1\\fold2\\slidewise_metrics\\epoch_80.csv": {
+    "bytes": 477,
+    "sha256": "30992297a83829e8492b89060f89bcda32f2c2600593a2d30c013f0505e9dd82"
+  },
+  "C:\\Users\\zheyu\\workspace\\stnet_ref\\ST-Net\\weights_st\\HER2\\mc_dropout_0.1\\fold3\\slidewise_metrics\\epoch_70.csv": {
+    "bytes": 485,
+    "sha256": "ffc115e8e43a94e3b7bd83efc4246821ba870d463abfee6dc53cbbe3a80ddc5c"
+  },
+  "C:\\Users\\zheyu\\workspace\\stnet_ref\\ST-Net\\weights_st\\HER2\\mc_dropout_0.1\\fold3\\slidewise_metrics\\epoch_80.csv": {
+    "bytes": 493,
+    "sha256": "f5ac386f63c6101eeba4844da0bba9199bbb3621d43c330ec125d061cd7030c5"
+  },
+  "C:\\Users\\zheyu\\workspace\\stnet_ref\\ST-Net\\weights_st\\HER2\\mc_dropout_0.3\\fold0\\slidewise_metrics\\epoch_60.csv": {
+    "bytes": 495,
+    "sha256": "1b5b13d72d20bc8e0696ed6d1851fcef7ff53a9ef7c87dfb7c8aad266e6dc07a"
+  },
+  "C:\\Users\\zheyu\\workspace\\stnet_ref\\ST-Net\\weights_st\\HER2\\mc_dropout_0.3\\fold0\\slidewise_metrics\\epoch_70.csv": {
+    "bytes": 495,
+    "sha256": "7cffcf2cd8f3d6dcec8a4d2bfe5100345604102c4ee6bbdd4600fae049d22b69"
+  },
+  "C:\\Users\\zheyu\\workspace\\stnet_ref\\ST-Net\\weights_st\\HER2\\mc_dropout_0.3\\fold1\\slidewise_metrics\\epoch_60.csv": {
+    "bytes": 488,
+    "sha256": "7f5f4f92fe25c153fd2585218682035d333e5434d3d81168270f6c1976216827"
+  },
+  "C:\\Users\\zheyu\\workspace\\stnet_ref\\ST-Net\\weights_st\\HER2\\mc_dropout_0.3\\fold1\\slidewise_metrics\\epoch_70.csv": {
+    "bytes": 487,
+    "sha256": "fa410eb638a9e32b769e8008a843a8571278a9739796e5660230f169defb669e"
+  },
+  "C:\\Users\\zheyu\\workspace\\stnet_ref\\ST-Net\\weights_st\\HER2\\mc_dropout_0.3\\fold2\\slidewise_metrics\\epoch_60.csv": {
+    "bytes": 494,
+    "sha256": "50c55ea90d9d613ee854ec084dce2670352e136c33c6f4df1eb3e2fb7a342607"
+  },
+  "C:\\Users\\zheyu\\workspace\\stnet_ref\\ST-Net\\weights_st\\HER2\\mc_dropout_0.3\\fold2\\slidewise_metrics\\epoch_70.csv": {
+    "bytes": 488,
+    "sha256": "90af0ef197914e82feca26ab8b7c8a3d3c2a199d614f8a486f7e177d8bfad6f2"
+  },
+  "C:\\Users\\zheyu\\workspace\\stnet_ref\\ST-Net\\weights_st\\HER2\\mc_dropout_0.3\\fold3\\slidewise_metrics\\epoch_60.csv": {
+    "bytes": 489,
+    "sha256": "2ab76538cf27875d0951aab5f9da57b7de3074d398f21019a863294966f12fc5"
+  },
+  "C:\\Users\\zheyu\\workspace\\stnet_ref\\ST-Net\\weights_st\\HER2\\mc_dropout_0.3\\fold3\\slidewise_metrics\\epoch_70.csv": {
+    "bytes": 491,
+    "sha256": "70969b108a8971314fb86ecbdc6c38bf9a899a76522a7c0480e82c9c9acaa95b"
+  },
+  "C:\\Users\\zheyu\\workspace\\stnet_ref\\ST-Net\\weights_st\\HER2\\mc_dropout_0.5\\fold0\\slidewise_metrics\\epoch_50.csv": {
+    "bytes": 494,
+    "sha256": "a422f4decb4c4e5b966ac673229788327118cfcf71bede48f884d3970f0cf389"
+  },
+  "C:\\Users\\zheyu\\workspace\\stnet_ref\\ST-Net\\weights_st\\HER2\\mc_dropout_0.5\\fold0\\slidewise_metrics\\epoch_60.csv": {
+    "bytes": 495,
+    "sha256": "e82322fda339a7f77d364a36eb93bf703c85545ec2677c208dd297f713c6dfd7"
+  },
+  "C:\\Users\\zheyu\\workspace\\stnet_ref\\ST-Net\\weights_st\\HER2\\mc_dropout_0.5\\fold1\\slidewise_metrics\\epoch_50.csv": {
+    "bytes": 489,
+    "sha256": "e4c0499949ab1deb27025a5830cb749fb2549f246f183a231b5fda77cbdc6938"
+  },
+  "C:\\Users\\zheyu\\workspace\\stnet_ref\\ST-Net\\weights_st\\HER2\\mc_dropout_0.5\\fold1\\slidewise_metrics\\epoch_60.csv": {
+    "bytes": 488,
+    "sha256": "25f2e5e4e58144a5ad1b55051f7878cdbbaef22e193c45461559cb57eb1f94c6"
+  },
+  "C:\\Users\\zheyu\\workspace\\stnet_ref\\ST-Net\\weights_st\\HER2\\mc_dropout_0.5\\fold2\\slidewise_metrics\\epoch_50.csv": {
+    "bytes": 489,
+    "sha256": "02d718e56aa72c7c47720704b4a809a63f424a7044e444e24f00fde5675d8667"
+  },
+  "C:\\Users\\zheyu\\workspace\\stnet_ref\\ST-Net\\weights_st\\HER2\\mc_dropout_0.5\\fold2\\slidewise_metrics\\epoch_60.csv": {
+    "bytes": 486,
+    "sha256": "d3b70b6e99f175f1212fe9d5cc0fefc75002df1a1bbc2624332fddf96f2c330d"
+  },
+  "C:\\Users\\zheyu\\workspace\\stnet_ref\\ST-Net\\weights_st\\HER2\\mc_dropout_0.5\\fold3\\slidewise_metrics\\epoch_50.csv": {
+    "bytes": 490,
+    "sha256": "ce324aa373191cf53ca7a028c9a3f39e4b56404dc5865fb5e1b12216cde646cd"
+  },
+  "C:\\Users\\zheyu\\workspace\\stnet_ref\\ST-Net\\weights_st\\HER2\\mc_dropout_0.5\\fold3\\slidewise_metrics\\epoch_60.csv": {
+    "bytes": 484,
+    "sha256": "d134eefb0d37c4a7e28b80091e0cad521d5a01b7ce158fb23cf0e001f5e4a6bc"
+  },
+  "C:\\Users\\zheyu\\workspace\\stnet_ref\\ST-Net\\weights_st\\HER2\\random_0.05\\fold0\\slidewise_metrics\\epoch_100.csv": {
+    "bytes": 505,
+    "sha256": "4e46e327e12e921607040b711278cc0a751788dd1d1b5d0e9ecf87487725474e"
+  },
+  "C:\\Users\\zheyu\\workspace\\stnet_ref\\ST-Net\\weights_st\\HER2\\random_0.05\\fold0\\slidewise_metrics\\epoch_110.csv": {
+    "bytes": 504,
+    "sha256": "bc261b9fd2e22efbc91b43ac5ccd0a33d63b21b8262fe000a13f7dfebbb0c775"
+  },
+  "C:\\Users\\zheyu\\workspace\\stnet_ref\\ST-Net\\weights_st\\HER2\\random_0.05\\fold1\\slidewise_metrics\\epoch_100.csv": {
+    "bytes": 504,
+    "sha256": "bb4987e49f6e581b6270589280cfd793bfc89ec80931c2da5bcb1ae689cfb50c"
+  },
+  "C:\\Users\\zheyu\\workspace\\stnet_ref\\ST-Net\\weights_st\\HER2\\random_0.05\\fold1\\slidewise_metrics\\epoch_110.csv": {
+    "bytes": 501,
+    "sha256": "13c83f16b76408c26497d3edf6bc790fe5cdf045a938803b3037f4079db2ae23"
+  },
+  "C:\\Users\\zheyu\\workspace\\stnet_ref\\ST-Net\\weights_st\\HER2\\random_0.05\\fold2\\slidewise_metrics\\epoch_100.csv": {
+    "bytes": 499,
+    "sha256": "952b9be0f20d6d5dc24a6c5e50b0142b64727aa99224880336960ffcd26573a7"
+  },
+  "C:\\Users\\zheyu\\workspace\\stnet_ref\\ST-Net\\weights_st\\HER2\\random_0.05\\fold2\\slidewise_metrics\\epoch_110.csv": {
+    "bytes": 499,
+    "sha256": "20772884a44c7d9cff981e6cdf7a72cca5b16777cdd74ff6d3c202533e5712d0"
+  },
+  "C:\\Users\\zheyu\\workspace\\stnet_ref\\ST-Net\\weights_st\\HER2\\random_0.05\\fold3\\slidewise_metrics\\epoch_100.csv": {
+    "bytes": 497,
+    "sha256": "0e85c7c54f5260c3af6797112f49e64f3d3058127750ef643afeaf6cab6a8a13"
+  },
+  "C:\\Users\\zheyu\\workspace\\stnet_ref\\ST-Net\\weights_st\\HER2\\random_0.05\\fold3\\slidewise_metrics\\epoch_110.csv": {
+    "bytes": 500,
+    "sha256": "90ef9378147c3796627325e2d4c81da816d7ae9ec16a79412d2566d554fab57d"
+  },
+  "C:\\Users\\zheyu\\workspace\\stnet_ref\\ST-Net\\weights_st\\HER2\\random_0.1\\fold0\\slidewise_metrics\\epoch_70.csv": {
+    "bytes": 497,
+    "sha256": "cdba754b00cc9b9f5dc16b23dcbb55e97ab6f1a2345731b7d745ad91205967ba"
+  },
+  "C:\\Users\\zheyu\\workspace\\stnet_ref\\ST-Net\\weights_st\\HER2\\random_0.1\\fold0\\slidewise_metrics\\epoch_80.csv": {
+    "bytes": 495,
+    "sha256": "59e3130b000617419ab293fa9f8badec14cdfa961838c5f68b99c629b4398553"
+  },
+  "C:\\Users\\zheyu\\workspace\\stnet_ref\\ST-Net\\weights_st\\HER2\\random_0.1\\fold1\\slidewise_metrics\\epoch_70.csv": {
+    "bytes": 493,
+    "sha256": "c9a343f9d4568e75d4a44c6d44aa862d2359771bb80ff753b051ca8ce12f3a14"
+  },
+  "C:\\Users\\zheyu\\workspace\\stnet_ref\\ST-Net\\weights_st\\HER2\\random_0.1\\fold1\\slidewise_metrics\\epoch_80.csv": {
+    "bytes": 488,
+    "sha256": "d08d3cd9f25ecd8bf0a13da71b2a78bb65eb19a6833f367579f6fce5cdb0e47f"
+  },
+  "C:\\Users\\zheyu\\workspace\\stnet_ref\\ST-Net\\weights_st\\HER2\\random_0.1\\fold2\\slidewise_metrics\\epoch_70.csv": {
+    "bytes": 488,
+    "sha256": "db1c42948d1ea860da19b39462e51a896350c45a879ee6420c380b3a62679fdb"
+  },
+  "C:\\Users\\zheyu\\workspace\\stnet_ref\\ST-Net\\weights_st\\HER2\\random_0.1\\fold2\\slidewise_metrics\\epoch_80.csv": {
+    "bytes": 487,
+    "sha256": "1270521238b8238108c2c2704cab4819d9aab822e440197b5b7f2fa2c67dd88c"
+  },
+  "C:\\Users\\zheyu\\workspace\\stnet_ref\\ST-Net\\weights_st\\HER2\\random_0.1\\fold3\\slidewise_metrics\\epoch_70.csv": {
+    "bytes": 491,
+    "sha256": "a5d555af2889f409b42df6ae2d81d2ae718ead9f399b49ea3bdc318a41b91b32"
+  },
+  "C:\\Users\\zheyu\\workspace\\stnet_ref\\ST-Net\\weights_st\\HER2\\random_0.1\\fold3\\slidewise_metrics\\epoch_80.csv": {
+    "bytes": 492,
+    "sha256": "84418990cb8c3be80aec1f0714b07c40e4b3e3ae9684d485df9f6314419e1aae"
+  },
+  "C:\\Users\\zheyu\\workspace\\stnet_ref\\ST-Net\\weights_st\\HER2\\random_0.3\\fold0\\slidewise_metrics\\epoch_60.csv": {
+    "bytes": 491,
+    "sha256": "131747412787ac7e41b1c5e5cb461babc0cb28f7698c0a9b798804a1410b4f40"
+  },
+  "C:\\Users\\zheyu\\workspace\\stnet_ref\\ST-Net\\weights_st\\HER2\\random_0.3\\fold0\\slidewise_metrics\\epoch_70.csv": {
+    "bytes": 500,
+    "sha256": "8410a69e01a46ed1db4ab5ab32701df864e1e44bfa7e5d3c349d8c40c55d7d59"
+  },
+  "C:\\Users\\zheyu\\workspace\\stnet_ref\\ST-Net\\weights_st\\HER2\\random_0.3\\fold1\\slidewise_metrics\\epoch_60.csv": {
+    "bytes": 490,
+    "sha256": "e418dc90d3127983110caf3c54771eec908375aed62c8350ccf6357aac4d9b9a"
+  },
+  "C:\\Users\\zheyu\\workspace\\stnet_ref\\ST-Net\\weights_st\\HER2\\random_0.3\\fold1\\slidewise_metrics\\epoch_70.csv": {
+    "bytes": 491,
+    "sha256": "d9b96b8005a2012151b35516c341a59f7c2c82feea3d2dc7ea465cdad44f010e"
+  },
+  "C:\\Users\\zheyu\\workspace\\stnet_ref\\ST-Net\\weights_st\\HER2\\random_0.3\\fold2\\slidewise_metrics\\epoch_60.csv": {
+    "bytes": 491,
+    "sha256": "59ddb3df5bcf8f7e1e7bf404bd3cc0e2d114cd9064111cc52584e3c236c04192"
+  },
+  "C:\\Users\\zheyu\\workspace\\stnet_ref\\ST-Net\\weights_st\\HER2\\random_0.3\\fold2\\slidewise_metrics\\epoch_70.csv": {
+    "bytes": 488,
+    "sha256": "51dec68164177ab43b43f18434df613fe14bd15c1557b29c7987c3ba07cf956a"
+  },
+  "C:\\Users\\zheyu\\workspace\\stnet_ref\\ST-Net\\weights_st\\HER2\\random_0.3\\fold3\\slidewise_metrics\\epoch_60.csv": {
+    "bytes": 491,
+    "sha256": "e2432ef3c911f164f87d5c2e2ae85f38727453a7cd9bd222d7aab3ffd3b22364"
+  },
+  "C:\\Users\\zheyu\\workspace\\stnet_ref\\ST-Net\\weights_st\\HER2\\random_0.3\\fold3\\slidewise_metrics\\epoch_70.csv": {
+    "bytes": 490,
+    "sha256": "46b0fb5a37f9599d9ec7ded09d10328a6821f99f4c68e6380ec9ff3a62285933"
+  },
+  "C:\\Users\\zheyu\\workspace\\stnet_ref\\ST-Net\\weights_st\\HER2\\random_0.5\\fold0\\slidewise_metrics\\epoch_50.csv": {
+    "bytes": 496,
+    "sha256": "a9d08d55f9166746f9619001db933cb5977b65cdc57c71f73e50dd1e4db18db8"
+  },
+  "C:\\Users\\zheyu\\workspace\\stnet_ref\\ST-Net\\weights_st\\HER2\\random_0.5\\fold0\\slidewise_metrics\\epoch_60.csv": {
+    "bytes": 492,
+    "sha256": "15ef604b230a960c4d4aca38f65ed14cf83266df621c7cc52b7c0c974a47160e"
+  },
+  "C:\\Users\\zheyu\\workspace\\stnet_ref\\ST-Net\\weights_st\\HER2\\random_0.5\\fold1\\slidewise_metrics\\epoch_50.csv": {
+    "bytes": 491,
+    "sha256": "da63190a229db45f173c4afc675f95d3a648bfd5296ff50e0c3c01a6de51670b"
+  },
+  "C:\\Users\\zheyu\\workspace\\stnet_ref\\ST-Net\\weights_st\\HER2\\random_0.5\\fold1\\slidewise_metrics\\epoch_60.csv": {
+    "bytes": 491,
+    "sha256": "5b3c523f4d1cb1a899c1ddf6eb9567fedabaa27f0d7b865d52c87c93492b12ce"
+  },
+  "C:\\Users\\zheyu\\workspace\\stnet_ref\\ST-Net\\weights_st\\HER2\\random_0.5\\fold2\\slidewise_metrics\\epoch_50.csv": {
+    "bytes": 488,
+    "sha256": "edccbd3725b493907fbfce5aefc9a896edd99e3d11c06ace8e8674d90fb39d31"
+  },
+  "C:\\Users\\zheyu\\workspace\\stnet_ref\\ST-Net\\weights_st\\HER2\\random_0.5\\fold2\\slidewise_metrics\\epoch_60.csv": {
+    "bytes": 484,
+    "sha256": "58dd55a33eb5b618dab2fb805b3d0940224b2ec2d827640b70d39735c9379ddc"
+  },
+  "C:\\Users\\zheyu\\workspace\\stnet_ref\\ST-Net\\weights_st\\HER2\\random_0.5\\fold3\\slidewise_metrics\\epoch_50.csv": {
+    "bytes": 489,
+    "sha256": "e8179f6588a24738f20d3a2013c2a35612d096191963b7bef81ed6a4e0daca98"
+  },
+  "C:\\Users\\zheyu\\workspace\\stnet_ref\\ST-Net\\weights_st\\HER2\\random_0.5\\fold3\\slidewise_metrics\\epoch_60.csv": {
+    "bytes": 492,
+    "sha256": "e5c116dc48a1800731bbfb319f1547d808c90ad40c1a8d61e985f078e79ccda0"
+  },
+  "C:\\Users\\zheyu\\workspace\\stnet_ref\\ST-Net\\weights_st\\HER2\\random_1.0\\fold0\\slidewise_metrics\\epoch_50.csv": {
+    "bytes": 497,
+    "sha256": "de70f10707c482a656fcabd5dc16fa4439e1e99a1d5a6f073abb0e17c39be6ef"
+  },
+  "C:\\Users\\zheyu\\workspace\\stnet_ref\\ST-Net\\weights_st\\HER2\\random_1.0\\fold1\\slidewise_metrics\\epoch_50.csv": {
+    "bytes": 498,
+    "sha256": "df0eaecec64e32b4eb8e9c193daafa4d571381d2f35f217a2970b58a26dcac39"
+  },
+  "C:\\Users\\zheyu\\workspace\\stnet_ref\\ST-Net\\weights_st\\HER2\\random_1.0\\fold2\\slidewise_metrics\\epoch_50.csv": {
+    "bytes": 489,
+    "sha256": "81f0f4b5db56ef0d69b43dab0b142803727ad7744642632af13a9054772bec52"
+  },
+  "C:\\Users\\zheyu\\workspace\\stnet_ref\\ST-Net\\weights_st\\HER2\\random_1.0\\fold3\\slidewise_metrics\\epoch_50.csv": {
+    "bytes": 491,
+    "sha256": "6672672cbceb35901e6ce13538a721dcc89c39c1ecfc422200d86b78a6d6c339"
+  },
+  "C:\\Users\\zheyu\\workspace\\stnet_ref\\ST-Net\\weights_st\\HER2\\tod_0.05\\fold0\\slidewise_metrics\\epoch_100.csv": {
+    "bytes": 504,
+    "sha256": "ac3cd2b7323c439e2b47b69a2598f9730bd47ae7722ead1d205774897a8b337a"
+  },
+  "C:\\Users\\zheyu\\workspace\\stnet_ref\\ST-Net\\weights_st\\HER2\\tod_0.05\\fold0\\slidewise_metrics\\epoch_110.csv": {
+    "bytes": 498,
+    "sha256": "65d540e446961486a449a897433f70fe7839a8490aaa570c3af60b38275c13a9"
+  },
+  "C:\\Users\\zheyu\\workspace\\stnet_ref\\ST-Net\\weights_st\\HER2\\tod_0.05\\fold1\\slidewise_metrics\\epoch_100.csv": {
+    "bytes": 503,
+    "sha256": "c6e295933aa9c1cd859f03ffa8a01f1dc4d4483e459ee0c154067f15e598953f"
+  },
+  "C:\\Users\\zheyu\\workspace\\stnet_ref\\ST-Net\\weights_st\\HER2\\tod_0.05\\fold1\\slidewise_metrics\\epoch_110.csv": {
+    "bytes": 498,
+    "sha256": "411f0d1937313257782ab0eaed198d45c3c01e4ea2e29bdd06b3b31ee9df755d"
+  },
+  "C:\\Users\\zheyu\\workspace\\stnet_ref\\ST-Net\\weights_st\\HER2\\tod_0.05\\fold2\\slidewise_metrics\\epoch_100.csv": {
+    "bytes": 497,
+    "sha256": "8b532ede528698b2ed2cdc4c3914858402c75848ee29c0fa2a657caf91475cb4"
+  },
+  "C:\\Users\\zheyu\\workspace\\stnet_ref\\ST-Net\\weights_st\\HER2\\tod_0.05\\fold2\\slidewise_metrics\\epoch_110.csv": {
+    "bytes": 492,
+    "sha256": "7bcdfe0df4a4cda61188e5a625f903c284f66cf731857edb148e70db156f0ede"
+  },
+  "C:\\Users\\zheyu\\workspace\\stnet_ref\\ST-Net\\weights_st\\HER2\\tod_0.05\\fold3\\slidewise_metrics\\epoch_100.csv": {
+    "bytes": 501,
+    "sha256": "488f10d7047c24eec8e56c92ffec82f9f016cbc5d8a7db1d0244e593907ee674"
+  },
+  "C:\\Users\\zheyu\\workspace\\stnet_ref\\ST-Net\\weights_st\\HER2\\tod_0.05\\fold3\\slidewise_metrics\\epoch_110.csv": {
+    "bytes": 497,
+    "sha256": "14d971ab4119a5a79b6b000e579397193f244b69b84b24491841a5808815c765"
+  },
+  "C:\\Users\\zheyu\\workspace\\stnet_ref\\ST-Net\\weights_st\\HER2\\tod_0.1\\fold0\\slidewise_metrics\\epoch_70.csv": {
+    "bytes": 499,
+    "sha256": "7acbcebfe262a51f92e90c3e693048b9bfaf3aa89e07ac62d8246bf646f4c0be"
+  },
+  "C:\\Users\\zheyu\\workspace\\stnet_ref\\ST-Net\\weights_st\\HER2\\tod_0.1\\fold0\\slidewise_metrics\\epoch_80.csv": {
+    "bytes": 496,
+    "sha256": "451058ed963147de885170a600f92d869521e7e9f3b64d900ba7c284038b2b23"
+  },
+  "C:\\Users\\zheyu\\workspace\\stnet_ref\\ST-Net\\weights_st\\HER2\\tod_0.1\\fold1\\slidewise_metrics\\epoch_70.csv": {
+    "bytes": 489,
+    "sha256": "c82f157777df368e75c92f86b70fb89b380e08ddda5fe410dfd11907c82a24bd"
+  },
+  "C:\\Users\\zheyu\\workspace\\stnet_ref\\ST-Net\\weights_st\\HER2\\tod_0.1\\fold1\\slidewise_metrics\\epoch_80.csv": {
+    "bytes": 491,
+    "sha256": "821581eb04f74956bba7e3175b8bd231f8f72da808d4208a5e61467aef29a8dd"
+  },
+  "C:\\Users\\zheyu\\workspace\\stnet_ref\\ST-Net\\weights_st\\HER2\\tod_0.1\\fold2\\slidewise_metrics\\epoch_70.csv": {
+    "bytes": 488,
+    "sha256": "648a82cb911cb29f74d9fcd83faf6793eb83c1a753884fcb5f8abfbbe7c7238e"
+  },
+  "C:\\Users\\zheyu\\workspace\\stnet_ref\\ST-Net\\weights_st\\HER2\\tod_0.1\\fold2\\slidewise_metrics\\epoch_80.csv": {
+    "bytes": 487,
+    "sha256": "306d0b9a45f563ee18be68848a05bc139197dfe11cbfcd18a613783054fa78f7"
+  },
+  "C:\\Users\\zheyu\\workspace\\stnet_ref\\ST-Net\\weights_st\\HER2\\tod_0.1\\fold3\\slidewise_metrics\\epoch_70.csv": {
+    "bytes": 490,
+    "sha256": "adb6ea85f5f26d1458752d77a7e5a0f220488f00f2069fa4ef4262f16a7f08cf"
+  },
+  "C:\\Users\\zheyu\\workspace\\stnet_ref\\ST-Net\\weights_st\\HER2\\tod_0.1\\fold3\\slidewise_metrics\\epoch_80.csv": {
+    "bytes": 491,
+    "sha256": "5344be1333491de141400766112d73a26735db1895b7b53f26a92d62d6c79fdb"
+  },
+  "C:\\Users\\zheyu\\workspace\\stnet_ref\\ST-Net\\weights_st\\HER2\\tod_0.3\\fold0\\slidewise_metrics\\epoch_60.csv": {
+    "bytes": 495,
+    "sha256": "bf97e9e8b76eb80c95643099abe8606bc5a8dee822158315b54a0497379a7e92"
+  },
+  "C:\\Users\\zheyu\\workspace\\stnet_ref\\ST-Net\\weights_st\\HER2\\tod_0.3\\fold0\\slidewise_metrics\\epoch_70.csv": {
+    "bytes": 493,
+    "sha256": "f58df7c361f21ca1f48cf86733ca99370ce0d5379ab80b726bd1c0cff908214e"
+  },
+  "C:\\Users\\zheyu\\workspace\\stnet_ref\\ST-Net\\weights_st\\HER2\\tod_0.3\\fold1\\slidewise_metrics\\epoch_60.csv": {
+    "bytes": 488,
+    "sha256": "7926ffaa565b510ae6426a82dc23d7381dd035f1a9b152c63b4c27d070df3111"
+  },
+  "C:\\Users\\zheyu\\workspace\\stnet_ref\\ST-Net\\weights_st\\HER2\\tod_0.3\\fold1\\slidewise_metrics\\epoch_70.csv": {
+    "bytes": 487,
+    "sha256": "cbbcc3e035962e95e6372b391126b3eaf47f5c8ae1d3ca8543727e7832e81684"
+  },
+  "C:\\Users\\zheyu\\workspace\\stnet_ref\\ST-Net\\weights_st\\HER2\\tod_0.3\\fold2\\slidewise_metrics\\epoch_60.csv": {
+    "bytes": 483,
+    "sha256": "404dcdc7a46cb48b1a939e1f124eee6cfc7d1030594f7854d299e9f854f3a149"
+  },
+  "C:\\Users\\zheyu\\workspace\\stnet_ref\\ST-Net\\weights_st\\HER2\\tod_0.3\\fold2\\slidewise_metrics\\epoch_70.csv": {
+    "bytes": 487,
+    "sha256": "9133435fac967f5cf23997c32353f5c9b4b56d7756256598a92a09375a19a207"
+  },
+  "C:\\Users\\zheyu\\workspace\\stnet_ref\\ST-Net\\weights_st\\HER2\\tod_0.3\\fold3\\slidewise_metrics\\epoch_60.csv": {
+    "bytes": 486,
+    "sha256": "89dc1b751ec89ba23c2fd8f525587ef9f390d64b77ac8d9ecb564e79fefe5654"
+  },
+  "C:\\Users\\zheyu\\workspace\\stnet_ref\\ST-Net\\weights_st\\HER2\\tod_0.3\\fold3\\slidewise_metrics\\epoch_70.csv": {
+    "bytes": 491,
+    "sha256": "f9646d5fe5e0331eeaa7f7c25e34a4fda1ce3727ba6b19abd230e3dc91316234"
+  },
+  "C:\\Users\\zheyu\\workspace\\stnet_ref\\ST-Net\\weights_st\\HER2\\tod_0.5\\fold0\\slidewise_metrics\\epoch_50.csv": {
+    "bytes": 491,
+    "sha256": "52540fa41ae356b024761123471bd2dc1ce3a42d157442859dda7c3768517c9e"
+  },
+  "C:\\Users\\zheyu\\workspace\\stnet_ref\\ST-Net\\weights_st\\HER2\\tod_0.5\\fold0\\slidewise_metrics\\epoch_60.csv": {
+    "bytes": 491,
+    "sha256": "77f41704df1a9576233577f5fcf9592433f0009bd81c5b6374c5a272400263c8"
+  },
+  "C:\\Users\\zheyu\\workspace\\stnet_ref\\ST-Net\\weights_st\\HER2\\tod_0.5\\fold1\\slidewise_metrics\\epoch_50.csv": {
+    "bytes": 491,
+    "sha256": "1aaf6e6ef3dd4a51d9af4a823ee889e524046e5a7a299b578062f38cde7495c3"
+  },
+  "C:\\Users\\zheyu\\workspace\\stnet_ref\\ST-Net\\weights_st\\HER2\\tod_0.5\\fold1\\slidewise_metrics\\epoch_60.csv": {
+    "bytes": 492,
+    "sha256": "947867914fd4fc7130d9e1c059a7a656e684d1bb68b8a8d8351d1e67356950e5"
+  },
+  "C:\\Users\\zheyu\\workspace\\stnet_ref\\ST-Net\\weights_st\\HER2\\tod_0.5\\fold2\\slidewise_metrics\\epoch_50.csv": {
+    "bytes": 486,
+    "sha256": "dc9ea8d034c4254185bf2f5bee5f1a93fa72202f70734a89e22b03632f1baeec"
+  },
+  "C:\\Users\\zheyu\\workspace\\stnet_ref\\ST-Net\\weights_st\\HER2\\tod_0.5\\fold2\\slidewise_metrics\\epoch_60.csv": {
+    "bytes": 484,
+    "sha256": "ad96592b62d446c35ef5d3a08894e9a954b4cc7637e8cc5c4775b95bf99949df"
+  },
+  "C:\\Users\\zheyu\\workspace\\stnet_ref\\ST-Net\\weights_st\\HER2\\tod_0.5\\fold3\\slidewise_metrics\\epoch_50.csv": {
+    "bytes": 490,
+    "sha256": "c9e9e4c7e23c34bd1b2c51e39c5aa009395b0f69ace2d49d10e5a958d1c7cf6e"
+  },
+  "C:\\Users\\zheyu\\workspace\\stnet_ref\\ST-Net\\weights_st\\HER2\\tod_0.5\\fold3\\slidewise_metrics\\epoch_60.csv": {
+    "bytes": 493,
+    "sha256": "cd52e9f2dc4560891838439701e6600cffff362b5908385fcc5d4dc9aef09687"
+  },
+  "C:\\Users\\zheyu\\workspace\\stnet_ref\\ST-Net\\weights_st\\HER2\\typiclust_0.05\\fold0\\slidewise_metrics\\epoch_100.csv": {
+    "bytes": 499,
+    "sha256": "5024b6519fc6ef5802141a5bda550e874e93c8e91da6c364c9b5a737661aca8d"
+  },
+  "C:\\Users\\zheyu\\workspace\\stnet_ref\\ST-Net\\weights_st\\HER2\\typiclust_0.05\\fold0\\slidewise_metrics\\epoch_110.csv": {
+    "bytes": 503,
+    "sha256": "59e27751b4900b586a5a88d52c59f92e2c9b53e86415a8d7139bcf4e818ffd72"
+  },
+  "C:\\Users\\zheyu\\workspace\\stnet_ref\\ST-Net\\weights_st\\HER2\\typiclust_0.05\\fold1\\slidewise_metrics\\epoch_100.csv": {
+    "bytes": 502,
+    "sha256": "33980808c21944c23a8ecc696dc9d8a4fbdc71d730b21b6d070c8f8d395cd0da"
+  },
+  "C:\\Users\\zheyu\\workspace\\stnet_ref\\ST-Net\\weights_st\\HER2\\typiclust_0.05\\fold1\\slidewise_metrics\\epoch_110.csv": {
+    "bytes": 504,
+    "sha256": "ed97fdce12999b62070af00d3844f7c3dadacb54e356b8b0459495f84e9174a5"
+  },
+  "C:\\Users\\zheyu\\workspace\\stnet_ref\\ST-Net\\weights_st\\HER2\\typiclust_0.05\\fold2\\slidewise_metrics\\epoch_100.csv": {
+    "bytes": 496,
+    "sha256": "e56a5c6a2def5513970a164c5d4f5bb2c2c144f79697b09c2c229505d6188b02"
+  },
+  "C:\\Users\\zheyu\\workspace\\stnet_ref\\ST-Net\\weights_st\\HER2\\typiclust_0.05\\fold2\\slidewise_metrics\\epoch_110.csv": {
+    "bytes": 493,
+    "sha256": "cdecbd27945205886be46815e816e2603b673a731d51a4b2bd82e656207aab33"
+  },
+  "C:\\Users\\zheyu\\workspace\\stnet_ref\\ST-Net\\weights_st\\HER2\\typiclust_0.05\\fold3\\slidewise_metrics\\epoch_100.csv": {
+    "bytes": 493,
+    "sha256": "a1dd11720368dd184d47bdb8163677059b4a0a72ddea94b364aae38b698192b4"
+  },
+  "C:\\Users\\zheyu\\workspace\\stnet_ref\\ST-Net\\weights_st\\HER2\\typiclust_0.05\\fold3\\slidewise_metrics\\epoch_110.csv": {
+    "bytes": 497,
+    "sha256": "8f379d7c14b0835405988edba8ed41863bc8569585016cd58233034eaa6843a4"
+  },
+  "C:\\Users\\zheyu\\workspace\\stnet_ref\\ST-Net\\weights_st\\HER2\\typiclust_0.1\\fold0\\slidewise_metrics\\epoch_70.csv": {
+    "bytes": 498,
+    "sha256": "7dfe6649490e39c92c76cd9d8bf4d598ebfb7757a829475caf5c3cd609d37713"
+  },
+  "C:\\Users\\zheyu\\workspace\\stnet_ref\\ST-Net\\weights_st\\HER2\\typiclust_0.1\\fold0\\slidewise_metrics\\epoch_80.csv": {
+    "bytes": 494,
+    "sha256": "1a4ec28a6a0147b7ed675c496909bbac5bf941e10a6792e3211e5231dce6907b"
+  },
+  "C:\\Users\\zheyu\\workspace\\stnet_ref\\ST-Net\\weights_st\\HER2\\typiclust_0.1\\fold1\\slidewise_metrics\\epoch_70.csv": {
+    "bytes": 492,
+    "sha256": "864a566cb30e13751b6790ed90148c460d53adc43671ae91a64a42d37ccf6105"
+  },
+  "C:\\Users\\zheyu\\workspace\\stnet_ref\\ST-Net\\weights_st\\HER2\\typiclust_0.1\\fold1\\slidewise_metrics\\epoch_80.csv": {
+    "bytes": 490,
+    "sha256": "a22e75ba84bb574e5455a66d1a774e001b8f8465d97f7851cb34d88414578bb1"
+  },
+  "C:\\Users\\zheyu\\workspace\\stnet_ref\\ST-Net\\weights_st\\HER2\\typiclust_0.1\\fold2\\slidewise_metrics\\epoch_70.csv": {
+    "bytes": 491,
+    "sha256": "91cc901b805c1473f784fa921256406ab5663bbae879271334827efc0c4160ab"
+  },
+  "C:\\Users\\zheyu\\workspace\\stnet_ref\\ST-Net\\weights_st\\HER2\\typiclust_0.1\\fold2\\slidewise_metrics\\epoch_80.csv": {
+    "bytes": 488,
+    "sha256": "699683e549f63fd9322a56c405479c2260ee26c71c5fd93c93d8b0e830e8d072"
+  },
+  "C:\\Users\\zheyu\\workspace\\stnet_ref\\ST-Net\\weights_st\\HER2\\typiclust_0.1\\fold3\\slidewise_metrics\\epoch_70.csv": {
+    "bytes": 486,
+    "sha256": "7248a9ebe46ca41d7481b5945833aadba2b5c10bf35bbe02aed8517fb61e0cb5"
+  },
+  "C:\\Users\\zheyu\\workspace\\stnet_ref\\ST-Net\\weights_st\\HER2\\typiclust_0.1\\fold3\\slidewise_metrics\\epoch_80.csv": {
+    "bytes": 489,
+    "sha256": "e9b76717501ab2eccc28a4d8be9965742c03ebf970e0dda77a4448f28aaf4fed"
+  },
+  "C:\\Users\\zheyu\\workspace\\stnet_ref\\ST-Net\\weights_st\\HER2\\typiclust_0.3\\fold0\\slidewise_metrics\\epoch_60.csv": {
+    "bytes": 491,
+    "sha256": "85cbe332754fdd1cffd2ff7df0fd7a907124c7915eac18e9254bd4added6e710"
+  },
+  "C:\\Users\\zheyu\\workspace\\stnet_ref\\ST-Net\\weights_st\\HER2\\typiclust_0.3\\fold0\\slidewise_metrics\\epoch_70.csv": {
+    "bytes": 495,
+    "sha256": "a10464ed953405c1256876ebfcffc6baae61959892c53d0f5a0a0e959f63be11"
+  },
+  "C:\\Users\\zheyu\\workspace\\stnet_ref\\ST-Net\\weights_st\\HER2\\typiclust_0.3\\fold1\\slidewise_metrics\\epoch_60.csv": {
+    "bytes": 489,
+    "sha256": "be46ebc0ade6e03447334cdfea2cbdfb85d5b30fe31fe5d137bde43e97cd659d"
+  },
+  "C:\\Users\\zheyu\\workspace\\stnet_ref\\ST-Net\\weights_st\\HER2\\typiclust_0.3\\fold1\\slidewise_metrics\\epoch_70.csv": {
+    "bytes": 490,
+    "sha256": "285d880ae065fd83311a6e7635e4f6b617ff6a6b2664b3f2f60c0e55b88a70b1"
+  },
+  "C:\\Users\\zheyu\\workspace\\stnet_ref\\ST-Net\\weights_st\\HER2\\typiclust_0.3\\fold2\\slidewise_metrics\\epoch_60.csv": {
+    "bytes": 490,
+    "sha256": "61e662b87f9d6e91368ef78a822235ea951d493a9f9bc78c7ac5af8a220aa1d8"
+  },
+  "C:\\Users\\zheyu\\workspace\\stnet_ref\\ST-Net\\weights_st\\HER2\\typiclust_0.3\\fold2\\slidewise_metrics\\epoch_70.csv": {
+    "bytes": 486,
+    "sha256": "ddde66c316f5bd19aad333d51449cd09caaf8f49c48c34ec7f92b01cac58dc61"
+  },
+  "C:\\Users\\zheyu\\workspace\\stnet_ref\\ST-Net\\weights_st\\HER2\\typiclust_0.3\\fold3\\slidewise_metrics\\epoch_60.csv": {
+    "bytes": 491,
+    "sha256": "7107a2e22755fb15a048cc8b3bd282366a84cb900f482d86eac376a054f1f000"
+  },
+  "C:\\Users\\zheyu\\workspace\\stnet_ref\\ST-Net\\weights_st\\HER2\\typiclust_0.3\\fold3\\slidewise_metrics\\epoch_70.csv": {
+    "bytes": 489,
+    "sha256": "c7acc1e605c23cc98ab5f6768775496b22e987750982e43043e13ba1af262fe7"
+  },
+  "C:\\Users\\zheyu\\workspace\\stnet_ref\\ST-Net\\weights_st\\HER2\\typiclust_0.5\\fold0\\slidewise_metrics\\epoch_50.csv": {
+    "bytes": 493,
+    "sha256": "cbf4560bc95079d4a55265d5d023a4b62a6d5eb9ac49ae621dbaa3cc6e80617e"
+  },
+  "C:\\Users\\zheyu\\workspace\\stnet_ref\\ST-Net\\weights_st\\HER2\\typiclust_0.5\\fold0\\slidewise_metrics\\epoch_60.csv": {
+    "bytes": 500,
+    "sha256": "1eef416e005fe9bcc3a36358dd9af348dfb5efb64f680d706853dce6012d6964"
+  },
+  "C:\\Users\\zheyu\\workspace\\stnet_ref\\ST-Net\\weights_st\\HER2\\typiclust_0.5\\fold1\\slidewise_metrics\\epoch_50.csv": {
+    "bytes": 484,
+    "sha256": "dc82be8fa82d5b9eaf7116afb8aa876530172febd9db66c4f035b645361c5640"
+  },
+  "C:\\Users\\zheyu\\workspace\\stnet_ref\\ST-Net\\weights_st\\HER2\\typiclust_0.5\\fold1\\slidewise_metrics\\epoch_60.csv": {
+    "bytes": 482,
+    "sha256": "85eacee8e73cee480ff1467c5f9d3b8bbe834047cd599957b023fe788c0bc9fe"
+  },
+  "C:\\Users\\zheyu\\workspace\\stnet_ref\\ST-Net\\weights_st\\HER2\\typiclust_0.5\\fold2\\slidewise_metrics\\epoch_50.csv": {
+    "bytes": 485,
+    "sha256": "341d6045bfef047526c9603e965eba994949f836d3b67fc9f669abfca71c2e17"
+  },
+  "C:\\Users\\zheyu\\workspace\\stnet_ref\\ST-Net\\weights_st\\HER2\\typiclust_0.5\\fold2\\slidewise_metrics\\epoch_60.csv": {
+    "bytes": 487,
+    "sha256": "56bb7c5e9935ca0b6a504706c1bfd09c5f9da6033f51fbf13ebe9d3fffff9cda"
+  },
+  "C:\\Users\\zheyu\\workspace\\stnet_ref\\ST-Net\\weights_st\\HER2\\typiclust_0.5\\fold3\\slidewise_metrics\\epoch_50.csv": {
+    "bytes": 495,
+    "sha256": "f597064be00e40c5b461ee7771a8a2c6dcbc532bd42fd7cd55af3ed3c576c56c"
+  },
+  "C:\\Users\\zheyu\\workspace\\stnet_ref\\ST-Net\\weights_st\\HER2\\typiclust_0.5\\fold3\\slidewise_metrics\\epoch_60.csv": {
+    "bytes": 492,
+    "sha256": "e87642f272efb6cb70ab8069ccda9468a1668fe223b3a4c3d1be502b7b367e6d"
+  },
+  "C:\\Users\\zheyu\\workspace\\stnet_ref\\ST-Net\\weights_st\\cscc\\coreset_0.05\\fold0\\slidewise_metrics\\epoch_100.csv": {
+    "bytes": 186,
+    "sha256": "6d6a759fff6efb1909738d27d8a1275492832fc329fd48e01e087a168b5f4419"
+  },
+  "C:\\Users\\zheyu\\workspace\\stnet_ref\\ST-Net\\weights_st\\cscc\\coreset_0.05\\fold0\\slidewise_metrics\\epoch_110.csv": {
+    "bytes": 182,
+    "sha256": "08d9171e6c131fc9368578f59086e22c77a3dfb61e841480a3f25a1599819f75"
+  },
+  "C:\\Users\\zheyu\\workspace\\stnet_ref\\ST-Net\\weights_st\\cscc\\coreset_0.05\\fold1\\slidewise_metrics\\epoch_100.csv": {
+    "bytes": 182,
+    "sha256": "e82adb30ee0b5c3228a2053f6b3af2870f4699cdd6935a9c3e433fc9c267a817"
+  },
+  "C:\\Users\\zheyu\\workspace\\stnet_ref\\ST-Net\\weights_st\\cscc\\coreset_0.05\\fold1\\slidewise_metrics\\epoch_110.csv": {
+    "bytes": 182,
+    "sha256": "45c0fd9c039fd87cad892e8e892233210b033ca233958e44c5bfaf3326b8a36c"
+  },
+  "C:\\Users\\zheyu\\workspace\\stnet_ref\\ST-Net\\weights_st\\cscc\\coreset_0.05\\fold2\\slidewise_metrics\\epoch_100.csv": {
+    "bytes": 185,
+    "sha256": "6dd058967e20904e23d5af11920149939182cd3c8c37b6263de73125f78c1b76"
+  },
+  "C:\\Users\\zheyu\\workspace\\stnet_ref\\ST-Net\\weights_st\\cscc\\coreset_0.05\\fold2\\slidewise_metrics\\epoch_110.csv": {
+    "bytes": 183,
+    "sha256": "de26be5aee8b9aafbfdb73a1edabf80fdd2849b7ee80ac776ccdaf47af7bfed0"
+  },
+  "C:\\Users\\zheyu\\workspace\\stnet_ref\\ST-Net\\weights_st\\cscc\\coreset_0.05\\fold3\\slidewise_metrics\\epoch_100.csv": {
+    "bytes": 186,
+    "sha256": "946ba273fd1a298e6f22d6447f77babf80db133b9a3600b56e071fd09ed1c8ed"
+  },
+  "C:\\Users\\zheyu\\workspace\\stnet_ref\\ST-Net\\weights_st\\cscc\\coreset_0.05\\fold3\\slidewise_metrics\\epoch_110.csv": {
+    "bytes": 183,
+    "sha256": "9211d7f10b6b2d99ef703a7b0756809b3208d8d507f1a3bf62607d8cab4ebae4"
+  },
+  "C:\\Users\\zheyu\\workspace\\stnet_ref\\ST-Net\\weights_st\\cscc\\coreset_0.1\\fold0\\slidewise_metrics\\epoch_70.csv": {
+    "bytes": 181,
+    "sha256": "bfe7b9f339156a351ab0670e9f92435f9c44ae8f974815fd1a0af36daa4c7246"
+  },
+  "C:\\Users\\zheyu\\workspace\\stnet_ref\\ST-Net\\weights_st\\cscc\\coreset_0.1\\fold0\\slidewise_metrics\\epoch_80.csv": {
+    "bytes": 179,
+    "sha256": "4e59b52bd522d9bbd202dab808fe50f713a28237ebe6ffe5409814ae669da11f"
+  },
+  "C:\\Users\\zheyu\\workspace\\stnet_ref\\ST-Net\\weights_st\\cscc\\coreset_0.1\\fold1\\slidewise_metrics\\epoch_70.csv": {
+    "bytes": 181,
+    "sha256": "1e5543d527c285bf598c600051996ad1dc0e3835b5562470c1abcaef024c7d65"
+  },
+  "C:\\Users\\zheyu\\workspace\\stnet_ref\\ST-Net\\weights_st\\cscc\\coreset_0.1\\fold1\\slidewise_metrics\\epoch_80.csv": {
+    "bytes": 181,
+    "sha256": "006b358ae94cd70d525e10b6af437c4a71d70744d5459bcd657727ef14b8c71f"
+  },
+  "C:\\Users\\zheyu\\workspace\\stnet_ref\\ST-Net\\weights_st\\cscc\\coreset_0.1\\fold2\\slidewise_metrics\\epoch_70.csv": {
+    "bytes": 181,
+    "sha256": "cca62802c8ec755e6722f2c72583f4acb60e2f2aaad57517ba54bd26a7cb162f"
+  },
+  "C:\\Users\\zheyu\\workspace\\stnet_ref\\ST-Net\\weights_st\\cscc\\coreset_0.1\\fold2\\slidewise_metrics\\epoch_80.csv": {
+    "bytes": 179,
+    "sha256": "6c0968de7b924d81720d80bc37a64e90986157950b1eeeeb412d188016c43fe0"
+  },
+  "C:\\Users\\zheyu\\workspace\\stnet_ref\\ST-Net\\weights_st\\cscc\\coreset_0.1\\fold3\\slidewise_metrics\\epoch_70.csv": {
+    "bytes": 180,
+    "sha256": "9fd3c3e46ec8d379684bef1fb62b4a268ad816cdf5914055b84694b7f980e5bd"
+  },
+  "C:\\Users\\zheyu\\workspace\\stnet_ref\\ST-Net\\weights_st\\cscc\\coreset_0.1\\fold3\\slidewise_metrics\\epoch_80.csv": {
+    "bytes": 180,
+    "sha256": "0c5e1fe5441aa1e2a3befeaf6654bbad07b724b2b6161273ac2f3dd0c7bb0cbf"
+  },
+  "C:\\Users\\zheyu\\workspace\\stnet_ref\\ST-Net\\weights_st\\cscc\\coreset_0.3\\fold0\\slidewise_metrics\\epoch_60.csv": {
+    "bytes": 181,
+    "sha256": "34226b2114024a31b7a5e1911eba5ab0f72503027c30da46ce36c5b87bebe17f"
+  },
+  "C:\\Users\\zheyu\\workspace\\stnet_ref\\ST-Net\\weights_st\\cscc\\coreset_0.3\\fold0\\slidewise_metrics\\epoch_70.csv": {
+    "bytes": 178,
+    "sha256": "d53c5f29b911016be92a595f2185efaafe729835fea4445741a4ef201b47d00a"
+  },
+  "C:\\Users\\zheyu\\workspace\\stnet_ref\\ST-Net\\weights_st\\cscc\\coreset_0.3\\fold1\\slidewise_metrics\\epoch_60.csv": {
+    "bytes": 181,
+    "sha256": "cd52a2320f864366a92e0001d409b50558ad73c212686d13e3d1b9537f48631b"
+  },
+  "C:\\Users\\zheyu\\workspace\\stnet_ref\\ST-Net\\weights_st\\cscc\\coreset_0.3\\fold1\\slidewise_metrics\\epoch_70.csv": {
+    "bytes": 179,
+    "sha256": "704aeb23ce9b4caeeddb99bb5be5b49d4645c965883cabd40069c031b54496b8"
+  },
+  "C:\\Users\\zheyu\\workspace\\stnet_ref\\ST-Net\\weights_st\\cscc\\coreset_0.3\\fold2\\slidewise_metrics\\epoch_60.csv": {
+    "bytes": 182,
+    "sha256": "da4bfdcab8bd966b01be1f3bfebf932a4d8b9581693a2552fa54c7a40035f428"
+  },
+  "C:\\Users\\zheyu\\workspace\\stnet_ref\\ST-Net\\weights_st\\cscc\\coreset_0.3\\fold2\\slidewise_metrics\\epoch_70.csv": {
+    "bytes": 181,
+    "sha256": "7737d850888c935eaa7574b4e44223a8ffeff62f1cebd0a1c8eed2b29aa15274"
+  },
+  "C:\\Users\\zheyu\\workspace\\stnet_ref\\ST-Net\\weights_st\\cscc\\coreset_0.3\\fold3\\slidewise_metrics\\epoch_60.csv": {
+    "bytes": 178,
+    "sha256": "eccf9654b169ad7d7cdc7b318b34355ece540f8300dd1e9edbbe0f168aa9009c"
+  },
+  "C:\\Users\\zheyu\\workspace\\stnet_ref\\ST-Net\\weights_st\\cscc\\coreset_0.3\\fold3\\slidewise_metrics\\epoch_70.csv": {
+    "bytes": 182,
+    "sha256": "bb6940c15f7bf1afcbba736bcdc42d4166d2f8dec5d58826ca4478b18148f9a1"
+  },
+  "C:\\Users\\zheyu\\workspace\\stnet_ref\\ST-Net\\weights_st\\cscc\\coreset_0.5\\fold0\\slidewise_metrics\\epoch_50.csv": {
+    "bytes": 182,
+    "sha256": "9c7b3f35d0ff81071010aaf8288c3ddb0a949bbc62f24f39b90a79b361124f7f"
+  },
+  "C:\\Users\\zheyu\\workspace\\stnet_ref\\ST-Net\\weights_st\\cscc\\coreset_0.5\\fold0\\slidewise_metrics\\epoch_60.csv": {
+    "bytes": 180,
+    "sha256": "84a6bc39750067996143ef499f9801e8605a85b40fbdcae0ba0231a25ba31a18"
+  },
+  "C:\\Users\\zheyu\\workspace\\stnet_ref\\ST-Net\\weights_st\\cscc\\coreset_0.5\\fold1\\slidewise_metrics\\epoch_50.csv": {
+    "bytes": 181,
+    "sha256": "24c65f70c80908c169f65ce75ea20613faa7d095fed2ac385f458ced18b7fd95"
+  },
+  "C:\\Users\\zheyu\\workspace\\stnet_ref\\ST-Net\\weights_st\\cscc\\coreset_0.5\\fold1\\slidewise_metrics\\epoch_60.csv": {
+    "bytes": 181,
+    "sha256": "376d03791f415551e7189de602531e32cd8b8e6e8e6c55a132354ae26ac4c060"
+  },
+  "C:\\Users\\zheyu\\workspace\\stnet_ref\\ST-Net\\weights_st\\cscc\\coreset_0.5\\fold2\\slidewise_metrics\\epoch_50.csv": {
+    "bytes": 182,
+    "sha256": "8038997dc1cc50ff50bd74677b9898329e30d94372bd39b3f2baa1c4175d0bb8"
+  },
+  "C:\\Users\\zheyu\\workspace\\stnet_ref\\ST-Net\\weights_st\\cscc\\coreset_0.5\\fold2\\slidewise_metrics\\epoch_60.csv": {
+    "bytes": 182,
+    "sha256": "fb8c82884f8b65ecaa022435265fe96c025a83bd9dbd29349203921ebb17b26d"
+  },
+  "C:\\Users\\zheyu\\workspace\\stnet_ref\\ST-Net\\weights_st\\cscc\\coreset_0.5\\fold3\\slidewise_metrics\\epoch_50.csv": {
+    "bytes": 182,
+    "sha256": "4d6a7d53d9d5a23cc6e694712408e1d28fc26e5fce03c840c69c5ecddff9d9ef"
+  },
+  "C:\\Users\\zheyu\\workspace\\stnet_ref\\ST-Net\\weights_st\\cscc\\coreset_0.5\\fold3\\slidewise_metrics\\epoch_60.csv": {
+    "bytes": 181,
+    "sha256": "ad0495894e23e32c9c10f78e54591b91a94ea0f5ba1d1783992d074b5442d0f6"
+  },
+  "C:\\Users\\zheyu\\workspace\\stnet_ref\\ST-Net\\weights_st\\cscc\\mc_dropout_0.05\\fold0\\slidewise_metrics\\epoch_100.csv": {
+    "bytes": 183,
+    "sha256": "c9ce5784848b188e5ea6caa61d073c94fd2076176dfd8e12401d54ee8e84eb04"
+  },
+  "C:\\Users\\zheyu\\workspace\\stnet_ref\\ST-Net\\weights_st\\cscc\\mc_dropout_0.05\\fold0\\slidewise_metrics\\epoch_110.csv": {
+    "bytes": 179,
+    "sha256": "0ad66710466abdf1f21c1470bf6448f02fcafbd026a38e87baa17c23ca3a4c50"
+  },
+  "C:\\Users\\zheyu\\workspace\\stnet_ref\\ST-Net\\weights_st\\cscc\\mc_dropout_0.05\\fold1\\slidewise_metrics\\epoch_100.csv": {
+    "bytes": 184,
+    "sha256": "0397bdaa98bb3b13e77d55bc9c4ad5f0bd2ab072c93d427e0c835ab930a619cf"
+  },
+  "C:\\Users\\zheyu\\workspace\\stnet_ref\\ST-Net\\weights_st\\cscc\\mc_dropout_0.05\\fold1\\slidewise_metrics\\epoch_110.csv": {
+    "bytes": 182,
+    "sha256": "997a09166517d29d5d1bda756392950ff955a0ec2ce0f30b290b0307a03f611b"
+  },
+  "C:\\Users\\zheyu\\workspace\\stnet_ref\\ST-Net\\weights_st\\cscc\\mc_dropout_0.05\\fold2\\slidewise_metrics\\epoch_100.csv": {
+    "bytes": 186,
+    "sha256": "11f148d26079cf2573ad88cd3cdc914c2991a194607e552151662cb259037b69"
+  },
+  "C:\\Users\\zheyu\\workspace\\stnet_ref\\ST-Net\\weights_st\\cscc\\mc_dropout_0.05\\fold2\\slidewise_metrics\\epoch_110.csv": {
+    "bytes": 187,
+    "sha256": "3b4c0698cb94f27daafcec6bb584c502112f63024dcead0475c1a85af06bc063"
+  },
+  "C:\\Users\\zheyu\\workspace\\stnet_ref\\ST-Net\\weights_st\\cscc\\mc_dropout_0.05\\fold3\\slidewise_metrics\\epoch_100.csv": {
+    "bytes": 184,
+    "sha256": "35fc74753cd1c4092f8438860786fdd789e52fa9d90511916759f5968d6b3fbe"
+  },
+  "C:\\Users\\zheyu\\workspace\\stnet_ref\\ST-Net\\weights_st\\cscc\\mc_dropout_0.05\\fold3\\slidewise_metrics\\epoch_110.csv": {
+    "bytes": 179,
+    "sha256": "f6c4a1d9a6861e17e8a6c34736aeb07992fea6f785ad5e8dde6f8113d3d66207"
+  },
+  "C:\\Users\\zheyu\\workspace\\stnet_ref\\ST-Net\\weights_st\\cscc\\mc_dropout_0.1\\fold0\\slidewise_metrics\\epoch_70.csv": {
+    "bytes": 180,
+    "sha256": "4d175a36840476b8b245de6f956677fe593c87807f3589f5345fb5e7d351f4db"
+  },
+  "C:\\Users\\zheyu\\workspace\\stnet_ref\\ST-Net\\weights_st\\cscc\\mc_dropout_0.1\\fold0\\slidewise_metrics\\epoch_80.csv": {
+    "bytes": 182,
+    "sha256": "9e94afe78225f7c1ed556bab88800c1e5bdd0aaa65304f7562b5f5d9bbcd911f"
+  },
+  "C:\\Users\\zheyu\\workspace\\stnet_ref\\ST-Net\\weights_st\\cscc\\mc_dropout_0.1\\fold1\\slidewise_metrics\\epoch_70.csv": {
+    "bytes": 179,
+    "sha256": "49e9e74dd3e26d31894c5bd3c2d134410de5067ccb8cc0d57544e7f74cc288a0"
+  },
+  "C:\\Users\\zheyu\\workspace\\stnet_ref\\ST-Net\\weights_st\\cscc\\mc_dropout_0.1\\fold1\\slidewise_metrics\\epoch_80.csv": {
+    "bytes": 179,
+    "sha256": "f49c60d2a4e19bc3b51f2dfe5ffe336632497259a045d1b070c686c5b75f5d2e"
+  },
+  "C:\\Users\\zheyu\\workspace\\stnet_ref\\ST-Net\\weights_st\\cscc\\mc_dropout_0.1\\fold2\\slidewise_metrics\\epoch_70.csv": {
+    "bytes": 182,
+    "sha256": "7296f87c73487d878faa9109d0b67fafc75dfb5c332e9b6bc6faea0c894877c6"
+  },
+  "C:\\Users\\zheyu\\workspace\\stnet_ref\\ST-Net\\weights_st\\cscc\\mc_dropout_0.1\\fold2\\slidewise_metrics\\epoch_80.csv": {
+    "bytes": 179,
+    "sha256": "68b0c26bc88ff5a122d3175ebe4caba8edf32fe7b77c331187f5e0c9d7ea714f"
+  },
+  "C:\\Users\\zheyu\\workspace\\stnet_ref\\ST-Net\\weights_st\\cscc\\mc_dropout_0.1\\fold3\\slidewise_metrics\\epoch_70.csv": {
+    "bytes": 179,
+    "sha256": "1192a0e478b592d719a8f2f6d7b8192691b0c9f6e8e557607acca43dc75c39e1"
+  },
+  "C:\\Users\\zheyu\\workspace\\stnet_ref\\ST-Net\\weights_st\\cscc\\mc_dropout_0.1\\fold3\\slidewise_metrics\\epoch_80.csv": {
+    "bytes": 181,
+    "sha256": "8d8c188854458bcc84ee7707dbcaee22c2c64903ebae621e4ad2e4f792fc29c9"
+  },
+  "C:\\Users\\zheyu\\workspace\\stnet_ref\\ST-Net\\weights_st\\cscc\\mc_dropout_0.3\\fold0\\slidewise_metrics\\epoch_60.csv": {
+    "bytes": 180,
+    "sha256": "26c6af7874f0667d4e51656f28b6b6bd17af7e5bf20bff89f335216f6a45c96e"
+  },
+  "C:\\Users\\zheyu\\workspace\\stnet_ref\\ST-Net\\weights_st\\cscc\\mc_dropout_0.3\\fold0\\slidewise_metrics\\epoch_70.csv": {
+    "bytes": 182,
+    "sha256": "f8a2b0c89f1c61edc8bc3451e1496a87c4f8c186eee6ddcb782363a063a432e4"
+  },
+  "C:\\Users\\zheyu\\workspace\\stnet_ref\\ST-Net\\weights_st\\cscc\\mc_dropout_0.3\\fold1\\slidewise_metrics\\epoch_60.csv": {
+    "bytes": 177,
+    "sha256": "9c72ebca9e0449bced8cfc4527ba3d10f28a3177e76c70cdc72942c085e7c218"
+  },
+  "C:\\Users\\zheyu\\workspace\\stnet_ref\\ST-Net\\weights_st\\cscc\\mc_dropout_0.3\\fold1\\slidewise_metrics\\epoch_70.csv": {
+    "bytes": 180,
+    "sha256": "ecc24952700cfca465824fe69ac8bdba8d6dec7cb62fe62ee705bc736133c0b0"
+  },
+  "C:\\Users\\zheyu\\workspace\\stnet_ref\\ST-Net\\weights_st\\cscc\\mc_dropout_0.3\\fold2\\slidewise_metrics\\epoch_60.csv": {
+    "bytes": 180,
+    "sha256": "a2475017ce2aa6bd4557cfd3e40365c76efd23b411efb6d766ca1fec66f46053"
+  },
+  "C:\\Users\\zheyu\\workspace\\stnet_ref\\ST-Net\\weights_st\\cscc\\mc_dropout_0.3\\fold2\\slidewise_metrics\\epoch_70.csv": {
+    "bytes": 182,
+    "sha256": "78e2c956415179c726a057d831f8a890da183399844f48e9680dc2ea6fd20ea9"
+  },
+  "C:\\Users\\zheyu\\workspace\\stnet_ref\\ST-Net\\weights_st\\cscc\\mc_dropout_0.3\\fold3\\slidewise_metrics\\epoch_60.csv": {
+    "bytes": 182,
+    "sha256": "c49b28b8c3215556319496ae2e85724c20ffabfc9bfc42fcdf5c7f99c858450b"
+  },
+  "C:\\Users\\zheyu\\workspace\\stnet_ref\\ST-Net\\weights_st\\cscc\\mc_dropout_0.3\\fold3\\slidewise_metrics\\epoch_70.csv": {
+    "bytes": 178,
+    "sha256": "1a4777e7500ab5ff9123886bb85c0b28af0cbab1252ea4f66f78811334123440"
+  },
+  "C:\\Users\\zheyu\\workspace\\stnet_ref\\ST-Net\\weights_st\\cscc\\mc_dropout_0.5\\fold0\\slidewise_metrics\\epoch_50.csv": {
+    "bytes": 181,
+    "sha256": "b17cdb67d873500fefb802887b5dc8970d7f04557d4fe9d6c0c2d25a73b43c76"
+  },
+  "C:\\Users\\zheyu\\workspace\\stnet_ref\\ST-Net\\weights_st\\cscc\\mc_dropout_0.5\\fold0\\slidewise_metrics\\epoch_60.csv": {
+    "bytes": 180,
+    "sha256": "d0689937415107af5a13fe7648256ff7a28ffdb4062c1430a8a1d9fe48992502"
+  },
+  "C:\\Users\\zheyu\\workspace\\stnet_ref\\ST-Net\\weights_st\\cscc\\mc_dropout_0.5\\fold1\\slidewise_metrics\\epoch_50.csv": {
+    "bytes": 177,
+    "sha256": "239f707be7e53836df8597ba0393f91d2beaa2c53186bb60f675dbbf468a7e79"
+  },
+  "C:\\Users\\zheyu\\workspace\\stnet_ref\\ST-Net\\weights_st\\cscc\\mc_dropout_0.5\\fold1\\slidewise_metrics\\epoch_60.csv": {
+    "bytes": 180,
+    "sha256": "63ec4a7e2a2490146a626b949665fcedfcc734626ac017bf03dd42e9d7513741"
+  },
+  "C:\\Users\\zheyu\\workspace\\stnet_ref\\ST-Net\\weights_st\\cscc\\mc_dropout_0.5\\fold2\\slidewise_metrics\\epoch_50.csv": {
+    "bytes": 181,
+    "sha256": "e63855d20a0d1fe86d74202b0b8952d1e76e4b4ddc02688bed1f196ff73b0056"
+  },
+  "C:\\Users\\zheyu\\workspace\\stnet_ref\\ST-Net\\weights_st\\cscc\\mc_dropout_0.5\\fold2\\slidewise_metrics\\epoch_60.csv": {
+    "bytes": 181,
+    "sha256": "08e3026752436ec699ab6535d1a20714005ac2f0bf1eb9b8e6ad47e0eec6d676"
+  },
+  "C:\\Users\\zheyu\\workspace\\stnet_ref\\ST-Net\\weights_st\\cscc\\mc_dropout_0.5\\fold3\\slidewise_metrics\\epoch_50.csv": {
+    "bytes": 181,
+    "sha256": "ed2e81dc7496f9db9a2f187eb6240c9c72641daabcf774756d140c64c4a72a22"
+  },
+  "C:\\Users\\zheyu\\workspace\\stnet_ref\\ST-Net\\weights_st\\cscc\\mc_dropout_0.5\\fold3\\slidewise_metrics\\epoch_60.csv": {
+    "bytes": 181,
+    "sha256": "00588315a75fd8d331f8f913ea8bdfe4999f19073c67d5b59d98f442b31df096"
+  },
+  "C:\\Users\\zheyu\\workspace\\stnet_ref\\ST-Net\\weights_st\\cscc\\random_0.05\\fold0\\slidewise_metrics\\epoch_100.csv": {
+    "bytes": 183,
+    "sha256": "9d6c444a70cc193e3ea1d7b273a119d61bba243663adcf92f302cb83c975742a"
+  },
+  "C:\\Users\\zheyu\\workspace\\stnet_ref\\ST-Net\\weights_st\\cscc\\random_0.05\\fold0\\slidewise_metrics\\epoch_110.csv": {
+    "bytes": 182,
+    "sha256": "9aaccf6d15bb0fe244ebb2e8103a61bced94204f885bf70955a4a59cf0cebc2e"
+  },
+  "C:\\Users\\zheyu\\workspace\\stnet_ref\\ST-Net\\weights_st\\cscc\\random_0.05\\fold1\\slidewise_metrics\\epoch_100.csv": {
+    "bytes": 182,
+    "sha256": "194e4b1da4d97727cafe3514502810c61410961270a6eef6b75c2303dc083800"
+  },
+  "C:\\Users\\zheyu\\workspace\\stnet_ref\\ST-Net\\weights_st\\cscc\\random_0.05\\fold1\\slidewise_metrics\\epoch_110.csv": {
+    "bytes": 182,
+    "sha256": "bacb8371f1a5c4d326adaf98e98907e58e52ae1e8a9aa29c18d08b96d5ff1ffa"
+  },
+  "C:\\Users\\zheyu\\workspace\\stnet_ref\\ST-Net\\weights_st\\cscc\\random_0.05\\fold2\\slidewise_metrics\\epoch_100.csv": {
+    "bytes": 183,
+    "sha256": "953b09768ca1426aaf9516145a4e0e9b32361b079dbb8b6575f6838a7f81aad0"
+  },
+  "C:\\Users\\zheyu\\workspace\\stnet_ref\\ST-Net\\weights_st\\cscc\\random_0.05\\fold2\\slidewise_metrics\\epoch_110.csv": {
+    "bytes": 185,
+    "sha256": "e3149f7f5efc68d6110efc932663fa48dbab640ef9946c4a373ae4977fa9e6e0"
+  },
+  "C:\\Users\\zheyu\\workspace\\stnet_ref\\ST-Net\\weights_st\\cscc\\random_0.05\\fold3\\slidewise_metrics\\epoch_100.csv": {
+    "bytes": 184,
+    "sha256": "f52a2825a4db9b3de3c3b23b222a8d38d250017a40940d9f5fe21549c8d917e0"
+  },
+  "C:\\Users\\zheyu\\workspace\\stnet_ref\\ST-Net\\weights_st\\cscc\\random_0.05\\fold3\\slidewise_metrics\\epoch_110.csv": {
+    "bytes": 184,
+    "sha256": "1520a87b8328728c2613e52474faab1bbdfe89ce006c5f0d0992bb293792857a"
+  },
+  "C:\\Users\\zheyu\\workspace\\stnet_ref\\ST-Net\\weights_st\\cscc\\random_0.1\\fold0\\slidewise_metrics\\epoch_70.csv": {
+    "bytes": 180,
+    "sha256": "5492286bd167f429f5942ebd2ac90ef2cdef9dcbe4b2f8d3bafe81c976c01cd2"
+  },
+  "C:\\Users\\zheyu\\workspace\\stnet_ref\\ST-Net\\weights_st\\cscc\\random_0.1\\fold0\\slidewise_metrics\\epoch_80.csv": {
+    "bytes": 178,
+    "sha256": "7ceaa09e582eb5a38bf8e19299dc29b7a86f7e6a5475c3d22e81f523dd45c35b"
+  },
+  "C:\\Users\\zheyu\\workspace\\stnet_ref\\ST-Net\\weights_st\\cscc\\random_0.1\\fold1\\slidewise_metrics\\epoch_70.csv": {
+    "bytes": 179,
+    "sha256": "f4a1dba1b2579df6f28ea79b4a63bfd45ed85efafb877ec8684ab9bc171fd1a3"
+  },
+  "C:\\Users\\zheyu\\workspace\\stnet_ref\\ST-Net\\weights_st\\cscc\\random_0.1\\fold1\\slidewise_metrics\\epoch_80.csv": {
+    "bytes": 181,
+    "sha256": "d6aba88f345496185737931d2c643010e41c8c223ba884df2c366463d09bb7ca"
+  },
+  "C:\\Users\\zheyu\\workspace\\stnet_ref\\ST-Net\\weights_st\\cscc\\random_0.1\\fold2\\slidewise_metrics\\epoch_70.csv": {
+    "bytes": 179,
+    "sha256": "5e81270583273500b28d7b0593b80f576f5d5af2847081406554ceaba3b27fdd"
+  },
+  "C:\\Users\\zheyu\\workspace\\stnet_ref\\ST-Net\\weights_st\\cscc\\random_0.1\\fold2\\slidewise_metrics\\epoch_80.csv": {
+    "bytes": 181,
+    "sha256": "9c29d184f0ae1c6e225332876661a00057701237f6167f4e4fc3d0ddc1609497"
+  },
+  "C:\\Users\\zheyu\\workspace\\stnet_ref\\ST-Net\\weights_st\\cscc\\random_0.1\\fold3\\slidewise_metrics\\epoch_70.csv": {
+    "bytes": 181,
+    "sha256": "66c64850309f8054a32590b905a708233402c573e1b36b97d83a01c304593ab2"
+  },
+  "C:\\Users\\zheyu\\workspace\\stnet_ref\\ST-Net\\weights_st\\cscc\\random_0.1\\fold3\\slidewise_metrics\\epoch_80.csv": {
+    "bytes": 181,
+    "sha256": "8cb47aef822a0dd1590ef2195ef4b184fbdcba60ecb9b4dc567dcb925c451f08"
+  },
+  "C:\\Users\\zheyu\\workspace\\stnet_ref\\ST-Net\\weights_st\\cscc\\random_0.3\\fold0\\slidewise_metrics\\epoch_60.csv": {
+    "bytes": 181,
+    "sha256": "8df77f5d581c75a662bc16c51475d95da7db4342912a5dd5b63f398dfc27f2cb"
+  },
+  "C:\\Users\\zheyu\\workspace\\stnet_ref\\ST-Net\\weights_st\\cscc\\random_0.3\\fold0\\slidewise_metrics\\epoch_70.csv": {
+    "bytes": 178,
+    "sha256": "e2b264dbd64fef0d1ba59b39ea5422057e947dd9f4d4d1c471973a70e44a6b42"
+  },
+  "C:\\Users\\zheyu\\workspace\\stnet_ref\\ST-Net\\weights_st\\cscc\\random_0.3\\fold1\\slidewise_metrics\\epoch_60.csv": {
+    "bytes": 180,
+    "sha256": "dcaa11fa335ba3f66472c9ff903da8f418fdce8d4565c4d981bf92c678d92aed"
+  },
+  "C:\\Users\\zheyu\\workspace\\stnet_ref\\ST-Net\\weights_st\\cscc\\random_0.3\\fold1\\slidewise_metrics\\epoch_70.csv": {
+    "bytes": 181,
+    "sha256": "81bee44f2f7aab14a8b9c3aa0bf1d7f2a3ce186edb1a0eb2405790d798aa760d"
+  },
+  "C:\\Users\\zheyu\\workspace\\stnet_ref\\ST-Net\\weights_st\\cscc\\random_0.3\\fold2\\slidewise_metrics\\epoch_60.csv": {
+    "bytes": 181,
+    "sha256": "1b695f0b7de53d9c0778e036e8026025b8ed809345d720a25a44b3311311629c"
+  },
+  "C:\\Users\\zheyu\\workspace\\stnet_ref\\ST-Net\\weights_st\\cscc\\random_0.3\\fold2\\slidewise_metrics\\epoch_70.csv": {
+    "bytes": 179,
+    "sha256": "58670083b5d51761951b0eba718318ef630bac25cbbe2f73c7a46a29b685973e"
+  },
+  "C:\\Users\\zheyu\\workspace\\stnet_ref\\ST-Net\\weights_st\\cscc\\random_0.3\\fold3\\slidewise_metrics\\epoch_60.csv": {
+    "bytes": 181,
+    "sha256": "fd67b31847babb65d8a097fcd318740faf8227ed810f69a5bf541d31623388d6"
+  },
+  "C:\\Users\\zheyu\\workspace\\stnet_ref\\ST-Net\\weights_st\\cscc\\random_0.3\\fold3\\slidewise_metrics\\epoch_70.csv": {
+    "bytes": 179,
+    "sha256": "8fcf52b6be4468da637a0dd64f549757af447bd27457b6c5364492d39ff4ddf7"
+  },
+  "C:\\Users\\zheyu\\workspace\\stnet_ref\\ST-Net\\weights_st\\cscc\\random_0.5\\fold0\\slidewise_metrics\\epoch_50.csv": {
+    "bytes": 180,
+    "sha256": "1ea49a6650f37e8d5ecb4555af3e7a45d670ecbada818f1804cc237826721fdb"
+  },
+  "C:\\Users\\zheyu\\workspace\\stnet_ref\\ST-Net\\weights_st\\cscc\\random_0.5\\fold0\\slidewise_metrics\\epoch_60.csv": {
+    "bytes": 179,
+    "sha256": "d6afb353fe1d1dc7e158afd85a7ece44328bb90bb22c9adba37224764eaccc5e"
+  },
+  "C:\\Users\\zheyu\\workspace\\stnet_ref\\ST-Net\\weights_st\\cscc\\random_0.5\\fold1\\slidewise_metrics\\epoch_50.csv": {
+    "bytes": 177,
+    "sha256": "63b0f0438f4271eba906c1ebfb51cfca2e517062936d0ec36d2aa84f4f8e3d21"
+  },
+  "C:\\Users\\zheyu\\workspace\\stnet_ref\\ST-Net\\weights_st\\cscc\\random_0.5\\fold1\\slidewise_metrics\\epoch_60.csv": {
+    "bytes": 175,
+    "sha256": "09610fc165c799de90946c559b58890eb7211bd314011c03e62db54ccd2bbd45"
+  },
+  "C:\\Users\\zheyu\\workspace\\stnet_ref\\ST-Net\\weights_st\\cscc\\random_0.5\\fold2\\slidewise_metrics\\epoch_50.csv": {
+    "bytes": 181,
+    "sha256": "102710e141230f966b63a46f50dde2569864ba81cd0f75c75285468e4dd5bf0f"
+  },
+  "C:\\Users\\zheyu\\workspace\\stnet_ref\\ST-Net\\weights_st\\cscc\\random_0.5\\fold2\\slidewise_metrics\\epoch_60.csv": {
+    "bytes": 182,
+    "sha256": "df98f43ca725362a5b8e9dd468366b04e9466d4941032ddc8ba0e21792a5cb20"
+  },
+  "C:\\Users\\zheyu\\workspace\\stnet_ref\\ST-Net\\weights_st\\cscc\\random_0.5\\fold3\\slidewise_metrics\\epoch_50.csv": {
+    "bytes": 179,
+    "sha256": "ee05e02c912202e5ea5fee5b2c0505b4da93a595d847a5a5d0d05b93f7310585"
+  },
+  "C:\\Users\\zheyu\\workspace\\stnet_ref\\ST-Net\\weights_st\\cscc\\random_0.5\\fold3\\slidewise_metrics\\epoch_60.csv": {
+    "bytes": 181,
+    "sha256": "78cba3398d87d554589c43dae77cd1cccff8167e3c0e211a6efc355a03dcb57f"
+  },
+  "C:\\Users\\zheyu\\workspace\\stnet_ref\\ST-Net\\weights_st\\cscc\\random_1.0\\fold0\\slidewise_metrics\\epoch_50.csv": {
+    "bytes": 180,
+    "sha256": "0afc48efb4e403a56cfbfd3e542754862c7acb6031fb9278075f0e95c5161e53"
+  },
+  "C:\\Users\\zheyu\\workspace\\stnet_ref\\ST-Net\\weights_st\\cscc\\random_1.0\\fold1\\slidewise_metrics\\epoch_50.csv": {
+    "bytes": 177,
+    "sha256": "e9a056a355e95d64438f74a8856f40d183e3353032a8425ae5d3ae50009c3ff9"
+  },
+  "C:\\Users\\zheyu\\workspace\\stnet_ref\\ST-Net\\weights_st\\cscc\\random_1.0\\fold2\\slidewise_metrics\\epoch_50.csv": {
+    "bytes": 182,
+    "sha256": "834e054abd2eb79039734cc922f32cf2825e763b502951952e93f380c5e49bbe"
+  },
+  "C:\\Users\\zheyu\\workspace\\stnet_ref\\ST-Net\\weights_st\\cscc\\random_1.0\\fold3\\slidewise_metrics\\epoch_50.csv": {
+    "bytes": 178,
+    "sha256": "fb2f1354e53987f66166fa9209451bc74d7e6310ab1c8b5c6251546af659df6b"
+  },
+  "C:\\Users\\zheyu\\workspace\\stnet_ref\\ST-Net\\weights_st\\cscc\\tod_0.05\\fold0\\slidewise_metrics\\epoch_100.csv": {
+    "bytes": 184,
+    "sha256": "77089c7978477a85638531755e3dc258a95d08bd734bf653448907d0007878c5"
+  },
+  "C:\\Users\\zheyu\\workspace\\stnet_ref\\ST-Net\\weights_st\\cscc\\tod_0.05\\fold0\\slidewise_metrics\\epoch_110.csv": {
+    "bytes": 185,
+    "sha256": "998b7f7b89b7b69d0f2d33788046440c9729ca9fbeb6fb3d31e5c75ca8d4507c"
+  },
+  "C:\\Users\\zheyu\\workspace\\stnet_ref\\ST-Net\\weights_st\\cscc\\tod_0.05\\fold1\\slidewise_metrics\\epoch_100.csv": {
+    "bytes": 182,
+    "sha256": "f4ad33e8684ab09d63941bab7ef711ffcaf58dd1da6f4320abe429eeb9351627"
+  },
+  "C:\\Users\\zheyu\\workspace\\stnet_ref\\ST-Net\\weights_st\\cscc\\tod_0.05\\fold1\\slidewise_metrics\\epoch_110.csv": {
+    "bytes": 183,
+    "sha256": "f9e13ec875bbba06abd91231e1895364b0640d671c2537f57a744aac470a90fd"
+  },
+  "C:\\Users\\zheyu\\workspace\\stnet_ref\\ST-Net\\weights_st\\cscc\\tod_0.05\\fold2\\slidewise_metrics\\epoch_100.csv": {
+    "bytes": 185,
+    "sha256": "d846b2764b2fbd6f7f101f6f3957bf7c73c2ca83b18fa027fe214772bd4807bf"
+  },
+  "C:\\Users\\zheyu\\workspace\\stnet_ref\\ST-Net\\weights_st\\cscc\\tod_0.05\\fold2\\slidewise_metrics\\epoch_110.csv": {
+    "bytes": 183,
+    "sha256": "6455aa73b216ac2b0e8cdb66808e9f95eb107d7baccccbae005181f4e5064203"
+  },
+  "C:\\Users\\zheyu\\workspace\\stnet_ref\\ST-Net\\weights_st\\cscc\\tod_0.05\\fold3\\slidewise_metrics\\epoch_100.csv": {
+    "bytes": 182,
+    "sha256": "c41dc29b74119150d33bd25967b7d757c519d61be2560931a3b20a6cb53870a1"
+  },
+  "C:\\Users\\zheyu\\workspace\\stnet_ref\\ST-Net\\weights_st\\cscc\\tod_0.05\\fold3\\slidewise_metrics\\epoch_110.csv": {
+    "bytes": 182,
+    "sha256": "3cfe5c987bdef78f938ed5efa5584d957a4f050e9aff895f541de7a7725a743d"
+  },
+  "C:\\Users\\zheyu\\workspace\\stnet_ref\\ST-Net\\weights_st\\cscc\\tod_0.1\\fold0\\slidewise_metrics\\epoch_70.csv": {
+    "bytes": 180,
+    "sha256": "471873f9a76d3edaf51525bd694b4d07c87ba788f150da37ea28367b8bea504f"
+  },
+  "C:\\Users\\zheyu\\workspace\\stnet_ref\\ST-Net\\weights_st\\cscc\\tod_0.1\\fold0\\slidewise_metrics\\epoch_80.csv": {
+    "bytes": 180,
+    "sha256": "d607dfa748f484a3112fadacfde1f4ff1cafe3e094b992e07a772bfd53fe1e56"
+  },
+  "C:\\Users\\zheyu\\workspace\\stnet_ref\\ST-Net\\weights_st\\cscc\\tod_0.1\\fold1\\slidewise_metrics\\epoch_70.csv": {
+    "bytes": 180,
+    "sha256": "040c9ebcfd55f2e78ae4aacdbcff34665d2a9c1227e1dff1da7b7482d6306892"
+  },
+  "C:\\Users\\zheyu\\workspace\\stnet_ref\\ST-Net\\weights_st\\cscc\\tod_0.1\\fold1\\slidewise_metrics\\epoch_80.csv": {
+    "bytes": 179,
+    "sha256": "7e6825d6d87828612c67a5d77987b6d69eaeed02b57f5a5833512d18a18d36cc"
+  },
+  "C:\\Users\\zheyu\\workspace\\stnet_ref\\ST-Net\\weights_st\\cscc\\tod_0.1\\fold2\\slidewise_metrics\\epoch_70.csv": {
+    "bytes": 180,
+    "sha256": "ad149de1f3f736b3ca3df0427611695a73bcb48695e7d50959b4fb567a1dffe7"
+  },
+  "C:\\Users\\zheyu\\workspace\\stnet_ref\\ST-Net\\weights_st\\cscc\\tod_0.1\\fold2\\slidewise_metrics\\epoch_80.csv": {
+    "bytes": 179,
+    "sha256": "51395e1aa01f66e1595cefc776e99adfcd8f53773db7a5afface2109443ab03c"
+  },
+  "C:\\Users\\zheyu\\workspace\\stnet_ref\\ST-Net\\weights_st\\cscc\\tod_0.1\\fold3\\slidewise_metrics\\epoch_70.csv": {
+    "bytes": 180,
+    "sha256": "c2a10093768ec167c2372a01b2112ed93c9423fd4f139caace0d122050922bdc"
+  },
+  "C:\\Users\\zheyu\\workspace\\stnet_ref\\ST-Net\\weights_st\\cscc\\tod_0.1\\fold3\\slidewise_metrics\\epoch_80.csv": {
+    "bytes": 181,
+    "sha256": "2b97b6f1db03cdfd9377344e1182d2b7728e6d93f60cd16ec6800d54ee910f82"
+  },
+  "C:\\Users\\zheyu\\workspace\\stnet_ref\\ST-Net\\weights_st\\cscc\\tod_0.3\\fold0\\slidewise_metrics\\epoch_60.csv": {
+    "bytes": 180,
+    "sha256": "57b20763d1005b92e0524e04a7551125692452dc44aaea7321e1035dd0840286"
+  },
+  "C:\\Users\\zheyu\\workspace\\stnet_ref\\ST-Net\\weights_st\\cscc\\tod_0.3\\fold0\\slidewise_metrics\\epoch_70.csv": {
+    "bytes": 178,
+    "sha256": "a9c49e3429d5d7c8d8ac1f898fa88b678a33473d25a252743555dff3daf55b71"
+  },
+  "C:\\Users\\zheyu\\workspace\\stnet_ref\\ST-Net\\weights_st\\cscc\\tod_0.3\\fold1\\slidewise_metrics\\epoch_60.csv": {
+    "bytes": 180,
+    "sha256": "83b332e39deb92a172a92b2b6b667b54996cdda2b89787349f53d12e73f46ada"
+  },
+  "C:\\Users\\zheyu\\workspace\\stnet_ref\\ST-Net\\weights_st\\cscc\\tod_0.3\\fold1\\slidewise_metrics\\epoch_70.csv": {
+    "bytes": 181,
+    "sha256": "d41273268912a087ccbd71560913d024c7f006a58e81f3a9e4b2ab38b3cd4771"
+  },
+  "C:\\Users\\zheyu\\workspace\\stnet_ref\\ST-Net\\weights_st\\cscc\\tod_0.3\\fold2\\slidewise_metrics\\epoch_60.csv": {
+    "bytes": 181,
+    "sha256": "1ac1d5ce2eabfbe9746ea93f6163404ed9d8dd9e026c599cfa6430bf6bb17b0e"
+  },
+  "C:\\Users\\zheyu\\workspace\\stnet_ref\\ST-Net\\weights_st\\cscc\\tod_0.3\\fold2\\slidewise_metrics\\epoch_70.csv": {
+    "bytes": 178,
+    "sha256": "0a8b0fbacf90927975ae938532704cc8415eb364384a74b7802a51f121a0e693"
+  },
+  "C:\\Users\\zheyu\\workspace\\stnet_ref\\ST-Net\\weights_st\\cscc\\tod_0.3\\fold3\\slidewise_metrics\\epoch_60.csv": {
+    "bytes": 180,
+    "sha256": "0d0e581cbdf8aa705de132293ccd2a080946230a810bd2e8f3cac9fcf2ee4b5a"
+  },
+  "C:\\Users\\zheyu\\workspace\\stnet_ref\\ST-Net\\weights_st\\cscc\\tod_0.3\\fold3\\slidewise_metrics\\epoch_70.csv": {
+    "bytes": 180,
+    "sha256": "f8f74fee72b18ba7f6c03aadebdc771f46610afa7341e318056440574b54587d"
+  },
+  "C:\\Users\\zheyu\\workspace\\stnet_ref\\ST-Net\\weights_st\\cscc\\tod_0.5\\fold0\\slidewise_metrics\\epoch_50.csv": {
+    "bytes": 180,
+    "sha256": "e97e259b619fd8f407a3c32f71c108a60b9522668a99bdde1cf25e51f3d0d476"
+  },
+  "C:\\Users\\zheyu\\workspace\\stnet_ref\\ST-Net\\weights_st\\cscc\\tod_0.5\\fold0\\slidewise_metrics\\epoch_60.csv": {
+    "bytes": 180,
+    "sha256": "05ef024158f80c03992220e2c9c4df1bb20c097a2064575673652fcaaf209db1"
+  },
+  "C:\\Users\\zheyu\\workspace\\stnet_ref\\ST-Net\\weights_st\\cscc\\tod_0.5\\fold1\\slidewise_metrics\\epoch_50.csv": {
+    "bytes": 177,
+    "sha256": "f69ff3a6d69f3f70fc6f289ee86ba935ed07475260e22743bfe3604f1cf12048"
+  },
+  "C:\\Users\\zheyu\\workspace\\stnet_ref\\ST-Net\\weights_st\\cscc\\tod_0.5\\fold1\\slidewise_metrics\\epoch_60.csv": {
+    "bytes": 180,
+    "sha256": "be9d3557568e6e5af31d6555e29cb9f553118ccae91b52ee6ec73c5bb6d4d9cf"
+  },
+  "C:\\Users\\zheyu\\workspace\\stnet_ref\\ST-Net\\weights_st\\cscc\\tod_0.5\\fold2\\slidewise_metrics\\epoch_50.csv": {
+    "bytes": 178,
+    "sha256": "d187c440c44ace441a4e558023ce90b901a027b1dac7241cbfb01c4e1cbb80e5"
+  },
+  "C:\\Users\\zheyu\\workspace\\stnet_ref\\ST-Net\\weights_st\\cscc\\tod_0.5\\fold2\\slidewise_metrics\\epoch_60.csv": {
+    "bytes": 182,
+    "sha256": "fc10e3ada987769029ae079501cb55ec431cac57cb826517988a202f948041ac"
+  },
+  "C:\\Users\\zheyu\\workspace\\stnet_ref\\ST-Net\\weights_st\\cscc\\tod_0.5\\fold3\\slidewise_metrics\\epoch_50.csv": {
+    "bytes": 181,
+    "sha256": "05e72ad8964732be4db2cbbcba09df8e1c772ff8dc7ece93a91b34fa7509b0eb"
+  },
+  "C:\\Users\\zheyu\\workspace\\stnet_ref\\ST-Net\\weights_st\\cscc\\tod_0.5\\fold3\\slidewise_metrics\\epoch_60.csv": {
+    "bytes": 180,
+    "sha256": "dce0db58beb39ef48295e317a9bf5b275dc45b5a9d52d592aea74149dc6dc35d"
+  },
+  "C:\\Users\\zheyu\\workspace\\stnet_ref\\ST-Net\\weights_st\\cscc\\typiclust_0.05\\fold0\\slidewise_metrics\\epoch_100.csv": {
+    "bytes": 184,
+    "sha256": "050167a01e39a226a16a1dffc48811b9b9128df088276b75215c85c77f950dda"
+  },
+  "C:\\Users\\zheyu\\workspace\\stnet_ref\\ST-Net\\weights_st\\cscc\\typiclust_0.05\\fold0\\slidewise_metrics\\epoch_110.csv": {
+    "bytes": 184,
+    "sha256": "ea8d21a1e9922baf9b096cc0ee738b18bfdc465ee67093159e2b9794e5794a6d"
+  },
+  "C:\\Users\\zheyu\\workspace\\stnet_ref\\ST-Net\\weights_st\\cscc\\typiclust_0.05\\fold1\\slidewise_metrics\\epoch_100.csv": {
+    "bytes": 182,
+    "sha256": "ffc822e05152cb7111863ea61e7b3987a2a12c217c1f5132058e71c72ce8bed4"
+  },
+  "C:\\Users\\zheyu\\workspace\\stnet_ref\\ST-Net\\weights_st\\cscc\\typiclust_0.05\\fold1\\slidewise_metrics\\epoch_110.csv": {
+    "bytes": 181,
+    "sha256": "1af651c63004984e334edec25f7b0409ea4bb149cf27d4eda00e71444950189d"
+  },
+  "C:\\Users\\zheyu\\workspace\\stnet_ref\\ST-Net\\weights_st\\cscc\\typiclust_0.05\\fold2\\slidewise_metrics\\epoch_100.csv": {
+    "bytes": 186,
+    "sha256": "9b9d6eeb28252d7fca4b0e69a3a3914a78a09cee78a388f94b7b48b9ce54adc8"
+  },
+  "C:\\Users\\zheyu\\workspace\\stnet_ref\\ST-Net\\weights_st\\cscc\\typiclust_0.05\\fold2\\slidewise_metrics\\epoch_110.csv": {
+    "bytes": 184,
+    "sha256": "0a4c6181af23937a3cbb02b34223b0cc5d98f52640ee09bd4eec1f706ea2fc59"
+  },
+  "C:\\Users\\zheyu\\workspace\\stnet_ref\\ST-Net\\weights_st\\cscc\\typiclust_0.05\\fold3\\slidewise_metrics\\epoch_100.csv": {
+    "bytes": 183,
+    "sha256": "3e3f23fa20ad2fa44bc73586e970473a965bbf347d9b54bb3b5d8362df7e3b97"
+  },
+  "C:\\Users\\zheyu\\workspace\\stnet_ref\\ST-Net\\weights_st\\cscc\\typiclust_0.05\\fold3\\slidewise_metrics\\epoch_110.csv": {
+    "bytes": 183,
+    "sha256": "76121d2f7138b2a3846e9722d4deb2c98f1d7448add9e16888eb2e5b8866d8ab"
+  },
+  "C:\\Users\\zheyu\\workspace\\stnet_ref\\ST-Net\\weights_st\\cscc\\typiclust_0.1\\fold0\\slidewise_metrics\\epoch_70.csv": {
+    "bytes": 179,
+    "sha256": "f769e06832da7e34691337b645ff566cf2bef36a78b977eb5610e416ad762e5e"
+  },
+  "C:\\Users\\zheyu\\workspace\\stnet_ref\\ST-Net\\weights_st\\cscc\\typiclust_0.1\\fold0\\slidewise_metrics\\epoch_80.csv": {
+    "bytes": 178,
+    "sha256": "1f620c60a92cb26cabe578c3b3793e61123df9345326a610b07df7480278bec7"
+  },
+  "C:\\Users\\zheyu\\workspace\\stnet_ref\\ST-Net\\weights_st\\cscc\\typiclust_0.1\\fold1\\slidewise_metrics\\epoch_70.csv": {
+    "bytes": 179,
+    "sha256": "30026a8517a33ef50799a6d94bf3fcbfb9db88aef54066c7e6980478bf6c01cc"
+  },
+  "C:\\Users\\zheyu\\workspace\\stnet_ref\\ST-Net\\weights_st\\cscc\\typiclust_0.1\\fold1\\slidewise_metrics\\epoch_80.csv": {
+    "bytes": 180,
+    "sha256": "771682c6e08c1c8c57486f395283ccaca4dbc521d04a19ada32098ed919187b6"
+  },
+  "C:\\Users\\zheyu\\workspace\\stnet_ref\\ST-Net\\weights_st\\cscc\\typiclust_0.1\\fold2\\slidewise_metrics\\epoch_70.csv": {
+    "bytes": 180,
+    "sha256": "f449e5935d66ded8532b990502e3bd57688e1951ad1ef160e053bc5d076bc828"
+  },
+  "C:\\Users\\zheyu\\workspace\\stnet_ref\\ST-Net\\weights_st\\cscc\\typiclust_0.1\\fold2\\slidewise_metrics\\epoch_80.csv": {
+    "bytes": 181,
+    "sha256": "92e3819422dc97e3526f2169506c82df08e19202438e96c1bdef271351bbc90f"
+  },
+  "C:\\Users\\zheyu\\workspace\\stnet_ref\\ST-Net\\weights_st\\cscc\\typiclust_0.1\\fold3\\slidewise_metrics\\epoch_70.csv": {
+    "bytes": 181,
+    "sha256": "0c02b5c7d04c82ea85ee2be8cbd56a7c1c8cbded6b29af6258a5fff60f4a4f9a"
+  },
+  "C:\\Users\\zheyu\\workspace\\stnet_ref\\ST-Net\\weights_st\\cscc\\typiclust_0.1\\fold3\\slidewise_metrics\\epoch_80.csv": {
+    "bytes": 180,
+    "sha256": "eca5179a1e98498342a8d9aa039e7d7ede3ea5296eec43f4fbe907d5211e50c3"
+  },
+  "C:\\Users\\zheyu\\workspace\\stnet_ref\\ST-Net\\weights_st\\cscc\\typiclust_0.3\\fold0\\slidewise_metrics\\epoch_60.csv": {
+    "bytes": 181,
+    "sha256": "a7f228654f97635310b6848e7ab1652c31b118548cb274d8d61bc39b2f178014"
+  },
+  "C:\\Users\\zheyu\\workspace\\stnet_ref\\ST-Net\\weights_st\\cscc\\typiclust_0.3\\fold0\\slidewise_metrics\\epoch_70.csv": {
+    "bytes": 180,
+    "sha256": "f3e4996a3ddeed00be4e75ffa98759f05bfa87a5380e5dac0ba0344f0cfc889d"
+  },
+  "C:\\Users\\zheyu\\workspace\\stnet_ref\\ST-Net\\weights_st\\cscc\\typiclust_0.3\\fold1\\slidewise_metrics\\epoch_60.csv": {
+    "bytes": 180,
+    "sha256": "5b324af09919c2089f8c9ee0222820a3b84d1e6612454885f5e42716b140c082"
+  },
+  "C:\\Users\\zheyu\\workspace\\stnet_ref\\ST-Net\\weights_st\\cscc\\typiclust_0.3\\fold1\\slidewise_metrics\\epoch_70.csv": {
+    "bytes": 180,
+    "sha256": "0ab6c7e01bef0572ea824a60e21c54b2ee9106f4cfa9a902c04ab6234d9bb7d5"
+  },
+  "C:\\Users\\zheyu\\workspace\\stnet_ref\\ST-Net\\weights_st\\cscc\\typiclust_0.3\\fold2\\slidewise_metrics\\epoch_60.csv": {
+    "bytes": 181,
+    "sha256": "dd1b8bf6114d1b9ca9ce8be60bc8cc9d66af1d7c48f0381f5268de12c0a7e562"
+  },
+  "C:\\Users\\zheyu\\workspace\\stnet_ref\\ST-Net\\weights_st\\cscc\\typiclust_0.3\\fold2\\slidewise_metrics\\epoch_70.csv": {
+    "bytes": 181,
+    "sha256": "7f37b95ea350d9ff05317963c37949d44736ea608f8f880ff7f8818f798a26d5"
+  },
+  "C:\\Users\\zheyu\\workspace\\stnet_ref\\ST-Net\\weights_st\\cscc\\typiclust_0.3\\fold3\\slidewise_metrics\\epoch_60.csv": {
+    "bytes": 180,
+    "sha256": "a8ead819b17c61c1ab3cebd32f8b125fe4ce0b12a91fc17c2fddc24340bc6715"
+  },
+  "C:\\Users\\zheyu\\workspace\\stnet_ref\\ST-Net\\weights_st\\cscc\\typiclust_0.3\\fold3\\slidewise_metrics\\epoch_70.csv": {
+    "bytes": 182,
+    "sha256": "1d36b032bb9ee10a1f2f366a7929f67d9b49afea88b54944582243740c68edad"
+  },
+  "C:\\Users\\zheyu\\workspace\\stnet_ref\\ST-Net\\weights_st\\cscc\\typiclust_0.5\\fold0\\slidewise_metrics\\epoch_50.csv": {
+    "bytes": 181,
+    "sha256": "5c90ce79794393dc580de80e3528f73b42f422b5838a4b94e459f45c25447f5c"
+  },
+  "C:\\Users\\zheyu\\workspace\\stnet_ref\\ST-Net\\weights_st\\cscc\\typiclust_0.5\\fold0\\slidewise_metrics\\epoch_60.csv": {
+    "bytes": 182,
+    "sha256": "cff9e134c1879d3d8434d590ae6c78cf4677d47d9b8b19e3f17da645a153d9fd"
+  },
+  "C:\\Users\\zheyu\\workspace\\stnet_ref\\ST-Net\\weights_st\\cscc\\typiclust_0.5\\fold1\\slidewise_metrics\\epoch_50.csv": {
+    "bytes": 180,
+    "sha256": "2caf796627ab990314077d72a06d9db2b8d2e1e34e44225fd491c1bdbe737c5f"
+  },
+  "C:\\Users\\zheyu\\workspace\\stnet_ref\\ST-Net\\weights_st\\cscc\\typiclust_0.5\\fold1\\slidewise_metrics\\epoch_60.csv": {
+    "bytes": 181,
+    "sha256": "64e679e46d42410c26ee6012fb6334594a5220ea04c72cdd44866a8e79bb30a0"
+  },
+  "C:\\Users\\zheyu\\workspace\\stnet_ref\\ST-Net\\weights_st\\cscc\\typiclust_0.5\\fold2\\slidewise_metrics\\epoch_50.csv": {
+    "bytes": 182,
+    "sha256": "29900aa7c53f66b8b80f66af20db417634cbb2e1627eb187bec239dd897a597c"
+  },
+  "C:\\Users\\zheyu\\workspace\\stnet_ref\\ST-Net\\weights_st\\cscc\\typiclust_0.5\\fold2\\slidewise_metrics\\epoch_60.csv": {
+    "bytes": 181,
+    "sha256": "bc373769b0b963063e77cdcb95f82602b1f913dc20403b4931c4bbd221e6d7f2"
+  },
+  "C:\\Users\\zheyu\\workspace\\stnet_ref\\ST-Net\\weights_st\\cscc\\typiclust_0.5\\fold3\\slidewise_metrics\\epoch_50.csv": {
+    "bytes": 181,
+    "sha256": "397616946ceb5077d0298849f92d76a613d8fe8289939714149aeaee079b7af2"
+  },
+  "C:\\Users\\zheyu\\workspace\\stnet_ref\\ST-Net\\weights_st\\cscc\\typiclust_0.5\\fold3\\slidewise_metrics\\epoch_60.csv": {
+    "bytes": 180,
+    "sha256": "afbe8dbe9299dacaf0124f78d024e07cdd42251d6a8fa9e842db3f05f5515115"
+  }
+}

@@ -1,0 +1,6 @@
+qa/
+*.aux
+*.log
+*.blg
+*.out
+__pycache__/

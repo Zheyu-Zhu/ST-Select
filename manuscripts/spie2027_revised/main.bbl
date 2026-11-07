@@ -1,0 +1,101 @@
+\begin{thebibliography}{10}
+
+\bibitem{stahl2016visualization}
+St{\aa}hl, P.~L., Salm{\'e}n, F., Vickovic, S., Lundmark, A., Navarro, J.~F.,
+  Magnusson, J., Giacomello, S., Asp, M., Westholm, J.~O., Huss, M., Mollbrink,
+  A., Linnarsson, S., Codeluppi, S., Borg, {\AA}., Ponten, F., Costea, P.~I.,
+  Sahl{\'e}n, P., Mulder, J., Bergmann, O., Lundeberg, J., and Frisen, J.,
+  ``Visualization and analysis of gene expression in tissue sections by spatial
+  transcriptomics,'' {\em Science}~{\bf 353}(6294),  78--82 (2016).
+
+\bibitem{zhu2024asign}
+Zhu, J., Deng, R., Yao, T., Xiong, J., Qu, C., Guo, J., Lu, S., Yin, M., Wang,
+  Y., Zhao, S., Yang, H., and Huo, Y., ``{ASIGN}: An anatomy-aware spatial
+  imputation graphic network for {3D} spatial transcriptomics,'' in [{\em
+  Proceedings of the IEEE/CVF Conference on Computer Vision and Pattern
+  Recognition (CVPR)}{\nolinebreak\hspace{0.1em}]},   30829--30838 (2025).
+
+\bibitem{he2020integrating}
+He, B., Bergenstr{\aa}hle, L., Stenbeck, L., Abid, A., Andersson, A., Borg,
+  {\AA}., Maaskola, J., Lundeberg, J., and Zou, J., ``Integrating spatial gene
+  expression and breast tumour morphology via deep learning,'' {\em Nature
+  Biomedical Engineering}~{\bf 4}(8),  827--834 (2020).
+
+\bibitem{zhu2025scr2}
+Zhu, J., Deng, R., Guo, J., Yao, T., Qu, C., Xiong, J., Lu, S., Lu, Z., Zhu,
+  Y., Lionts, M., et~al., ``{SCR}$^2$-{ST}: Combine single cell with spatial
+  transcriptomics for efficient active sampling via reinforcement learning,''
+  in [{\em Proceedings of The 9th International Conference on Medical Imaging
+  with Deep Learning}{\nolinebreak\hspace{0.1em}]},  {\em Proceedings of
+  Machine Learning Research} {\bf 315},  488--509, PMLR (2026).
+
+\bibitem{hacohen2022active}
+Hacohen, G., Dekel, A., and Weinshall, D., ``Active learning on a budget:
+  Opposite strategies suit high and low budgets,'' in [{\em International
+  Conference on Machine Learning (ICML)}{\nolinebreak\hspace{0.1em}]},
+  8175--8195 (2022).
+
+\bibitem{gal2016dropout}
+Gal, Y. and Ghahramani, Z., ``Dropout as a {Bayesian} approximation:
+  Representing model uncertainty in deep learning,'' in [{\em International
+  Conference on Machine Learning (ICML)}{\nolinebreak\hspace{0.1em}]},
+  1050--1059 (2016).
+
+\bibitem{huang2021semi}
+Huang, S., Wang, T., Xiong, H., Huan, J., and Dou, D., ``Semi-supervised active
+  learning with temporal output discrepancy,'' in [{\em Proceedings of the
+  IEEE/CVF International Conference on Computer Vision
+  (ICCV)}{\nolinebreak\hspace{0.1em}]},   3447--3456 (2021).
+
+\bibitem{sener2018active}
+Sener, O. and Savarese, S., ``Active learning for convolutional neural
+  networks: A core-set approach,'' in [{\em International Conference on
+  Learning Representations (ICLR)}{\nolinebreak\hspace{0.1em}]},  (2018).
+
+\bibitem{huang2017densely}
+Huang, G., Liu, Z., van~der Maaten, L., and Weinberger, K.~Q., ``Densely
+  connected convolutional networks,'' in [{\em Proceedings of the IEEE
+  Conference on Computer Vision and Pattern Recognition
+  (CVPR)}{\nolinebreak\hspace{0.1em}]},   4700--4708 (2017).
+
+\bibitem{jaume2024hest}
+Jaume, G., Doucet, P., Song, A.~H., Lu, M.~Y., Almagro-P{\'e}rez, C., Wagner,
+  S.~J., Vaidya, A.~J., Chen, R.~J., Williamson, D. F.~K., Kim, A., and
+  Mahmood, F., ``{HEST-1k}: A dataset for spatial transcriptomics and histology
+  image analysis,'' in [{\em Advances in Neural Information Processing Systems
+  (NeurIPS)}{\nolinebreak\hspace{0.1em}]},  (2024).
+
+\bibitem{andersson2021spatial}
+Andersson, A., Larsson, L., Stenbeck, L., Salm{\'e}n, F., Ehinger, A., Wu,
+  S.~Z., Al-Eryani, G., Roden, D., Swarbrick, A., Borg, {\AA}., Frisen, J.,
+  Engblom, C., and Lundeberg, J., ``Spatial deconvolution of {HER2}-positive
+  breast cancer delineates tumor-associated cell type interactions,'' {\em
+  Nature Communications}~{\bf 12}(1),  6012 (2021).
+
+\bibitem{ji2020multimodal}
+Ji, A.~L., Rubin, A.~J., Thrane, K., Jiang, S., Reynolds, D.~L., Meyers, R.~M.,
+  Guo, M.~G., George, B.~M., Mollbrink, A., Bergenstr{\aa}hle, J., Larsson, L.,
+  Bai, Y., Zhu, B., Bhaduri, A., Meyers, J.~M., Rovira-Clav{\'e}, X., Hollmig,
+  S.~T., Aasi, S.~Z., Nolan, G.~P., Lundeberg, J., and Khavari, P.~A.,
+  ``Multimodal analysis of composition and spatial architecture in human
+  squamous cell carcinoma,'' {\em Cell}~{\bf 182}(2),  497--514 (2020).
+
+\bibitem{hubert1985comparing}
+Hubert, L. and Arabie, P., ``Comparing partitions,'' {\em Journal of
+  Classification}~{\bf 2}(1),  193--218 (1985).
+
+\bibitem{moran1950notes}
+Moran, P. A.~P., ``Notes on continuous stochastic phenomena,'' {\em
+  Biometrika}~{\bf 37}(1--2),  17--23 (1950).
+
+\bibitem{bouckaert2004replicability}
+Bouckaert, R.~R. and Frank, E., ``Evaluating the replicability of significance
+  tests for comparing learning algorithms,'' in [{\em Advances in Knowledge
+  Discovery and Data Mining (PAKDD)}{\nolinebreak\hspace{0.1em}]},  {\em
+  Lecture Notes in Computer Science} {\bf 3056},  3--12, Springer (2004).
+
+\bibitem{holm1979simple}
+Holm, S., ``A simple sequentially rejective multiple test procedure,'' {\em
+  Scandinavian Journal of Statistics}~{\bf 6}(2),  65--70 (1979).
+
+\end{thebibliography}

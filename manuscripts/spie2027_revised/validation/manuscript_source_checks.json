@@ -1,0 +1,18 @@
+{
+  "abstract_words_after_tex_command_removal": 217,
+  "keyword_count": 5,
+  "missing_citation_keys": [],
+  "duplicate_bibkeys": [],
+  "undefined_references": [],
+  "duplicate_labels": [],
+  "duplicate_section_titles": [],
+  "environment_begin_end_match": true,
+  "table_count": 4,
+  "figure_count": 2,
+  "kidney_result_mention": false,
+  "acknowledgements_unnumbered": true,
+  "obsolete_epoch_lr_formula_present": false,
+  "obsolete_0056_present": false,
+  "obsolete_below_25_percent_claim_present": false,
+  "failures": []
+}

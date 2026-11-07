@@ -1,0 +1,386 @@
+================================================================================
+ActiveST-Bench — PROJECT HANDOFF
+Benchmarking active spot selection for cost-efficient spatial transcriptomics
+Last verified: 2026-11-07
+================================================================================
+
+--------------------------------------------------------------------------------
+0. READ THIS FIRST — three facts that will otherwise waste your time
+--------------------------------------------------------------------------------
+
+(1) THERE ARE TWO CODE TREES, AND ONLY ONE IS UNDER VERSION CONTROL.
+
+    C:\Users\zheyu\workspace\ST-Select\            git repo, branch
+                                                   budget-and-al-null.
+                                                   Analysis, figures, papers,
+                                                   planning docs.
+    C:\Users\zheyu\workspace\stnet_ref\ST-Net\     NOT a git repo. ALL training
+                                                   code lives here. Back it up
+                                                   or commit it before editing.
+
+(2) KIDNEY DATA LIVES OUTSIDE THE REPO AND NEEDS ENV VARS.
+    HER2 and cSCC resolve from config.py defaults. Kidney does not. Any script
+    touching kidney must export these first or it will silently find nothing
+    (add_spatial_metrics.py prints "nothing to score" and exits 0):
+
+      PKG=/c/Users/zheyu/OneDrive/Desktop/random/random_clean
+      export ST_DATA_ROOT="$PKG/data_infor"
+      export ST_IMAGE_ROOT="$PKG/patches"
+      export ST_TARGET_GENE_DIR="$PKG/target_genes"
+      export ST_HVG_DIR="$PKG/hvg_expression"
+
+(3) THE PAPERS MOVED INTO THE REPO ON 2026-11-07.
+    They used to live under C:\Users\zheyu\OneDrive\Desktop\ (SPIE2027_4 and
+    SPIE_4_Pages) and are no longer there. The live manuscript is now:
+
+      manuscripts\spie2027_revised\main.tex      the current full manuscript
+      manuscripts\spie2027_revised\main.pdf      its build
+      manuscripts\spie2027_revised\main_original.tex
+                                                 pre-revision state, keep it
+      manuscripts\spie2027_revised\main_expanded_reviewer_revision.tex
+                                                 intermediate longer revision
+      manuscripts\spie2027_revised\qa\           per-figure render checks
+      manuscripts\spie2027_revised\response_to_reviewers.md
+      manuscripts\spie2027_revised\bibliography_audit.md
+      output\spie2027_revision\                  distribution PDF and ZIP
+
+    That directory was produced by a SEPARATE agent session on 2026-11-07, not
+    by the work described in this handoff, so treat its conclusions as
+    independent. READ ITS README.md FIRST. Per that README: conference scope is
+    HER2 and cSCC only with kidney reserved for the journal extension; the
+    working limit is at most eight pages including references; the
+    professor-review deadline is 15 November 2026. The README itself flags that
+    the page limit was not independently confirmed in the author portal. The
+    previously accepted four-page submission was left unmodified.
+
+--------------------------------------------------------------------------------
+1. WHAT THE PROJECT IS
+--------------------------------------------------------------------------------
+
+Spatial transcriptomics (ST) sequences every spot on a fixed capture grid, so
+cost scales with section area rather than biological content. Active learning
+(AL) is the obvious way to spend a smaller budget well. This project tests —
+rather than assumes — whether that works.
+
+Design: a retrospective pool-based benchmark. Fully profiled public cohorts
+have their candidate expression vectors masked; a strategy selects spots over
+six acquisition rounds inside one continuous training run; a fixed
+morphology-to-expression predictor trains on whatever was acquired; predictions
+are scored on held-out patients. Within a budget, every arm shares the initial
+pool, the acquisition schedule, the predictor, the optimizer, and the epoch
+count — so any difference is attributable to which spots were chosen.
+
+  Strategies (5): random (baseline), mc_dropout, tod (temporal output
+                  discrepancy), coreset, typiclust (TypiClust-inspired)
+  Budgets (4):    beta = 0.05, 0.10, 0.30, 0.50 of the fold-wide training pool
+                  plus a separate beta = 1.0 full-label reference
+  Folds (4):      patient-level cross-validation
+  Predictor:      ST-Net-style — DenseNet-121 (torchvision IMAGENET1K_V1) ->
+                  GAP -> 1024 linear -> ReLU -> dropout -> 300 outputs, MSE
+  Targets:        first 300 alphabetically ordered genes, log(1 + raw count),
+                  NO library-size normalization (this matters — see 5(f))
+
+--------------------------------------------------------------------------------
+2. CODE MAP
+--------------------------------------------------------------------------------
+
+TRAINING  (C:\Users\zheyu\workspace\stnet_ref\ST-Net\)
+
+  ST-Net.py              Entry point. One (dataset, sampler, ratio, fold, seed)
+                         per invocation. Key args:
+                           --dataset {HER2,cscc,Kidney}  --sampler <name>
+                           --total_ratio <beta>  --fold <0-3>  --seed <int>
+                           --max_epochs <N>  --batch_size 80  --base_lr 1e-4
+                           --lr_decay 0.9 --warmup_epochs 5 --sample_interval 3
+                           --sampling_cutoff 20 --gpu 0
+                         Two behaviours added 2026-08-26 that you must know:
+                           * output dir gets a _seed<N> suffix when seed != 42,
+                             so seed-42 results are never overwritten
+                           * each acquisition round writes
+                             selected_epoch_<E>.npy (the chosen train indices)
+  samplers.py            The five acquisition rules. select_and_release() is
+                         the dispatch point; add new strategies here.
+  cross_fold.py          Patient-level splits. get_folds(dataset);
+                         generate_kidney_splits() uses case_ids[k::4].
+  data_loader.py         GeneImputationDataset; train_samples is the
+                         concatenation of each train slide file in
+                         cross_fold dict order — this is what makes
+                         selected_epoch_*.npy indices resolvable to patients.
+  config.py              DATA_ROOT / IMAGE_ROOT / TARGET_GENE_DIR, each
+                         overridable by the ST_* env vars in section 0(2).
+  add_spatial_metrics.py Post-hoc ARI / NMI / Moran's I from saved predictions.
+                         No GPU, no retraining. COPY THIS as the template for
+                         any new metric.
+  check_running.py       Exit 0 if no trainer is running. Matches argv elements,
+                         not substrings (a substring version once matched its
+                         own checking process and started a duplicate queue).
+  run_*.sh               Queue scripts. Every one skips a cell whose final-epoch
+                         CSV already exists, so they are safe to re-run after an
+                         interruption. run_kidney.sh is the fullest example
+                         (sets the env vars, phases the work, gates the
+                         expensive TypiClust arms behind RUN_TYPICLUST_HIGH=1).
+  weights_st\MANIFEST.md THE FILE TO READ BEFORE COMPUTING ANY NEW METRIC.
+                         Documents the output layout, the row-alignment rule,
+                         and what is NOT stored.
+
+ANALYSIS  (C:\Users\zheyu\workspace\ST-Select\scripts\)
+
+  make_panel_d.py        The budget-curve figures. --split writes nine separate
+                         transparent panels (3 metrics x 3 cohorts) plus a
+                         legend. Panel numbering is PINNED in a NUM dict so
+                         already-placed figures keep their filenames; append,
+                         never insert.
+  make_budget_grid.py    The 5x5 strategy-by-budget prediction maps for one
+                         slide and gene (default SPA143 / COL1A1).
+  make_pred_maps.py, make_fig1_*.py, spot_overlay.py, expr_overlay.py
+                         Figure-1 panel pieces (tissue overlays, model icon,
+                         legends).
+  cscc_tables.py, make_metrics_doc.py, make_extra_figs.py
+                         Table and exploratory-figure generation.
+  check_palette.py       OKLab + Viénot dichromat validation for figure colours.
+  Note: scripts/run_*.py are from an EARLIER project phase (UNI/e2e budget
+  experiments, results_pg/). They are not part of the ST-Net benchmark.
+
+--------------------------------------------------------------------------------
+3. WHAT HAS BEEN ACHIEVED
+--------------------------------------------------------------------------------
+
+COMPUTE SPENT: 412 training runs, 824 GPU-hours, over 40 days at 87% duty
+cycle on one RTX 3080 (10 GB). Measured from output timestamps, not estimated.
+Campaign ran 2026-08-06 to 2026-09-14; 125 h idle.
+
+MEASURED PER-RUN COSTS — use these to plan new work, do not re-estimate.
+
+  by cohort        runs   GPU-h  %total  h/run      by budget   runs  h/run
+    HER2             84     121     15%   1.44        0.05       100   0.68
+    cSCC             84      76      9%   0.90        0.10       100   0.97
+    Kidney          244     628     76%   2.57        0.30       100   2.51
+                                                      0.50       100   3.51
+  by seed          runs   GPU-h                       1.00        12   4.73
+    42 (originals)  252     424
+    43 (kidney)      80     201     Budgets have equal run counts, but 30%+50%
+    44 (kidney)      80     199     consume 73% of all compute: cost tracks
+                                    labelled-set size almost linearly.
+                                    Validating a finding at 5%/10% only costs
+                                    ~20% of a full sweep, which is why the
+                                    kidney seed work was scoped that way first.
+
+  ACQUISITION OVERHEAD vs random, matched on cohort and budget:
+    coreset 1.00-1.01x   tod 1.00-1.04x   mc_dropout 1.05-1.06x
+    typiclust 1.08-1.19x
+  Scoring cost is secondary to training cost. Do NOT avoid diversity-based
+  strategies on cost grounds. An earlier belief that TypiClust's k-means was a
+  bottleneck came from timings contaminated by machine load (1,112-1,584
+  s/round); clean measurements at the same cluster count k=817 are 71-83
+  s/round. That mistaken belief caused one experimental arm to be skipped.
+
+  RULE OF THUMB: a full 80-cell single-seed sweep of a new cohort costs 76-190
+  GPU-h depending on pool size. Budget 1-6 h per individual run.
+
+CELLS ON DISK (verified 2026-11-07):
+
+  HER2     80 budget cells + 4 beta=1          seed 42 only
+  cSCC     80 budget cells + 4 beta=1          seed 42 only
+  Kidney  240 budget cells + 4 beta=1          seeds 42, 43, 44 complete
+
+  Cohorts: HER2-positive breast cancer (8 patients / 36 slides / 13,620 spots),
+  cSCC (4 / 12 / 8,671), kidney (22 / 23 / 25,944). All from HEST-1k, public
+  and de-identified.
+
+DERIVED METRIC TABLES (in the ST-Net root):
+  {HER2,cscc,Kidney}_spatial_metrics.csv          80 cells each, seed 42
+  {HER2,cscc,Kidney}_spatial_metrics_full.csv     84 cells, adds beta=1
+  Kidney_spatial_metrics_seed{43,44}.csv          80 cells each
+  Columns: dataset, sampler, budget, fold, epoch, n_slides, n_spots, ari, nmi,
+  moran_true, moran_pred, moran_fidelity, moran_abs_err
+
+FINDING 1 — On the two cancer cohorts, active selection LOSES at small budgets.
+  HER2, pooled over the four active strategies, mean paired difference from
+  Random: -0.0176 at 5%, -0.0117 at 10%, +0.0055 at 30%, +0.0057 at 50%.
+  Three of four strategies fall below Random at 5% on both cohorts; all four
+  fall below at 10%. CoreSet is worst at 5% (-0.0412 on HER2, 0/4 folds).
+
+FINDING 2 — On kidney the result INVERTS, and it replicates across seeds.
+  Strategy minus Random, mean over 4 folds, per seed (42 / 43 / 44), with
+  pooled fold-seed wins out of 12:
+
+    coreset     5%   +0.0258 +0.0196 +0.0237   12/12
+    coreset    10%   +0.0116 +0.0170 +0.0184   12/12
+    coreset    30%   +0.0166 +0.0119 +0.0151   11/12
+    coreset    50%   +0.0129 +0.0156 +0.0103   12/12
+    mc_dropout  5%   +0.0226 +0.0200 +0.0177   12/12
+    mc_dropout 10%   +0.0128 +0.0174 +0.0190   12/12
+    mc_dropout 30%   +0.0162 +0.0102 +0.0129   12/12
+    mc_dropout 50%   +0.0133 +0.0143 +0.0069   11/12
+    tod         all four budgets positive on all three seeds, 8-12/12
+    typiclust   positive except the 10% cell (-0.0034/+0.0008/-0.0019, 4/12)
+
+  CoreSet and MC-dropout each win 47 of 48 fold-seed comparisons. The advantage
+  does NOT decay with budget (mean over strategies: +0.0144, +0.0100, +0.0103,
+  +0.0116 at 5/10/30/50%), which argues against a "small-budget variance"
+  explanation and for a structural one.
+
+FINDING 3 — Mechanism evidence, from the persisted selection indices.
+  Per-patient coverage ratio (selected share / pool share), kidney, 16 seed
+  cells at the small budgets:
+
+    random     5%   CV 0.153   corr(patient size) -0.03
+    coreset    5%   CV 0.423   corr(patient size) -0.55
+    mc_dropout 5%   CV 0.409   corr(patient size) -0.07
+
+  CoreSet systematically redistributes budget from large patients to small ones
+  (kidney patients span 317-4,166 spots, a 13x range, and each fold holds out
+  5-6 unseen patients). MC-dropout deviates from proportional sampling just as
+  much but NOT along patient size — so there are at least two distinct
+  mechanisms, not one. No patient receives zero coverage under any strategy.
+  TREAT THIS AS HYPOTHESIS-SUPPORTED, NOT ESTABLISHED: it rests on 16 cells and
+  the 30%/50% selection indices have not been analysed yet (see 5(a)).
+
+FINDING 4 — The evaluation measure changes the ranking, but that does not
+  replicate. On HER2, CoreSet and MC-dropout beat Random on expression-cluster
+  agreement (ARI) at 5% and 10% on all four folds — precisely where they lose
+  most on correlation. On cSCC every active strategy is at or below Random at
+  those budgets. Report this as a caution about single-measure benchmarks, not
+  as a finding about the strategies.
+
+FINDING 5 — Schedule-matched full-label reference. Both the 0.5 arm and the
+  beta=1 arm have an epoch-50 snapshot, so they can be compared at equal
+  optimizer exposure with no new runs. At epoch 50: HER2 +0.0058 (3/4 folds),
+  cSCC +0.0073 (4/4) in favour of beta=1. This dissolves the apparent anomaly
+  that a 50% arm slightly exceeded the full-label run — that was the 50-vs-60
+  epoch schedule difference, now demonstrated rather than conjectured.
+
+ALSO ESTABLISHED (smaller, but load-bearing for the papers):
+  * TypiClust acquisition-cost measurements were contaminated by machine load.
+    Slow timings (1,112-1,584 s/round) all come from 2026-08-09/10; clean ones
+    (71-83 s/round at the SAME cluster count k=817) from 2026-08-14. Report the
+    clean values. The original decision to skip TypiClust's 50% arm rested on
+    the contaminated number.
+  * Targets carry a large sequencing-depth component: mean gene-to-library-size
+    correlation +0.45 on HER2; projecting depth out leaves 22% of the reported
+    PCC. Relative strategy comparisons are unaffected; absolute values are not
+    comparable to normalized studies.
+  * Patch geometry: patches are stored at exactly 224x224, so the Resize in the
+    transform is a no-op; no resampling occurs. On 6 of 36 HER2 slides (one
+    patient) patches overlap; 15.5% of HER2 spots have a neighbour closer than
+    the patch width.
+  * Determinism: torch.manual_seed and np.random.seed are set, but
+    cudnn.benchmark = True and deterministic algorithms are NOT enabled, so
+    runs are not bit-reproducible even at a fixed seed. This is disclosed in
+    the paper and should stay disclosed.
+
+--------------------------------------------------------------------------------
+4. PAPERS
+--------------------------------------------------------------------------------
+
+Two drafts existed as of 2026-09, both fully validated (every table value
+recomputed from run outputs; structure, citations and 11 formatting rules
+checked):
+
+  SPIE2027_4\main.tex    Full draft, ~4,600 body words, 7 tables, 2 figures.
+  SPIE_4_Pages\main.tex  SPIE Medical Imaging 4-page submission. Body fits
+                         pages 1-4 with references on page 5, matching the
+                         format of four reference submissions. No abstract and
+                         no Discussion section (that format uses
+                         DESCRIPTION OF PURPOSE / METHODS / DATA / RESULTS /
+                         NEW OR BREAKTHROUGH WORK / CONCLUSION). Two merged
+                         tables, cohorts as column groups, 14 citations.
+
+SEE SECTION 0(3): these directories are no longer at their last known path.
+Known outstanding items on the 4-page draft, if it is recovered:
+  * Figure 1 still shows a "100%" tick on the budget bar and Moran curves; the
+    caption was adjusted to cover both rather than redrawing the figure.
+  * Figure 1 was never regenerated after kidney completed, so it shows the
+    two-cohort state.
+  * The journal plan reserves kidney for the journal extension — kidney appears
+    in the conference paper only as one scoping sentence.
+
+Planning documents in the repo root, all current:
+  journal_extension_plan.md                        scope split, conference vs journal
+  student_conference_confirmation_checklist.md     reviewer checklist, mostly closed
+  methods_data_review.md                           detailed methods/data issue inventory
+  gpu_account_request.md / _short.md               Cornell Tech GPU request drafts
+
+--------------------------------------------------------------------------------
+5. NEXT STEPS, IN PRIORITY ORDER
+--------------------------------------------------------------------------------
+
+Everything in (a)-(c) needs NO GPU and NO retraining — the predictions are all
+on disk. Start there.
+
+(a) FULL SELECTION-BEHAVIOUR ANALYSIS                        [no GPU, hours]
+    The mechanism result in Finding 3 used only the 5%/10% seed cells. All 240
+    kidney seed cells now have selected_epoch_*.npy (960 files). Extend the
+    analysis to 30%/50% and answer: does the cross-patient rebalancing persist
+    as the budget grows, or does it wash out once most patients are covered
+    anyway? If the rebalancing fades while the PCC advantage does not, the
+    mechanism story needs revision.
+    Also compute, for every strategy: spatial dispersion of selected spots
+    within a slide, per-slide coverage (any slide receiving zero labels?), and
+    whether CoreSet's picks concentrate at tissue edges (the "edges, folds and
+    staining artifacts" hypothesis the paper currently states as unverified).
+    Template: the index-to-patient mapping is cumulative file lengths over
+    cross_fold.get_folds(ds)[fold]["train"] in order. Confirm with MANIFEST.md.
+
+(b) THREE-SEED SPATIAL-METRIC ROBUSTNESS                     [no GPU, minutes]
+    Kidney_spatial_metrics_seed{43,44}.csv exist but have not been folded into
+    any summary or figure. Produce the ARI and Moran equivalents of the PCC
+    table in Finding 2, and regenerate panel_d_7/8/9 with seed error bands.
+
+(c) PAPER RECOVERY AND FIGURE REFRESH                        [no GPU]
+    Locate the .tex sources (ask the user). Then: regenerate Figure 1 for three
+    cohorts, add the kidney result, and decide whether kidney enters the
+    conference paper at all — the journal plan currently says no, but kidney is
+    now the strongest result in the project and that decision predates it.
+
+(d) REPEATED SEEDS ON HER2 AND cSCC                          [~300-400 GPU-h]
+    Both cancer cohorts are still single-seed. The negative result is less
+    fragile than a positive one would be, but "AL loses at small budgets" is
+    the paper's headline and it rests on one seed per cell. Run seeds 43/44 on
+    at least the 5%/10% cells of both cohorts, mirroring run_kidney_seeds.sh.
+    Note these runs will also produce selection indices, which the original
+    seed-42 HER2/cSCC cells lack entirely.
+
+(e) PREDICTOR BACKBONES                                      [blocked on VRAM]
+    One backbone (DenseNet-121, 8M params) underlies every result. The central
+    claim — that AL's usefulness depends on cohort structure — needs to survive
+    a change of predictor. Pathology foundation-model encoders are 30-40x
+    larger and do not fit in 10 GB at a usable batch size. This is the main
+    justification in gpu_account_request.md and cannot start until cluster
+    access exists.
+
+(f) TARGET-PREPROCESSING ROBUSTNESS                          [~200-250 GPU-h]
+    Repeat the headline comparisons under library-size normalization and
+    gene-wise standardization. Given the +0.45 depth correlation, this is the
+    most likely single confound to change a conclusion.
+
+(g) REGION-SELECTIVE ACQUISITION                             [~100-150 GPU-h]
+    The practical payoff. Convert selected spots into contiguous capture masks
+    and re-run under that constraint. This is a sampler change only — it
+    respects the standing constraint that the training architecture and
+    hyperparameters are NOT to be modified.
+
+STANDING CONSTRAINTS FROM THE USER (do not violate without asking):
+  * Do not modify the training architecture or hyperparameters. Only the
+    sampler is in scope for new methods work.
+  * Do not report progress proactively; answer when asked.
+  * Audit numbers before presenting them. Several claims in this project were
+    retracted after the fact (a bib-audit regex that falsely reported 20 of 22
+    entries broken; a "48/48" that was really 47/48; a page-count model that
+    was off by 1.8 pages). Try to break a number before stating it.
+
+OPERATIONAL NOTES
+  * Long queues die when VS Code restarts. This happened at least three times
+    and cost roughly 50 hours of recomputation. Launch queues detached, and
+    after any restart check check_running.py and re-run the queue script — the
+    skip logic makes resumption free.
+  * On Windows, taskkill /F /T fails from Git Bash (MSYS rewrites /F to F:/).
+    Use PowerShell Stop-Process. Kill the queue's bash parents BEFORE the
+    python child, or the queue simply advances to the next cell.
+  * Heredocs in this environment mangle backslashes; write Python to a file
+    instead of piping it through a heredoc when it contains regexes or LaTeX.
+  * Results backup: C:\Users\zheyu\OneDrive\ST-Select_results_backup\ (3.1 GB,
+    300 cells, analysis-ready subset: final-epoch predictions, ground truth,
+    slidewise metrics, selection indices, MANIFEST). The full weights_st tree
+    is 23 GB locally and includes checkpoints the backup omits.
+================================================================================
